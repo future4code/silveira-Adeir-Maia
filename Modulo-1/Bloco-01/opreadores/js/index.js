@@ -76,7 +76,8 @@ console.log(`Você tem ${emHoras} horas de vida.`)
 //4
 const numero1 = +prompt('Por favor digite um número')
 const numero2 = +prompt('Por favor digite outro número')
-console.log(`O primeiro numero é maior que o segundo? ${numero1 > numero2}
+console.log(`O primeiro número que você digitou é ${numero1} e o segundo é ${numero2}
+O primeiro numero é maior que o segundo? ${numero1 > numero2}
 O primeiro numero é igual ao segundo? ${numero1 === numero2}
 O primeiro numero é divisível pelo segundo? ${(numero1 % numero2) === 0}
 O segundo numero é divisível pelo primeiro? ${(numero2 % numero1) === 0}`)
@@ -84,27 +85,53 @@ O segundo numero é divisível pelo primeiro? ${(numero2 % numero1) === 0}`)
 //DESAFIO
 
 //D1
-let fahrenheit = (celsius) => {
-    return celsius * 1, 8 + 32
+let fahrenheit = (celsius) => {//Função que converte °C em °F
+    return celsius * 1.8 + 32
 }
-let celsius = (fahrenheit) => {
+let celsius = (fahrenheit) => {//Função que converte °F em °C
     return (fahrenheit - 32) / 1.8
 }
-let kelvin = (celsius) => {
+let kelvin = (celsius) => {//Função que converte °C em °K
     return celsius + 273.15
 }
-let celsiusK = (kelvin) => {
+let celsiusK = (kelvin) => {//Função que converte °k em °C
     return kelvin - 273.15
 }
 
 //D1.a 
-let apoio = celsius(77)
-console.log(celsiusK(apoio))
+let apoio = celsius(77)//Aqui eu converti 77°F em 25°C, foi preciso usar °C como apoio
+console.log(`${kelvin(apoio)}°K`)//Aqui eu converti 25°C em 298.15°K
 
 //D1.b
-console.log(fahrenheit(80))
+console.log(`${fahrenheit(80)}°F`)//Aqui eu converti 80°C em 178°F diretamente
 
 //D1.c
-console.log(fahrenheit(30))
-console.log(kelvin(30))
+console.log(`${fahrenheit(30)}°F`)//Aqui em converti 30°C em 86°F diretamente
+console.log(`${kelvin(30)}°K`)//Aqui em converti 30°C em 303.15°K diretamente
+//D1.d
+const celsiusUsuario = +prompt('Por favor digite um valor de tempetura em °C que você deseja converter para Kelvin °K')
+console.log(`${fahrenheit(celsiusUsuario)}°F`)
+console.log(`${kelvin(celsiusUsuario)}°K`)
 
+//D2
+const consumo = +prompt('Qual é o consumo de energia em quilowatt-hora da sua residencia?')
+console.log(`Os ${consumo}kW/h de consumo de sua residencia custão R$${consumo * 0.05} reais`)
+//D2.a
+console.log(`Uma residencia que tem um consumo de 280kW/h paga R$${280 * 0.05} reais pela energia consumida.`)
+console.log(`Com um desconto de 15% essa mesma residencia que consome 280kW/h pagará R$${(280 * 0.05) * 0.85} reais de energia elétrica.`)
+
+//D3.a
+console.log(`20lb equivalem a ${20 / 2.2046}Kg.`)
+//D3.b
+console.log(`10.5oz equivalem a ${10.5 / 35.274}Kg.`)
+//D3.c
+console.log(`100mi equivalem a ${100 * 1609}m.`)
+//D3.d
+console.log(`50ft equivalem a ${50 / 3.281}m.`)
+//D3.e
+console.log(`103.56gal equivalem a ${103.56 * 3, 785}L.`)
+//D3.f
+console.log(`450 xic equivalem a ${(450 * 6) / 25}L.`)
+//D.g
+let xicara = +prompt('Digite o número de xicaras que você quer converter para Litros')
+console.log(`${xicara} xicaras equivalem a ${(xicara * 6) / 25}L.`)
