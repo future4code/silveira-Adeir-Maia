@@ -2,18 +2,18 @@
 EXERCÍCISO DE INTERPRETAÇÃO
 
 1
-a.False -> O operador && retorna True apenas se dois argumentos forem True. O segundo argumento e False
+a.False -> O operador && retorna True apenas se os dois argumentos forem True. O segundo argumento é False
 b.False -> 2 operadores && sem parenteses, a sentença começará a ser lida da esquerda para a direta portanto temos True && False && True.
 o argumento false do meio torna toda a sentença falsa 
 c.True -> O opedaoror ! inverte o boleano da variável resultado, a seguigir, os parenteses indicam que os argumentos 2 e 3 devem ser comparados 
 entre si, dentro dos parenteses temos o operador || que retorna false apenas se os dois argumentos forem falsos, portanto, temos
-!false && (True && false) ---> True && True ---> True
+!false && (True || false) ---> True && True ---> True
 d. boolean -> true e false são boleanos 
 
 2 e 3 
-VAMOS SUPER O MEU COLEGA TENHA DIGITADO 10 E DEPOIS 5
-O que será impresso é 105, pois, por padrão, o método prompt captura uma string, o operador + entre strings irá apenas concatena-las
-Para somar o valor das duas variáveis em preciso transforma-las de string para Number, Assim: 
+VAMOS SUPOR QUE O MEU COLEGA TENHA DIGITADO 10 E DEPOIS 5
+O que será impresso é 105, pois, por padrão, o método prompt captura uma string, o operador + entre strings irá apenas concatená-las
+Para somar o valor das duas variáveis é preciso transforma-las de string para Number, Assim: 
 let primeiroNumero = Number(prompt("Digite um numero!"))
 let segundoNumero = Number(prompt("Digite outro numero!"))
 com esse código meu amigo conseguirá somar os 2 números.
@@ -29,9 +29,9 @@ console.log(`Sua idade é maior do que a do seu melhor amigo? (${igualdade})`)
 //1.d
 let diferença = (suaIdade, idadeDoAmigo) => {
     if (suaIdade > idadeDoAmigo) {
-        return `Você é mais velho que seu amigo ${suaIdade - idadeDoAmigo} anos.`
+        return `Você é mais velho que seu amigo ${suaIdade - idadeDoAmigo} ano/s.`
     } else if (idadeDoAmigo > suaIdade) {
-        return `Seu amigo é mais velho que você ${idadeDoAmigo - suaIdade} anos.`
+        return `Seu amigo é mais velho que você ${idadeDoAmigo - suaIdade} ano/s`
     } else {
         return `Vocês tem a mesma idade!`
     }
@@ -99,15 +99,15 @@ let celsiusK = (kelvin) => {//Função que converte °k em °C
 }
 
 //D1.a 
-let apoio = celsius(77)//Aqui eu converti 77°F em 25°C, foi preciso usar °C como apoio
-console.log(`${kelvin(apoio)}°K`)//Aqui eu converti 25°C em 298.15°K
+let celsiusApoio = celsius(77)//Aqui eu converti 77°F em 25°C, foi preciso usar °C como apoio
+console.log(`${kelvin(celsiusApoio)}°K`)//Aqui eu converti 25°C em 298.15°K
 
 //D1.b
 console.log(`${fahrenheit(80)}°F`)//Aqui eu converti 80°C em 178°F diretamente
 
 //D1.c
-console.log(`${fahrenheit(30)}°F`)//Aqui em converti 30°C em 86°F diretamente
-console.log(`${kelvin(30)}°K`)//Aqui em converti 30°C em 303.15°K diretamente
+console.log(`${fahrenheit(30)}°F`)//Aqui eu converti 30°C em 86°F diretamente
+console.log(`${kelvin(30)}°K`)//Aqui eu converti 30°C em 303.15°K diretamente
 //D1.d
 const celsiusUsuario = +prompt('Por favor digite um valor de tempetura em °C que você deseja converter para Kelvin °K')
 console.log(`${fahrenheit(celsiusUsuario)}°F`)
@@ -118,7 +118,7 @@ const consumo = +prompt('Qual é o consumo de energia em quilowatt-hora da sua r
 console.log(`Os ${consumo}kW/h de consumo de sua residencia custão R$${consumo * 0.05} reais`)
 //D2.a
 console.log(`Uma residencia que tem um consumo de 280kW/h paga R$${280 * 0.05} reais pela energia consumida.`)
-console.log(`Com um desconto de 15% essa mesma residencia que consome 280kW/h pagará R$${(280 * 0.05) * 0.85} reais de energia elétrica.`)
+console.log(`Com um desconto de 15%, essa mesma residencia que consome 280kW/h pagará R$${(280 * 0.05) * 0.85} reais de energia elétrica.`)
 
 //D3.a
 console.log(`20lb equivalem a ${20 / 2.2046}Kg.`)
