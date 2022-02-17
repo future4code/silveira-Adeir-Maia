@@ -99,8 +99,8 @@ let celsiusK = (kelvin) => {//Função que converte °k em °C
 }
 
 //D1.a 
-let celsiusApoio = celsius(77)//Aqui eu converti 77°F em 25°C, foi preciso usar °C como apoio
-console.log(`${kelvin(celsiusApoio)}°K`)//Aqui eu converti 25°C em 298.15°K
+console.log(`${kelvin(celsius(77))}°K`)//Aqui eu convertei 77°F em °C e depois para °K. Primeiro eu converti 77°K em °C usando a função celsius(77)
+// depois e eu usei o retorno dessa função como paramentro para chamar função kelvin() para converter de °C para °K
 
 //D1.b
 console.log(`${fahrenheit(80)}°F`)//Aqui eu converti 80°C em 178°F diretamente
