@@ -57,7 +57,7 @@ talves a multiplicação? ${multiplicação(numero1, numero2)}`)
 
 //DESAFIO
 //1.a
-let cosolelog = (parametro) => console.log(parametro), pitadoras = (cateto1, cateto2) => cateto1 ** 2 + cateto2 ** 2
+let cosolelog = parametro => console.log(parametro), pitadoras = (cateto1, cateto2) => (cateto1 ** 2 + cateto2 ** 2) ** (1 / 2)
 cosolelog(prompt('O que você digitar aqui aparecerá no console do seu navegador, aperte F12 e vá na aba console para ver!'))
 
 //1.b
