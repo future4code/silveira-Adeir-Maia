@@ -85,18 +85,17 @@ O segundo numero é divisível pelo primeiro? ${(numero2 % numero1) === 0}`)
 //DESAFIO
 
 //D1
-let fahrenheit = (celsius) => {//Função que converte °C em °F
-    return celsius * 1.8 + 32
-}
-let celsius = (fahrenheit) => {//Função que converte °F em °C
-    return (fahrenheit - 32) / 1.8
-}
-let kelvin = (celsius) => {//Função que converte °C em °K
-    return celsius + 273.15
-}
-let celsiusK = (kelvin) => {//Função que converte °k em °C
-    return kelvin - 273.15
-}
+//Função que converte °C em °F
+let fahrenheit = celsius => celsius * 1.8 + 32 //Quando a função tem apenas um parametro, podemos descartar os parenteses no paramentro
+
+//Função que converte °F em °C
+let celsius = fahrenheit => (fahrenheit - 32) / 1.8 //Quando a função tem apenas uma linha, podemos descartar as chaves e o return
+
+//Função que converte °C em °K
+let kelvin = celsius => celsius + 273.15 //Quando a função tem apenas um parametro, podemos descartar os parenteses no paramentro
+
+//Função que converte °k em °C
+let celsiusK = kelvin => kelvin - 273.15 //Quando a função tem apenas uma linha, podemos descartar as chaves e o return
 
 //D1.a 
 console.log(`${kelvin(celsius(77))}°K`)//Aqui eu convertei 77°F em °C e depois para °K. Primeiro eu converti 77°K em °C usando a função celsius(77)
