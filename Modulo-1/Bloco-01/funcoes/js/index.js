@@ -40,7 +40,7 @@ let maior = (n1, n2) => n1 > n2
 console.log(`O primeiro número que você digitou é maior que o segundo? ${maior(numero1, numero2)}`)
 
 //2.c
-let numeropar = +prompt('Digite um número para sabermos se ele par ou não:'), par = (n) => n % 2 === 0
+let numeropar = +prompt('Digite um número para sabermos se ele par ou não:'), par = n => n % 2 === 0
 console.log(`O número que você digitou é par : ${par(numeropar)}`)
 
 //2.d
