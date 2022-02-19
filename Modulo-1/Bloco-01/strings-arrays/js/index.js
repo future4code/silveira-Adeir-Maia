@@ -43,7 +43,7 @@ let array = [prompt('Por favor digite uma frase:')]
 //let palavra
 //let resto
 //let array2 = []
-cosole.log(array[0].split(' ')) //<= solução otimizada
+console.log(array[0].split(' ')) //<= solução otimizada
 /*do {
     if (array[0].indexOf(' ') === -1) {
         array2.push(array[0].slice(0, array[0].length))
