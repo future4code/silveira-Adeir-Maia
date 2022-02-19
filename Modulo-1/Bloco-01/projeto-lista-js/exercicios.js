@@ -89,6 +89,7 @@ function retornaUltimoElemento(array) {
 function trocaPrimeiroEUltimo(array) {
   // implemente sua lógica aqui
   [array[0], array[array.length - 1]] = [array[array.length - 1], array[0]]
+  // sixtaxe da ES6
   return array
 }
 
@@ -104,7 +105,13 @@ function checaRenovacaoRG() {
   let ano = +prompt('Em quem ano estamos?'), nascimento = +prompt('Em que ano você nasceu?')
   let identidade = +prompt("Em que ano você tirou sua carteira de indentidade?")
   let idade = ano - nascimento, carteiraID = ano - identidade
-  if (idade <= 20 && carteiraID >= 5) {
+  let jovem = idade <= 20 && carteiraID >= 5, adulto = idade > 20 && idade <= 30 && carteiraID >= 10
+  let idoso = idade > 50 && carteiraID > 15
+
+  console.log(jovem || adulto || idoso)
+
+  //As condicionais usadas nos -ifs- podem ser guardadas em variáveis e usadas diretamente no console.log() numa condicional maior.
+  /*if (idade <= 20 && carteiraID >= 5) {
     console.log(true)
   } else if ((idade > 20 && idade <= 30 && carteiraID >= 10)) {
     console.log(true)
@@ -112,20 +119,22 @@ function checaRenovacaoRG() {
     console.log(true)
   } else {
     console.log(false)
-  }
+  }*/
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
-  let multiplo4 = ano => ano % 4 === 0
-  let nãoMultiplo100 = ano => ano % 100 !== 0
+  let multiplo4n100 = ano => ano % 4 === 0 && ano % 100 !== 0
+  //let nãoMultiplo100 = ano => ano % 100 !== 0
   let multiplo100e400 = ano => ano % 4 == 0 && ano % 100 === 0 && ano % 400 === 0
-  if ((multiplo4(ano) && nãoMultiplo100(ano)) || (multiplo100e400(ano))) {
+  /*if ((multiplo4(ano) && nãoMultiplo100(ano)) || (multiplo100e400(ano))) {
     return true
   } else {
     return false
-  }
+  }*/
+  return (multiplo100e400(ano) || multiplo4n100(ano))
+  // As duas funções retornam boleanos que e podem ser chamadas diretamente no cosole.log() em uma condicional.
 }
 
 // EXERCÍCIO 15
@@ -133,9 +142,11 @@ function checaValidadeInscricaoLabenu() {
   // implemente sua lógica aqui
   let idade = prompt('Vocêm tem 18 anos?'), medio = prompt('Você tem ensino médio completo?')
   let disponibiliade = prompt('Você possui disponibilidade exclusiva durante os horários do curso?')
-  if (idade.toLowerCase().includes('sim') && medio.toLowerCase().includes('sim') && disponibiliade.toLowerCase().includes('sim')) {
+  /*if (idade.toLowerCase().includes('sim') && medio.toLowerCase().includes('sim') && disponibiliade.toLowerCase().includes('sim')) {
     console.log(true)
   } else {
     console.log(false)
-  }
+  }*/
+  console.log(idade.toLowerCase().includes('sim') && medio.toLowerCase().includes('sim') && disponibiliade.toLowerCase().includes('sim'))
+  // As 3 variáveis são boleanos e podem ser chamadas diretamete no console.log() numa condicional.
 }
