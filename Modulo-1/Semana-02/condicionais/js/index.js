@@ -41,13 +41,13 @@ else console.log('Você não pode dirigir')
 
 //2
 let turno = prompt('Em que turno você estuda? M(Matutino) V(Vespertino) N(Noturno)')
-if (turno = 'M') console.log('Bom Dia!')
-else if (turno = 'V') console.log('Boa Tarde!')
-else if (turno = 'N') console.log('Boa Noite!')
+if (turno.toUpperCase() === 'M') console.log('Bom Dia!')
+else if (turno.toUpperCase() === 'V') console.log('Boa Tarde!')
+else if (turno.toUpperCase() === 'N') console.log('Boa Noite!')
 else console.log('Por favor informe seu turno digitando M V ou N')
 
 //3
-switch (turno) {
+switch (turno.toUpperCase()) {
     case 'M':
         console.log('Bom Dia!')
         break
@@ -63,13 +63,13 @@ switch (turno) {
 }
 
 //4
-let filme = prompt('Qual é o gênero do filme?'), preço = +prompt('Qual o preço do ingresso?')
-if (filme.toLowerCase() === 'fantasia' && preço < 15) console.log('Bom filme!')
+let filme = prompt('Qual é o gênero do filme?'), precoDoingresso = +prompt('Qual o preco do ingresso?')
+if (filme.toLowerCase() === 'fantasia' && precoDoingresso < 15) console.log('Bom filme!')
 else console.log('Escolha outro filme :(')
 
 //DESAFIO
 //1
-if (filme.toLowerCase() === 'fantasia' && preço < 15) {
+if (filme.toLowerCase() === 'fantasia' && precoDoingresso < 15) {
     console.log('Bom filme!')
     console.log(`Aproveite o seu/sua ${prompt('Você comprou algum lanchinho? (pipoca, chocolate, doces, etc)')}`)
 } else console.log('Escolha outro filme :(')
@@ -77,14 +77,14 @@ if (filme.toLowerCase() === 'fantasia' && preço < 15) {
 //2
 let nome = prompt('Qual e seu nome?'), tipo = prompt('Qual o tipo do ingresso? IN(Internacional) NA(Nacional)')
 let etapa = prompt('Qual etapa ? SF(Semi-Final) DT(Decisão do terceiro lugar) FI(Final)')
-let categoria = prompt('Qual a categoria do ingresso? 1,2,3 ou 4'), quantidade = prompt('Quantos ingressos?')
+let categoria = +prompt('Qual a categoria do ingresso? 1,2,3 ou 4'), quantidade = +prompt('Quantos ingressos?')
 
-if (tipo === 'IN') tipo = 'Internacional'
-else if (tipo === 'NA') tipo = 'Nacional'
+if (tipo.toUpperCase() === 'IN') tipo = 'Internacional'
+else if (tipo.toUpperCase() === 'NA') tipo = 'Nacional'
 
-if (etapa === 'SF') etapa = 'Semi-Final'
-else if (etapa === 'DT') etapa = 'Disputa do terceiro lugar'
-else if (etapa === 'FI') etapa = 'Final'
+if (etapa.toUpperCase() === 'SF') etapa = 'Semi-Final'
+else if (etapa.toUpperCase() === 'DT') etapa = 'Disputa do terceiro lugar'
+else if (etapa.toUpperCase() === 'FI') etapa = 'Final'
 
 const preçoSF1 = 1320, preçoSF2 = 880, preçoSF3 = 550, preçoSF4 = 220
 const preçoDT1 = 666, preçoDT2 = 440, preçoDT3 = 330, preçoDT4 = 170
@@ -156,21 +156,26 @@ let preço = (tipo, etapa, categoria, quantidade) => {
         }
     }
     if (tipo === 'Internacional') {
-        valorTotal = valorTotal * dolar
+        valorTotal = valorTotal / dolar
+        valorDoIngresso = valorDoIngresso / dolar
     }
     return { valorTotal, valorDoIngresso }
 }
 
 let objetoRetornadoPelafuncao = preço(tipo, etapa, categoria, quantidade)
 
+let moeda = tipo => {
+    if (tipo === 'Internacional') return 'U'
+    else if (tipo === 'Nacional') return 'R'
+
+}
+
 console.log(`---Dados da Compra---
 Nome do cliente: ${nome}
 Tipo de jogo: ${tipo}
 Etapa do jogo: ${etapa}
 Categoria: ${categoria}
-Quantidade de ingresso: ${quantidade}
+Quantidade de ingresso: ${quantidade} ingressos
 ---Valores---
-Valor dos ingresso R$ ${objetoRetornadoPelafuncao.valorDoIngresso}
-valor total ${objetoRetornadoPelafuncao.valorTotal}`)
-
-
+Valor dos ingresso ${moeda(tipo)}$ ${objetoRetornadoPelafuncao.valorDoIngresso}
+valor total ${moeda(tipo)}$ ${objetoRetornadoPelafuncao.valorTotal}`)
