@@ -44,7 +44,7 @@ let numeropar = +prompt('Digite um número para sabermos se ele par ou não:'), 
 console.log(`O número que você digitou é par : ${par(numeropar)}`)
 
 //2.d
-let frase = prompt('Por favor digite uma frase:'), imprimir = string => console.log(string.length, sting.toUpperCase())
+let frase = prompt('Por favor digite uma frase:'), imprimir = string => console.log(string.length, string.toUpperCase())
 imprimir(frase)
 
 //3

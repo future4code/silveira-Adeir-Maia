@@ -40,10 +40,11 @@ console.log(listaDeTarefas)
 //DESAFIO
 //1
 let array = [prompt('Por favor digite uma frase:')]
-let palavra
-let resto
-let array2 = []
-do {
+//let palavra
+//let resto
+//let array2 = []
+console.log(array[0].split(' ')) //<= solução otimizada
+/*do {
     if (array[0].indexOf(' ') === -1) {
         array2.push(array[0].slice(0, array[0].length))
         array.pop()
@@ -54,7 +55,7 @@ do {
         array[0] = resto
     }
 } while (array.length !== 0)
-console.log(array2)
+console.log(array2) <= solução com força bruta */
 
 //2
 const frutas = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]
