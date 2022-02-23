@@ -79,6 +79,34 @@ let nome = prompt('Qual e seu nome?'), tipo = prompt('Qual o tipo do ingresso? I
 let etapa = prompt('Qual etapa ? SF(Semi-Final) DT(Decisão do terceiro lugar) FI(Final)')
 let categoria = +prompt('Qual a categoria do ingresso? 1,2,3 ou 4'), quantidade = +prompt('Quantos ingressos?')
 
+let bilheteria2 = []
+bilheteria2[0] = [1320, 880, 550, 220]
+bilheteria2[1] = [660, 440, 330, 170]
+bilheteria2[2] = [1980, 1320, 880, 330]
+//Um array Bidimencional. Sinxtaxe dele billheteria2[indice 1° dimenção][indece 2° dimenção]
+
+let funcao = (array, tipo, etapa, categoria, quantidade) => {
+    let valorTotal, valorDoIngresso, dolar = 5
+
+    let conversorEtapaIndice = (etapa) => {
+        if (etapa === 'SF') return 0
+        else if (etapa === 'DT') return 1
+        else if (etapa === 'FI') return 2
+    }
+    let indice = conversorEtapaIndice(etapa)
+
+    valorTotal = array[indice][categoria - 1] * quantidade
+    valorDoIngresso = array[indice][categoria - 1]
+
+    if (tipo === 'IN') {
+        valorTotal = valorTotal / dolar
+        valorDoIngresso = valorDoIngresso / dolar
+    }
+    return { valorTotal, valorDoIngresso }
+}
+
+let objetoRetornadoPelafuncao = funcao(bilheteria2, tipo, etapa.toUpperCase(), categoria, quantidade)
+
 if (tipo.toUpperCase() === 'IN') tipo = 'Internacional'
 else if (tipo.toUpperCase() === 'NA') tipo = 'Nacional'
 
@@ -86,6 +114,7 @@ if (etapa.toUpperCase() === 'SF') etapa = 'Semi-Final'
 else if (etapa.toUpperCase() === 'DT') etapa = 'Disputa do terceiro lugar'
 else if (etapa.toUpperCase() === 'FI') etapa = 'Final'
 
+/*
 const preçoSF1 = 1320, preçoSF2 = 880, preçoSF3 = 550, preçoSF4 = 220
 const preçoDT1 = 666, preçoDT2 = 440, preçoDT3 = 330, preçoDT4 = 170
 const preçoFI1 = 1980, preçoFI2 = 1320, preçoFI3 = 880, preçoFI4 = 330
@@ -162,7 +191,7 @@ let preço = (tipo, etapa, categoria, quantidade) => {
     return { valorTotal, valorDoIngresso }
 }
 
-let objetoRetornadoPelafuncao = preço(tipo, etapa, categoria, quantidade)
+let objetoRetornadoPelafuncao = preço(tipo, etapa, categoria, quantidade)*/
 
 let moeda = tipo => {
     if (tipo === 'Internacional') return 'U'
