@@ -47,25 +47,19 @@ for (let numero of arrayOriginal) if (numero % 2 === 0) fibonacciPares.push(nume
 console.log(fibonacciPares)
 
 //2.d
-let imprimiIndex = (array) => {
+let imprimiIndex = array => {
     let frase = []
-    for (let numero of array) {
-        frase.push(`O elemento do índex ${array.indexOf(numero)} é: ${numero}`)
-    }
+    for (let numero of array) frase.push(`O elemento do índex ${array.indexOf(numero)} é: ${numero}`)
     console.log(frase)
 }
 imprimiIndex(arrayOriginal)
 
 //2.e
 let maior = arrayOriginal[0], menor = arrayOriginal[0]
-let funcao = (array) => {
+let funcao = array => {
     for (let i = 1; i < array.length; i++) {
-        if (array[i] > maior) {
-            maior = array[i]
-        }
-        if (array[i] < menor) {
-            menor = array[i]
-        }
+        if (array[i] > maior) maior = array[i]
+        if (array[i] < menor) menor = array[i]
     }
 }
 funcao(arrayOriginal)
@@ -77,13 +71,13 @@ const numeroEscolhidoPeloJogador1 = +prompt('1° jogador Escolha um número')
 console.log('Vamos jogar!')
 
 //1.b.c
-let jogoDaAdivinhação = (numero) => {
+let jogoDaAdivinhação = numero => {
     let chute = +prompt('2° jogador Chute um número'), contador = 1
     while (chute !== numero) {
         console.log(`o número chutado foi: ${chute}`)
         contador++
 
-        let maiorOumenor = (chute) => {
+        let maiorOumenor = chute => {
             if (chute < numero) return 'MAIOR'
             if (chute > numero) return 'MENOR'
         }
