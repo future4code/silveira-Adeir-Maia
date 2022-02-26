@@ -44,10 +44,10 @@ Quer comprar outra carta?`) && pontosJ() < 21) {
    }
    //Equanto o jogador clicar em ok e sua pontuação for menor do que 21, ele pode comprar cartas
 
-   while (pontosC() < 15) {
+   while (((pontosC() < pontosJ()) && pontosJ() < 22)) {
       maoComputador.push(comprarCarta())
    }
-   //Equanto a pontuação do computador for menor que 15 ele pode comprar cartas 
+   //Equanto a pontuação do computador for menor que a do usuário e a pontuação deste não tiver estourado, o computador pode comprar cartas
 
    const pontosFinalJ = pontosJ()
    const pontosFinalC = pontosC()
