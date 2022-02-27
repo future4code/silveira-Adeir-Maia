@@ -64,21 +64,15 @@ Cartas do computador ${cartasC()} - ${pontosFinalC}
 Vitorias ${vitoria}  - Derrotas ${derrota} - Empates ${empate}`)
       }
       // retorna o placas final do jogo 
-      if (((pontosFinalJ > pontosFinalC) && pontosFinalJ < 22) || (pontosFinalC > 21 && pontosFinalJ < 22)) {
-         vitoria++
-         alert('Parabens! Você venceu! ' + String.fromCodePoint(0x1F604) + placar())
-      }
+      if (((pontosFinalJ > pontosFinalC) && pontosFinalJ < 22) || (pontosFinalC > 21 && pontosFinalJ < 22)) vitoria++, alert('Parabens! Você venceu! ' + String.fromCodePoint(0x1F604) + placar())
       //Se a pontuação do jogador for maior que a do computador e ambas forem menores que 22 OU a pontuaçõ do computador estourar, o jogador vence!
-      else if (((pontosFinalC > pontosFinalJ) && pontosFinalC < 22) || (pontosFinalJ > 21 && pontosFinalC < 22)) {
-         derrota++
-         alert('Que pena! Você perdeu! ' + String.fromCodePoint(0x1F625) + placar())
-      }
+
+      else if (((pontosFinalC > pontosFinalJ) && pontosFinalC < 22) || (pontosFinalJ > 21 && pontosFinalC < 22)) derrota++, alert('Que pena! Você perdeu! ' + String.fromCodePoint(0x1F625) + placar())
       //Se a pontuação do computador for maior que a do jogador e ambas forem menores que 22 OU a pontuação do jogador estourar, o computador vence!
-      else if ((pontosFinalJ === pontosFinalC) || (pontosFinalJ > 21 && pontosFinalC > 21)) {
-         empate++
-         alert('Deu Empate! ' + String.fromCodePoint(0x1F610) + placar())
-      }
+
+      else if ((pontosFinalJ === pontosFinalC) || (pontosFinalJ > 21 && pontosFinalC > 21)) empate++, alert('Deu Empate! ' + String.fromCodePoint(0x1F610) + placar())
       //Se a pontução de ambos forem iguais OU ambas estourarem, da empate.
+
       else alert(`Algo deu errado na sua lójica !${placar()}`)
       // Um espaço que usei para capturar os casos em que minha lójica tinha buracos.
 
