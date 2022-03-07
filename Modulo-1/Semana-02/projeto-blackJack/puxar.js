@@ -1,6 +1,6 @@
 export default puxar
 
-function puxar(maoDoJogador, cartasEmJogo) {
+function puxar(/*maoDoJogador,*/cartasEmJogo) {
 
     const baralho = ['A♦️', 'A♥️', 'A♣️', 'A♠️', 'K♦️', 'K♥️', 'K♣️', 'K♠️', 'J♦️', 'J♥️', 'J♣️', 'J♠️', 'Q♦️', 'Q♥️', 'Q♣️', 'Q♠️', '2♦️', '2♥️', '2♣️', '2♠️',
         '3♦️', '3♥️', '3♣️', '3♠️', '4♦️', '4♥️', '4♣️', '4♠️', '5♦️', '5♥️', '5♣️', '5♠️', '6♦️', '6♥️', '6♣️', '6♠️', '7♦️', '7♥️', '7♣️', '7♠️', '8♦️', '8♥️', '8♣️', '8♠️',
@@ -15,9 +15,9 @@ function puxar(maoDoJogador, cartasEmJogo) {
         else valor = +carta.slice(0, 1)
     }
 
-    if (maoDoJogador.map(e => e.carta).includes(carta)) ({ carta, valor } = puxar(maoDoJogador))
-    //Desestruturação de objeto retornado pela função recursiva -> carta = puxar(maoDoJogador).carta, valor = puxar(maoDoJogador).valor
-    if (cartasEmJogo !== undefined) if (cartasEmJogo.map(e => e.carta).includes(carta)) ({ carta, valor } = puxar(maoDoJogador, cartasEmJogo))
+    if (cartasEmJogo.map(e => e.carta).includes(carta)) ({ carta, valor } = puxar(cartasEmJogo))
+    //Desestruturação de objeto retornado pela função recursiva -> carta = puxar(cartasEmJogo).carta, valor = puxar(cartasEmJogo).valor
+    //if (cartasEmJogo !== undefined) if (cartasEmJogo.map(e => e.carta).includes(carta)) ({ carta, valor } = puxar(maoDoJogador, cartasEmJogo))
 
     return { carta, valor }
 }

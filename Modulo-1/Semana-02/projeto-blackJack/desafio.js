@@ -33,16 +33,20 @@ Vamos jogar?`)) {
       // Retorna um array em que cada elemento é o texto de cada carta 
 
 
-      while (confirm(`Suas cartas são ${cartasJ()} e o computador mostrou a carta ${cartasC()[0]}
-Quer comprar outra carta?`) && pontosJ() < 21) {
-         maoJogador.push(puxar(maoJogador, cartasEmJogo))
+      while (pontosJ() < 21 && confirm(`Suas cartas são ${cartasJ()} e o computador mostrou a carta ${cartasC()[0]}
+Quer comprar outra carta?`)) {
+         let indexCartaComprada = maoJogador.length
+         maoJogador.push(puxar(/*maoJogador,*/cartasEmJogo))
+         cartasEmJogo.push(maoJogador[indexCartaComprada])
       }
       //Equanto o jogador clicar em ok e sua pontuação for menor do que 21, ele pode comprar cartas
 
-      cartasEmJogo = maoJogador.concat(maoComputador)
+      //cartasEmJogo = maoJogador.concat(maoComputador)
 
       while (((pontosC() < pontosJ()) && pontosJ() < 22)) {
-         maoComputador.push(puxar(maoComputador, cartasEmJogo))
+         let indexCartaComprada = maoComputador.length
+         maoComputador.push(puxar(/*maoComputador,*/cartasEmJogo))
+         cartasEmJogo.push(maoComputador[indexCartaComprada])
       }
       //Equanto a pontuação do computador for menor que a do usuário e a pontuação deste não tiver estourado, o computador pode comprar cartas
 
