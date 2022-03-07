@@ -156,15 +156,33 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    for (let cliente of contas) {
+        if (cliente.compras.length !== 0) {
+            let debito = cliente.compras.reduce((a, e) => a += e)
+            cliente.saldoTotal = cliente.saldoTotal - debito
+            cliente.compras = []
+        }
+    }
+    return contas
 }
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-
+    let ordenacao = consultas.sort((a, b) => {
+        if (a.nome === b.nome) return 0
+        return a.nome < b.nome ? -1 : 1
+    })
+    return ordenacao
+    // A função sort()compara aos pares, nome a nome. e ordena os elementos o array consultas
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-
+    let ordenacao = consultas.sort((a, b) => {
+        let diaA = a.dataDaConsulta.slice(0, 2), mesA = a.dataDaConsulta.slice(3, 5), anoA = a.dataDaConsulta.slice(6, 10)
+        let diaB = b.dataDaConsulta.slice(0, 2), mesB = b.dataDaConsulta.slice(3, 5), anoB = b.dataDaConsulta.slice(6, 10)
+        return new Date(`${anoA}/${mesA}/${diaA}`) - new Date(`${anoB}/${mesB}/${diaB}`)
+        //o objeto Date funciona como a data no formato Ano/Mes/Dia0
+    })
+    return ordenacao
 }
