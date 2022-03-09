@@ -1,0 +1,30 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: auto 0;
+    text-align: center;
+}
+.cima {
+    background-color: gold;
+    font-size: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.menu {
+    background-color: gold;
+    height: 60px;
+    font-size: 50px;
+
+    
+}
+.frase {
+    background-color: gold;
+    height: 60px;
+    font-size: 40px;
+}
+.rodape {
+    background-color: gold;
+}
+#img {
+    height: 300px;
+    width: 600px;
+}
