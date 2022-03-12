@@ -1,0 +1,285 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: auto 0;
+}
+ul {
+    padding: 0px !important;
+}
+.menu-principal {
+    background-color: #252323;
+    height: 60px;
+    width: 100%;
+}
+main, .content {
+    width: 980px;
+    margin: 0 auto;
+    position: relative;
+}
+.logo {
+    padding: 16px;
+    width: 70%;
+    float: left;
+}
+.redes-sociais ul li {
+    display: inline;
+    float: left;
+    list-style: none;
+    margin-left: 25px;
+}
+.redes-sociais {    
+    float: right;
+}
+.header-2 {
+    background-color: white;
+    width: 980px;
+    margin: 0 auto;
+    padding: 15px;
+}
+.menu-urls {
+    height: 80px;
+    border-bottom: 3px solid #efefef;
+}
+.menu ul li {
+    display:inline-block;
+    color: #8b8b8b;
+    margin-left: 15px;
+    height: 50px;
+}
+.menu ul li:hover {
+    border-bottom: 2px solid #00bac6;   
+}
+.menu ul li a:hover {
+    color: #00bac6;
+}
+.menu ul li a {
+    color: #8b8b8b;
+    text-decoration: none;
+    font-size: 19px;
+}
+.menu {
+    width: 70%;
+    float: left;
+}
+.seach {
+    
+    float: right;
+    text-align: center;
+        
+}
+.seach input {
+    text-align: left;
+    margin-top: 15px;
+    height: 36px;
+    width: 190px;
+    padding: 15px;
+    background-image: url(../img/icone-search.png);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    border: 1px solid #d6d6d6;
+}
+.col-100 {
+    float: left;
+    position: relative;
+    width: 100%
+}
+button.slick-prev {
+    font-size: 0px;
+    border:none;
+    width: 25px;
+    height: 51px;
+    background-color: transparent;
+    background-image: url("../img/anterior.png");
+    position: absolute;
+    z-index: 9;
+    top: 37%;
+    left: 20%;   
+}
+button.slick-next {
+    font-size: 0px;
+    border: none;
+    width: 25px;
+    height: 51px;
+    background-color: transparent;
+    background-image: url("../img/proximo.png");
+    position: absolute;
+    z-index: 9;
+    top: 37%;
+    right: 19%;
+}
+.slick-dots li button {
+    font-size: 0px;
+    border: 5px solid #ffffff;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
+}
+.slick-dots {
+    margin: 0 auto;
+    position: absolute;
+    width: 50%;
+    left: 44.3%;
+    top: 79%;   
+}
+li.slick-active button {
+    background-color: #00bac6;
+}
+.slick-dots li {
+    display: inline-block;
+    padding-left: 10px;
+}
+.text1 {
+    font-size: 22pt;
+    color: #8b8b8b;
+    text-align: center;
+}
+.text2 {
+    color: #8b8b8b;
+    text-align: center;
+}
+.text3 {
+    font-size: 15pt;
+    color: #8b8b8b;
+}
+.col-3 {
+    position: relative;
+    float: left;
+    width: 33.3%;
+    text-align: center;
+    margin-top: 3em;
+}
+.bloco-imagens-texto {
+    background-color: #eeeeee;
+}
+.bloco-imagem {
+    height: 280px;
+    border: 1px solid #c5c5c5;
+    padding-bottom: 15px;
+    margin-left: 10px;
+}
+.bloco-imagem img {
+    margin: 0 auto;
+    width: 100%;
+    height: 180px;
+
+}
+.bloco-imagens-texto:before {
+    width: 100%;
+    display: inline-block;
+    content: '';
+    height: 52px;
+    background: #ffffff;
+    background-image: url('../img/setinha.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.bloco-imagens-texto:after {
+    width: 100%;
+    display: inline-block;
+    content: '';
+    height: 70px;
+    background: #eeeeee;
+} 
+.col-33 {
+    position: relative;
+    float: left;
+    margin-top: 3em;
+    width: 32%;
+    text-align: center;
+}
+.bloco-imagem p {
+    color: dimgray;
+    margin-left: 10px;
+}
+.col-4 {
+    position: relative;
+    float: left;
+    width: 25%;
+    
+}
+.col-4:hover {
+    padding-top: 10px!important;
+
+}
+.marcas {
+    height: 120px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+.footer {
+    background-image: url(../img/footer.png);
+}
+.rodape {
+    float: left;
+    position: relative;
+    width: 25%;
+    margin-left: 0px;
+}
+.rodape p {
+    margin: 20px;
+}
+.setembro {
+    color: dimgray;
+}
+.setembro::before {
+    content: "";
+    float: left;
+    display: inline;
+    width: 15px;
+    height: 15px;
+    background-image: url(../img/clock.png);
+    background-repeat: no-repeat;
+    padding-left: 5px;
+}
+.s1::before {
+    content: "";
+    float: left;
+    display: inline;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/local.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}
+.s2::before {
+    content: "";
+    float: left;
+    display: inline;
+    width: 17px;
+    height: 13px;
+    background-image: url(../img/email.png);
+    background-repeat: no-repeat;
+    padding-left: 20px;
+}.s3::before {
+    content: "";
+    float: left;
+    display: inline;
+    width: 15px;
+    height: 20px;
+    background-image: url(../img/telefoneico.png);
+    background-repeat: no-repeat;
+    padding-left: 21px;
+}
+p.text4 {
+    font-size: 23px;
+    color: white;
+}
+p.text5 {
+    color: silver;
+}
+span.text4  {
+    font-size: 21px;
+    color: white;
+}
+.footer2{
+    background-image: url(../img/footer2.png);
+}
+.text6 {
+    width: 40%;
+    height: 60px;
+    margin-top: 10px;
+    float: left;
+    position: relative;
+} 
