@@ -1,4 +1,4 @@
-import puxar from "./puxar.js";
+// import puxar from "./puxar.js";
 
 let jogar = true
 

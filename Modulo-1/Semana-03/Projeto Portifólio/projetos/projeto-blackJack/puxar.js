@@ -1,4 +1,4 @@
-export default puxar
+// export default puxar
 
 function puxar(/*maoDoJogador,*/cartasEmJogo) {
 

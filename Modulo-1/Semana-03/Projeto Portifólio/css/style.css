@@ -29,6 +29,10 @@ body {
 .cabecalho a:hover {
     color: rgb(34, 247, 219);
 }
+#faixa {
+    height: 5px;
+    background-color: #ededf0;
+}
 .sobremim {
     width: 80%;
     height: 300px;
@@ -46,7 +50,7 @@ body {
     position: absolute;
     height: 300px;
     height: 300px;
-    box-shadow:  -5px 22px 70px 20px rgb(255, 255, 255);
+    filter: drop-shadow(0 0 45px white);
 }
 #bio {
     position: absolute;
@@ -241,18 +245,20 @@ ul p {
 #nome {
     position: relative;
     display: block;
-    margin: 0 auto;
-    width: 250px;
+    margin: 20px 320px 20px;
+    width: 625px;
     background-color: rgb(207, 198, 193);
     border: 5px solid rgb(2, 33, 51);
+    font-size: 18px;
 }
 #emailkk{
     position: relative;
     display: block;
-    margin: 20px auto;
-    width: 300px;
+    margin: 20px 320px 20px;
+    width: 625px;
     background-color: rgb(207, 198, 193);
     border: 5px solid rgb(2, 33, 51);
+    font-size: 18px;
 }
 #mensagem {
     position: relative;
@@ -260,6 +266,8 @@ ul p {
     margin: 0 auto;
     background-color: rgb(207, 198, 193);
     border:  5px solid rgb(2, 33, 51);
+    resize: none;
+    font-size: 18px;
 }
 #enviar {
     position: relative;
