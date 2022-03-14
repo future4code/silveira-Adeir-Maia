@@ -36,10 +36,14 @@ main {
     background-color: rgb(242, 208, 224);
     width: 22%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 .esquerda>div {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .esquerda>div div {
     display: flex;
@@ -50,6 +54,8 @@ main {
 .esquerda p {
     margin-top: 5px;
     margin-left: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 main img {
     width: 30px;
@@ -60,13 +66,16 @@ main img {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 10px;
 }
 .direita div {
     display: flex;
     flex-shrink: 1;
     flex-direction: column;
-    width: 18%;
-    padding: 10px;
+    width: 15%;
+    height: 45%;
+    margin: 10px;
+    box-shadow: 2px 2px 2px darkgray;
 }
 .direita div h2 {
     font-size: 20px;
@@ -76,7 +85,7 @@ main img {
 .direita div p {
     font-size: 15px;
     text-align: center;
-    flex-shrink: 1;
+    font-weight: 500;
 }
 .direita img {
     flex-shrink: 1;
