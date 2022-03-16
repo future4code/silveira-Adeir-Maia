@@ -1,4 +1,4 @@
-Resolução do exercício de revisão *javascript*
+Resolução do exercício de revisão *javascript* 15/03
 
 ~~~javascript
 function criarArrayNomesAnimais() {
@@ -9,10 +9,6 @@ function criarArrayNomesAnimais() {
         { nome: "Carpa", classificacao: "peixe" },
         { nome: "Pomba", classificacao: "ave" }
     ]
-    let string = animais.reduce((a, e) => {
-        a.push(e.nome)
-        return a
-    }, [])
-    return string
+    return animais.map(e => e.nome)
 }
 ```
