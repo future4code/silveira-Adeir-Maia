@@ -1,0 +1,26 @@
+body {
+    background-color: royalblue;
+    font: normal 15pt arial;
+}
+header {
+    text-align: center;
+
+}
+section {
+    background-color: white;
+    border-radius: 10pt;
+    padding: 50pt;
+    width: 180pt;
+    margin: auto;
+    box-shadow: 3px 5px 20px rgb(0, 0, 0);
+}
+div#msg {
+    position: absolute;
+    margin-top: -40px;
+    margin-left: -22px;
+}
+footer {
+    text-align: center;
+    font-style: italic;
+
+}
