@@ -8,7 +8,6 @@ import minhaFoto from './img/Adeir.jpg'
 import tbm from './img/tbm.jpg'
 
 const Aplicacao = styled.div`
-  
   display: flex;
   flex-direction: column;
   align-items: center;
