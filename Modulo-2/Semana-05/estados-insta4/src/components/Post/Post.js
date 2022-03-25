@@ -144,4 +144,4 @@ class Post extends React.Component {
     </PostContainer>
   }
 }
-export default Post
+export default Post;
