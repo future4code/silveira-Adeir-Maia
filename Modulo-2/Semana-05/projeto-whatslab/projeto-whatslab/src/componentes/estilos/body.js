@@ -10,6 +10,7 @@ const Body = styled.div`
     list-style: none;
     display: flex;
     justify-content: center;
+    background-color: #00a884;
 `
 const Main = styled.main`
     max-width: 800px;
@@ -24,8 +25,9 @@ const Main = styled.main`
     min-height: 99.7vh;
 `
 const ContainerCampoMensagen = styled.div`
+    margin-top: 20px;
     flex: 1 1 auto;
-    width: 500px;
+    width: 760px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -33,6 +35,40 @@ const ContainerCampoMensagen = styled.div`
 const ContainerEscreverMensagem = styled.div`
     display: flex;
     flex-direction: row;
+    margin: 20px 0px 20px 0px;
+    width: 100%;
+    max-width: 760px;
+    form {
+        height: 35px;
+        display: grid;
+        width: 100%;
+        max-width: 760px;
+        grid-template-columns: 150px  auto 100px;
+        gap: 5px;
+        input:nth-child(1){
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid black;
+            font-size: 18px;
+            color: black;
+        }
+        input:nth-child(2){
+            height: 30px;
+            border-radius: 5px;
+            border: 2px solid black;
+            font-size: 18px;
+            color: black;
+        }
+        button {
+            height: 36px;
+            border-radius: 5px;
+            border: 2px solid black;
+            font-size: 18px;
+            background-color: rgb(255,255,255);
+            color: black;
+            background-color: #f8f69f;
+        }
+    }
 `
 const ContainerMensagemOutros = styled.ul`
     list-style: none;

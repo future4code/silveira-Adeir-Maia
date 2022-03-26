@@ -61,7 +61,7 @@ export class EscreverMensagem extends Component {
                 <ContainerEscreverMensagem>
                     <form>
                         <input placeholder="Qual seu nome?" value={this.state.autorInput} onChange={this.onChanceAutor} type='text' />
-                        <input placeholder="Escreva sua mensagem" value={this.state.mensagemInput} onChange={this.onChanceMensagem} type='text' />
+                        <input placeholder="Escreva sua mensagem..." value={this.state.mensagemInput} onChange={this.onChanceMensagem} type='text' />
                         <button onClick={this.onClickEnviar} type={'submit'} value={'Enviar'}>Enviar</button>
                     </form>
                 </ContainerEscreverMensagem>
