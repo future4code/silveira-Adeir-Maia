@@ -38,7 +38,7 @@ const ContainerEscreverMensagem = styled.div`
     margin: 20px 0px 20px 0px;
     width: 100%;
     max-width: 760px;
-    form {
+    div {
         height: 35px;
         display: grid;
         width: 100%;
