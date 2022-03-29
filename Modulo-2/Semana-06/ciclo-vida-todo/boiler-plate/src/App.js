@@ -30,8 +30,18 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ tarefas: JSON.parse(localStorage.getItem('tarefa')) })
+    localStorage.getItem('tarefa') && this.setState({ tarefas: JSON.parse(localStorage.getItem('tarefa')) })
+    //curto cuito
 
+    // localStorage.getItem('tarefa') ?
+    //   this.setState({ tarefas: JSON.parse(localStorage.getItem('tarefa')) }) :
+    //   this.setState({ tarefas: this.state.tarefas })
+    //ternario
+
+    // if(localStorage.getItem('tarefa')) {
+    //   this.setState({ tarefas: JSON.parse(localStorage.getItem('tarefa')) })
+    // }
+    //if comum
   }
 
   onChangeInput = (event) => {
@@ -92,7 +102,7 @@ class App extends React.Component {
         <TarefaList>
           {listaFiltrada.map(tarefa => {
             return (
-              <Tarefa
+              <Tarefa key={tarefa.id}
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
               >
