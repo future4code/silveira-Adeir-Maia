@@ -69,6 +69,10 @@ class App extends React.Component {
   onChangeFilter = (event) => {
     this.setState({ filtro: event.target.value })
   }
+  deletarMensagem = (id) => {
+    let novalistaTarefas = this.state.tarefas.filter(tarefa => tarefa.id !== id)
+    this.setState({ tarefas: novalistaTarefas })
+  }
 
   render() {
     const listaFiltrada = this.state.tarefas.filter(tarefa => {
@@ -105,13 +109,14 @@ class App extends React.Component {
               <Tarefa key={tarefa.id}
                 completa={tarefa.completa}
                 onClick={() => this.selectTarefa(tarefa.id)}
+                onDoubleClick={() => this.deletarMensagem(tarefa.id)}
               >
                 {tarefa.texto}
               </Tarefa>
             )
           })}
         </TarefaList>
-      </div>
+      </div >
     )
   }
 }
