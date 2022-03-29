@@ -9,10 +9,10 @@ export default class Etapa2 extends React.Component {
         inputIntituicao: ''
     }
     onChanceNome = e => {
-        this.setState({ inputCurso: e.taget.value })
+        this.setState({ inputCurso: e.target.value })
     }
     onChanceInstituicao = e => {
-        this.setState({ inputIntituicao: e.taget.value })
+        this.setState({ inputIntituicao: e.target.value })
     }
     botaoContinuar = () => {
         let respostas = [{ curso: this.state.inputCurso, instituto: this.state.inputIntituicao }]
@@ -39,7 +39,7 @@ export default class Etapa2 extends React.Component {
                 <PerguntasAbertas
                     pergunta1={`6. Qual o nome da instituição`} placeholder1={'Escreva aqui o nome da instituição'}
                     valuePassadoProps={this.state.inputIntituicao} onChangePassadoProps={this.onChanceInstituicao} />
-                <Botao onClick={this.props.trocaEtapaPassadoProps2}>Continuar</Botao>
+                <Botao onClick={this.chama2Funcoes}>Continuar</Botao>
             </>
         )
     }
