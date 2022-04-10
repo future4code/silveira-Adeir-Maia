@@ -1,53 +1,72 @@
 import React from "react";
-import axios from 'axios'
+
+import { setAuthorization } from "../services";
 
 import Login from "../Pages/login";
 import Playlist from "../Pages/playlists";
+import PlayListMusic from "../Pages/playslistMusic";
 
-const url = 'https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists'
-const headers = {
-    headers: {
-        Authorization: ''
-    }
-}
 
 export default class State extends React.Component {
     state = {
         login: false,
-        authorization: '',
-        playlist: []
+        page: 'Playlists',
+        playlist: {}
     }
+    componentDidUpdate = (prevProps, prevState) => prevState !== this.state.login && this.saveLocalStorage()
 
-    getAllPlaylists = async () => {
-        try {
-            const response = await axios.get(url, headers)
-            this.setState({ playlist: response.data.result.list })
-            console.log(response.data)
-        } catch (err) {
-            console.log(err.response.data)
-            alert('Ocorreu um erro, por favor tente novamente mais tarde!')
+    componentDidMount = () => {
+        if (localStorage.getItem('loggged')) {
+            let toBoolean = JSON.parse(localStorage.getItem('loggged'))
+            toBoolean === 'true' ? this.setState({ login: true }) : this.setState({ login: false })
         }
     }
-    logged = () => {
-        this.state.login === false ? this.setState({ login: true }) : this.setState({ login: false })
+
+    logged = () => this.state.login === false ? this.setState({ login: true }) : this.setState({ login: false })
+
+    saveLocalStorage = () => {
+        let toString
+        this.state.login ? toString = 'true' : toString = 'false'
+        localStorage.setItem('loggged', JSON.stringify(toString))
     }
-    setAuthorization = (User) => {
-        // this.setState({ authorization: User })
-        headers.headers.Authorization = User
+    getAuthorization = User => setAuthorization(User)
+
+    changePage = () => this.state.page === 'Playlists' ? this.setState({ page: 'songs' }) : this.setState({ page: 'Playlists' })
+
+    getPlaylist = box => this.setState({ playlist: box })
+
+    page = () => {
+        const { playlist, page } = this.state
+        const { logged, saveLocalStorage, changePage, getPlaylist } = this
+        switch (page) {
+            default:
+                return <Playlist
+                    logged={logged}
+                    saveLocalStorage={saveLocalStorage}
+                    changePage={changePage}
+                    getPlaylist={getPlaylist}
+                />
+            case 'songs':
+                return <PlayListMusic
+                    logged={logged}
+                    changePage={changePage}
+                    sendPlaylist={playlist}
+                />
+        }
     }
+
     render() {
-        const { login, authorization } = this.state
+        const { login } = this.state
+        const { logged, saveLocalStorage, getAuthorization, page } = this
+        const currentPage = page()
         return (
             <>
                 {!login && < Login
-                    logged={this.logged}
-                    setAuthorization={this.setAuthorization}
+                    saveLocalStorage={saveLocalStorage}
+                    logged={logged}
+                    getAuthorization={getAuthorization}
                 />}
-                {login && <Playlist
-                    getAllPlaylists={this.getAllPlaylists}
-                    logged={this.logged}
-                    playlistProps={this.state.playlist}
-                />}
+                {login && currentPage}
             </>
 
         )

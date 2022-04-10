@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerCreateUser, ContainerLogin } from "./style";
+import { ContainerCreateUser, ContainerLogin, SuperContainerLogin } from "./style";
 
 export default class Login extends React.Component {
     state = {
@@ -30,6 +30,7 @@ export default class Login extends React.Component {
                 alert('Esse usuario já existe, por favor escolha outro!')
             } else {
                 localStorage.setItem(toString, JSON.stringify(this.state.inputCreat))
+                alert(`Usuario cadastrado com sucesso!`)
                 this.userCreation()
             }
         } else alert('Digite um nome de Usuário para cadastrar')
@@ -37,7 +38,7 @@ export default class Login extends React.Component {
     checkUser = () => {
         if (localStorage.getItem(this.state.inputLogin)) {
             this.props.logged()
-            this.props.setAuthorization(this.state.inputLogin)
+            this.props.getAuthorization(this.state.inputLogin)
             this.userLogged()
             this.setState({ inputLogin: '' })
         } else {
@@ -47,28 +48,37 @@ export default class Login extends React.Component {
     render() {
         const { userCreat, userlogin, inputCreat, inputLogin } = this.state
         return (
-            <>
-                <h1>LabeFy</h1>
-                <h2>A App de playlist musicas da Nação Labenu</h2>
+            <SuperContainerLogin>
+                <h1>Labe<span>Fy</span></h1>
+                <h2>O App de playlist musicas da Nação Labenu</h2>
                 <p>Acesse sua playlist com seu Usuário ou crie um se ainda tiver!</p>
-                {(userCreat === false && userlogin === false) && <button onClick={this.userCreation} >Cadastrar</button>}
-                {userCreat &&
-                    <ContainerCreateUser>
-                        <p>Crie seu usuário</p>
-                        <p>Use nuúmeros, letras ou letras e números</p>
-                        <input placeholder="Crie um Usuário" onChange={this.handleInputCreat} value={inputCreat} />
-                        <button onClick={this.saveLocalStorage} >Criar Usuário</button>
-                        <button onClick={this.userCreation}>Cancelar</button>
-                    </ContainerCreateUser>}
-                {(userCreat === false && userlogin === false) && <button onClick={this.userLogged} >Acessar</button>}
-                {userlogin &&
-                    <ContainerLogin>
-                        <p>Acesse suas playlists</p>
-                        <input placeholder="Digite seu Usuário" onChange={this.handleInputLogin} value={inputLogin} />
-                        <button onClick={this.checkUser} >Login</button>
-                        <button onClick={this.userLogged}>Cancelar</button>
-                    </ContainerLogin>}
-            </>
+                <div>
+                    {(userCreat === false && userlogin === false) && <button onClick={this.userCreation} >Cadastrar</button>}
+                    {userCreat &&
+                        <ContainerCreateUser>
+                            <p>Crie seu usuário</p>
+                            <p>Use números, letras ou letras e números</p>
+                            <input placeholder="Crie um Usuário" onChange={this.handleInputCreat} value={inputCreat} />
+                            <div>
+                                <button onClick={this.saveLocalStorage} >Criar Usuário</button>
+                                <button onClick={this.userCreation}>Cancelar</button>
+                            </div>
+
+                        </ContainerCreateUser>}
+                    {(userCreat === false && userlogin === false) && <button onClick={this.userLogged} >Acessar</button>}
+                    {userlogin &&
+                        <ContainerLogin>
+                            <p>Acesse suas playlists</p>
+                            <input placeholder="Digite seu Usuário" onChange={this.handleInputLogin} value={inputLogin} />
+                            <div>
+                                <button onClick={this.checkUser} >Login</button>
+                                <button onClick={this.userLogged}>Cancelar</button>
+                            </div>
+
+                        </ContainerLogin>}
+                </div>
+
+            </SuperContainerLogin>
         )
     }
 
