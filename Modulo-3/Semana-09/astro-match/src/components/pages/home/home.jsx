@@ -19,49 +19,34 @@ const Home = (props) => {
         choosePerson(body)
     }
 
-    const allProfliesView = () => {
-        return (
+    return (
+        <>
             <ContainerHome>
                 <ContainerProfile>
                     <NavContainer>
                         <AplicationTitle>Astro<span>Match</span></AplicationTitle>
                         <button onClick={props.goToMatchs}><img src={Match} alt='IconeDoMatch' /></button>
                     </NavContainer>
-                    <Paragrafo>Você ja viu todos os perfis disponiveis, veja seus matchs e se quiser reinicie o app.</Paragrafo>
+                    {profile === null ? <Paragrafo>Você ja viu todos os perfis disponiveis, veja seus matchs e se quiser reinicie o app.</Paragrafo> :
+                        profile.name ?
+                            <>
+                                <div>
+                                    <PhotoProfile src={profile.photo} alt="foto do perfil" />
+                                    <div>
+                                        <p>Name: {profile.name}</p>
+                                        <p>Age: {profile.age}</p>
+                                    </div>
+                                    <p>{profile.bio}</p>
+                                    <div>
+                                        <button onClick={() => match(false)} ><img src={Negate} alt='IconeDeX' /></button>
+                                        <button onClick={() => match(true)} ><img src={Heart} alt='IconeDeCoracao' /></button>
+                                    </div>
+                                </div>
+                            </> :
+                            <Paragrafo>carregando perfis</Paragrafo>}
                 </ContainerProfile>
-
             </ContainerHome>
-        )
-    }
-
-    return (
-        <>
-            {profile === null ? allProfliesView() :
-                profile.name ?
-                    <ContainerHome>
-                        <ContainerProfile>
-                            <div>
-                                <AplicationTitle>Astro<span>Match</span></AplicationTitle>
-                                <button onClick={props.goToMatchs}><img src={Match} alt='IconeDoMatch' /></button>
-                            </div>
-                            <div>
-                                <PhotoProfile src={profile.photo} alt="foto do perfil" />
-                                <div>
-                                    <p>Name: {profile.name}</p>
-                                    <p>Age: {profile.age}</p>
-                                </div>
-                                <p>{profile.bio}</p>
-                                <div>
-                                    <button onClick={() => match(false)} ><img src={Negate} alt='IconeDeX' /></button>
-                                    <button onClick={() => match(true)} ><img src={Heart} alt='IconeDeCoracao' /></button>
-                                </div>
-                            </div>
-                        </ContainerProfile>
-                    </ContainerHome> :
-                    <Paragrafo>carregando perfis</Paragrafo>
-            }
         </>
-
     )
 }
 

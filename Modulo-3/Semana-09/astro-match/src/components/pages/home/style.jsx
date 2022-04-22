@@ -93,8 +93,8 @@ export const AplicationTitle = styled.h1`
     }
 `
 export const Paragrafo = styled.p`
-    text-align: center;
     font-size: 30px;
+    align-self: center;
 `
 export const NavContainer = styled.div`
             display: flex;
