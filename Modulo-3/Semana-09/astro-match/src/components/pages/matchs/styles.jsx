@@ -23,9 +23,10 @@ export const NavContainer = styled.nav`
         gap: 200px;
         height: 120px;
         button{
+            height: 120px;
             width: 120px;
-            border: none;
             background-color: transparent;
+            border: none;
             img{
                 height: 100px;
                 width: 100px;
@@ -34,7 +35,19 @@ export const NavContainer = styled.nav`
                 width: 120px;
                 height: 120px;
             }
-        } 
+        }
+        div{
+            width: 120px;
+            height: 120px;
+            img{
+                height: 100px;
+                width: 100px;
+            }
+            img:hover{
+                width: 120px;
+                height: 120px;
+            }
+        }
     }
 `
 export const CardProfile = styled.div`

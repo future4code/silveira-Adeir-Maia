@@ -33,57 +33,6 @@ export const ContainerProfile = styled.div`
         max-width: 400px;
         width: 100%;
         background: linear-gradient(135deg,#f31afe3b,#44dbe642);
-        div:nth-child(1){
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            button{
-                background-color: transparent;
-                border: none;
-                width: 80px;
-                img{
-                    width: 60px;
-                    height: 60px;
-                }
-                img:hover{
-                    width: 80px;
-                    height: 80px;
-                }
-            }
-        }
-        div:nth-child(2){
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            div:nth-child(2){
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
-            }
-            div:nth-child(4){
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                height: 80px;
-                gap: 100px;
-                button{
-                background-color: transparent;
-                border: none;
-                width: 80px;
-                    img{
-                        width: 60px;
-                        height: 60px;
-                    }
-                    img:hover{
-                        width: 80px;
-                        height: 80px;
-                    }
-                }
-            }
-        }
 `
 export const AplicationTitle = styled.h1`
     font-size: 40px;
@@ -97,22 +46,62 @@ export const Paragrafo = styled.p`
     align-self: center;
 `
 export const NavContainer = styled.div`
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            button{
-                background-color: transparent;
-                border: none;
-                width: 80px;
-                img{
-                    width: 60px;
-                    height: 60px;
-                }
-                img:hover{
-                    width: 80px;
-                    height: 80px;
-                }
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 80px;
+    padding: 10px;
+    h1{
+        margin: 0;
+    }
+    a{
+        width: 80px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        img{
+            width: 60px;
+            height: 60px;
+        }
+        img:hover{
+            width: 80px;
+            height: 80px;
+        }
+    }
+`
+export const ContainerMatchs = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    div:nth-child(2){
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 50px;
+    }
+    div:nth-child(4){
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        height: 80px;
+        gap: 100px;
+        button{
+            background-color: transparent;
+            border: none;
+            width: 80px;
+            img{
+                width: 60px;
+                height: 60px;
             }
+            img:hover{
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
 `
 

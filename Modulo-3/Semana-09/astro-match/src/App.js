@@ -1,29 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import RoutesComponent from "./components/rotes/rotes";
 
-import Home from "./components/pages/home/home";
-import Matchs from "./components/pages/matchs/matchs";
-
-
-const App = () => {
-  const [page, setPage] = useState('home')
-
-  const switchPage = () => {
-    switch (page) {
-      case 'matchs':
-        return <Matchs goToProfiles={goToProfiles} />
-      default:
-        return <Home goToMatchs={goToMatchs} />
-    }
-  }
-
-  const goToMatchs = () => setPage('matchs')
-  const goToProfiles = () => setPage('home')
-
-  return (
-    <>
-      {switchPage()}
-    </>
-  );
-}
+const App = () => (
+  <RoutesComponent />
+)
 
 export default App;

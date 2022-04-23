@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getMatches, clearProfiles } from "../../service/service";
 import { PhotoProfile, CardProfile, ContainerProfiles, ContainerMatch, NavContainer, Paragrafo, AplicationTitle } from "./styles";
 import SetaEsquerda from '../../img/seta-esquerda.png'
 import Reset from '../../img/reset.png'
 
 
-const Matchs = (props) => {
+const Matchs = () => {
     const [matchsProflies, setMatchsProfiles] = useState([])
 
     useEffect(() => {
@@ -18,9 +19,10 @@ const Matchs = (props) => {
                 <AplicationTitle>Astro<span>Match</span></AplicationTitle>
                 <div>
                     <button onClick={() => clearProfiles(setMatchsProfiles)}><img src={Reset} alt='LogoDeReset' /></button>
-                    <button onClick={props.goToProfiles} ><img src={SetaEsquerda} alt='LogoVoltor' /></button>
+                    <div>
+                        <Link to='/' ><img src={SetaEsquerda} alt='LogoVoltar' /></Link>
+                    </div>
                 </div>
-
             </NavContainer>
             {matchsProflies.length > 0 ?
                 <ContainerProfiles>
