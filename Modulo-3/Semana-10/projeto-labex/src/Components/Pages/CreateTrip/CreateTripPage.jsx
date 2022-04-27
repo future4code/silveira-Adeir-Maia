@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { goBack } from "../../Routes/coordenator";
+import { goBack, goToLogin } from "../../Routes/coordenator";
 import { useInput } from "../../CustonHocks/custonHucks";
 import { Planets } from "../../Countries/countries";
 
 const CreateTrip = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        !window.localStorage.getItem('token') && goToLogin(navigate)
+    }, [])
+
     const [nome, handleNome] = useInput('')
     const [descricao, handleDescricao] = useInput('')
     const [duracao, handleDuração] = useInput('')
     const [planeta, handlePlaneta] = useInput('')
     const [date, handleDate] = useInput()
-    const navigate = useNavigate()
+
 
     const planetsOptions = Planets.map(planet => <option value={planet} key={planet}>{planet}</option>)
 
@@ -18,7 +23,7 @@ const CreateTrip = () => {
         <>
             <p>Criar Viagem</p>
             <input value={nome} onChange={handleNome} placeholder="Nome" />
-            <select onChange={handlePlaneta} id='Planeta' name="Planeta" value=''>
+            <select onChange={handlePlaneta} id='Planeta' name="Planeta" defaultValue=''>
                 <option value='' disabled >Escolha um Planeta</option>
                 {planetsOptions}
             </select>
@@ -27,7 +32,6 @@ const CreateTrip = () => {
             <input value={duracao} onChange={handleDuração} placeholder="Duração em Dias" />
             <button onClick={() => goBack(navigate)}>voltar</button>
             <button>Criar</button>
-
         </>
     )
 }

@@ -8,6 +8,7 @@ const ListTrips = () => {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
+
     useEffect(() => getTrips(setTrips, setLoading), [])
 
     return (
@@ -24,7 +25,6 @@ const ListTrips = () => {
                         <p>Planeta: {trip.planet}</p>
                         <p>Duração: {trip.durationInDays}</p>
                         <p>Data: {trip.date}</p>
-
                     </div>
                 )
             }) : <p> Não há viagens no momento </p>) : <p>Carregando...</p>}

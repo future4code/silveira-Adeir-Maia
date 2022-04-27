@@ -15,9 +15,9 @@ const RoutesComponent = () => (
             <Route path='/ListTrips' element={<ListTrips />} />
             <Route path='/AplicationForm' element={<AplicationForm />} />
             <Route path='/Login' element={<Login />} />
-            <Route path='/AdmimHome' element={<AdmimHome />} />
-            <Route path='/TripsDetails' element={<TripsDetails />} />
-            <Route path='/CreateTrip' element={<CreateTrip />} />
+            <Route path='/admim/trips/list' element={<AdmimHome />} />
+            <Route path='/admin/trips/:id' element={<TripsDetails />} />
+            <Route path='/admin/trips/create' element={<CreateTrip />} />
         </Routes>
     </BrowserRouter>
 )
