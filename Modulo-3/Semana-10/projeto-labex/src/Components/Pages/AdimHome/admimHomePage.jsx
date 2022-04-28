@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { goToHome, goToCreateTrip, goToLogin } from "../../Routes/coordenator";
 import { useNavigate, Link } from "react-router-dom";
 import { getTrips, deleteJob } from "../../Services/service";
-import { logOut } from "../../CustonHocks/functions";
+import { logOut } from "../../Hooks/functions";
 
 const AdmimHome = () => {
     const [trips, setTrips] = useState([])

@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { goBack } from "../../Routes/coordenator";
 import { Countries } from "../../Countries/countries";
-import { useInput, } from "../../CustonHocks/custonHucks";
-import { aplyToTripCall } from "../../CustonHocks/functions";
+import { useInput, } from "../../Hooks/useInput";
+import { aplyToTripCall } from "../../Hooks/functions";
 import { getTrips } from "../../Services/service";
+import useForm from "../../Hooks/useForm";
 
 const AplicationForm = () => {
+    const { form, onChange, cleanFields } = useForm({ name: '', age: '', applicationText: '', profession: '', country: '' })
     const [tripsArray, setTripsArray] = useState([])
-    const [name, handleName] = useInput()
-    const [age, handleAge] = useInput()
-    const [profession, handleProfession] = useInput()
-    const [textCandidature, handleTextCandidature] = useInput()
-    const [countrie, handleCountrie] = useInput()
     const [intendedTrip, handleIntendedTrip] = useInput()
-    const pathParams = useParams()
     const navigate = useNavigate()
 
     useEffect(() => getTrips(setTripsArray), [])
@@ -22,22 +18,32 @@ const AplicationForm = () => {
     const options = Countries.map(e => <option value={e} key={e}>{e}</option>)
     const optionNameTrips = tripsArray.map(e => <option value={e.name} key={e.name}>{e.name}</option>)
 
+    const preventDefaultFunction = (event) => {
+        event.preventDefault()
+        aplyToTripCall(tripsArray, form, intendedTrip, cleanFields)
+    }
+
     return (
         <>
-            <select onChange={handleIntendedTrip} name='viagem' id='viagem' defaultValue=''>
-                <option value='' disabled >Escolha um viagem:</option>
-                {optionNameTrips}
-            </select>
-            <input value={name} onChange={handleName} placeholder='Nome' />
-            <input type={"number"} value={age} onChange={handleAge} placeholder='Idade' />
-            <input value={profession} onChange={handleProfession} placeholder='Profissão' />
-            <input value={textCandidature} onChange={handleTextCandidature} placeholder='Texto de Candidatura' />
-            <select onChange={handleCountrie} name='profission' id="profission" defaultValue=''>
-                <option value='' disabled  >Escolha seu País</option>
-                {options}
-            </select>
+            <form onSubmit={preventDefaultFunction}>
+                <select onChange={handleIntendedTrip} name='viagem' id='viagem' defaultValue='' required >
+                    <option value='' disabled >Escolha um viagem:</option>
+                    {optionNameTrips}
+                </select>
+                <input name="name" value={form.name} onChange={onChange} placeholder='Nome' required
+                    pattern="(?=^.{3,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="o nome deve ter no mínimo 3 caracteres" />
+                <input name="age" type={"number"} value={form.age} onChange={onChange} placeholder='Idade' required min={18} />
+                <input name="profession" value={form.profession} onChange={onChange} placeholder='Profissão' required
+                    pattern="(?=^.{4,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="A Profissão deve ter no mínimo 4 caracteres" />
+                <input name="applicationText" value={form.applicationText} onChange={onChange} placeholder='Texto de Candidatura' required
+                    pattern="(?=^.{30,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="O texto de candidatura deve ter no mínimo 30 caracteres" />
+                <select onChange={onChange} name='country' id="country" defaultValue='' required >
+                    <option value='' disabled  >Escolha seu País</option>
+                    {options}
+                </select>
+                <button>Enviar</button>
+            </form>
             <button onClick={() => goBack(navigate)} >Voltar</button>
-            <button onClick={() => aplyToTripCall(tripsArray, name, age, profession, textCandidature, countrie, intendedTrip)}>Enviar</button>
         </>
     )
 }

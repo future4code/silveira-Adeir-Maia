@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { goBack, goToLogin } from "../../Routes/coordenator";
 import { getTripDetail } from "../../Services/service";
-import { decideCandidateCall } from "../../CustonHocks/functions";
+import { decideCandidateCall } from "../../Hooks/functions";
 
 const TripsDetails = () => {
     const navigate = useNavigate()
