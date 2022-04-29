@@ -6,6 +6,7 @@ import { useInput, } from "../../Hooks/useInput";
 import { aplyToTripCall } from "../../Hooks/functions";
 import { getTrips } from "../../Services/service";
 import useForm from "../../Hooks/useForm";
+import { SuperContainerAplicationFormPage, FormContainer } from "./styles";
 
 const AplicationForm = () => {
     const { form, onChange, cleanFields } = useForm({ name: '', age: '', applicationText: '', profession: '', country: '' })
@@ -24,8 +25,9 @@ const AplicationForm = () => {
     }
 
     return (
-        <>
-            <form onSubmit={preventDefaultFunction}>
+        <SuperContainerAplicationFormPage>
+            <button onClick={() => goBack(navigate)} >Voltar</button>
+            <FormContainer onSubmit={preventDefaultFunction}>
                 <select onChange={handleIntendedTrip} name='viagem' id='viagem' defaultValue='' required >
                     <option value='' disabled >Escolha um viagem:</option>
                     {optionNameTrips}
@@ -34,7 +36,7 @@ const AplicationForm = () => {
                     pattern="(?=^.{3,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="o nome deve ter no mínimo 3 caracteres" />
                 <input name="age" type={"number"} value={form.age} onChange={onChange} placeholder='Idade' required min={18} />
                 <input name="profession" value={form.profession} onChange={onChange} placeholder='Profissão' required
-                    pattern="(?=^.{4,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="A Profissão deve ter no mínimo 4 caracteres" />
+                    pattern="(?=^.{4,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="A profissão deve ter no mínimo 4 caracteres" />
                 <input name="applicationText" value={form.applicationText} onChange={onChange} placeholder='Texto de Candidatura' required
                     pattern="(?=^.{30,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="O texto de candidatura deve ter no mínimo 30 caracteres" />
                 <select onChange={onChange} name='country' id="country" defaultValue='' required >
@@ -42,9 +44,9 @@ const AplicationForm = () => {
                     {options}
                 </select>
                 <button>Enviar</button>
-            </form>
-            <button onClick={() => goBack(navigate)} >Voltar</button>
-        </>
+            </FormContainer>
+
+        </SuperContainerAplicationFormPage>
     )
 }
 

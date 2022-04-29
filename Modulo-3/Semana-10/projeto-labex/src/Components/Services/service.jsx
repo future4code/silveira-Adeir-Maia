@@ -9,7 +9,12 @@ const headers = {
     }
 }
 
+const setHeader = (headers) => {
+    headers.headers.auth = window.localStorage.getItem('token')
+}
+
 export const getTrips = (setTrips, setLoading) => {
+    window.localStorage.getItem('token') && setHeader(headers)
     setLoading && setLoading(true)
     axios.get(`${BaseUrl}${Aluno}trips`).then(response => {
         setTrips(response.data.trips)
@@ -34,6 +39,7 @@ export const applyToTrip = async (tripId, body, cleanFields) => {
 export const LoginRequest = async (body, navigate, setSucess, setMessageError, cleanFields) => {
     try {
         const response = await axios.post(`${BaseUrl}${Aluno}login`, body)
+        setHeader(headers, response)
         window.localStorage.setItem('token', response.data.token)
         gotoAdmimHome(navigate)
         setSucess(true)
@@ -73,7 +79,7 @@ export const decideCandidate = async (idTrip, idCandidate, body, setTrips) => {
 
 export const createTripRequest = async (body, clearFields) => {
     try {
-        axios.post(`${BaseUrl}${Aluno}trips`, body, headers)
+        await axios.post(`${BaseUrl}${Aluno}trips`, body, headers)
         clearFields()
         alert('sucess')
     } catch (err) {

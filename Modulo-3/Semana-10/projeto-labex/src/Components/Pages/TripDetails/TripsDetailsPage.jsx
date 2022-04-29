@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { goBack, goToLogin } from "../../Routes/coordenator";
 import { getTripDetail } from "../../Services/service";
 import { decideCandidateCall } from "../../Hooks/functions";
+import * as styles from './styles'
 
 const TripsDetails = () => {
     const navigate = useNavigate()
@@ -17,11 +18,11 @@ const TripsDetails = () => {
     const outstandingCandidates = tripDetail && tripDetail.candidates.map(candidate => {
         return (
             <div key={candidate.id}>
-                <p>Nome: {candidate.name}</p>
-                <p>Idade: {candidate.age}</p>
-                <p>Profissão: {candidate.profession}</p>
-                <p>País: {candidate.country}</p>
-                <p>Texto de Candidatura: {candidate.applicationText}</p>
+                <p>Nome: <span>{candidate.name}</span></p>
+                <p>Idade: <span>{candidate.age}</span></p>
+                <p>Profissão: <span>{candidate.profession}</span></p>
+                <p>País: <span>{candidate.country}</span></p>
+                <p>Texto de Candidatura: <span>{candidate.applicationText}</span></p>
                 <button onClick={() => decideCandidateCall(pathParams.id, candidate.id, true, setTripDetail)} >Aprovar</button>
                 <button onClick={() => decideCandidateCall(pathParams.id, candidate.id, false, setTripDetail)} >Reprovar</button>
             </div>
@@ -36,26 +37,31 @@ const TripsDetails = () => {
         )
     })
     return (
-        <>
+        <styles.SuperContainerTripDetails>
+            <button onClick={() => goBack(navigate)}>Voltar</button>
             {tripDetail && (
-                <div>
-                    <p>Viagem Planetaria</p>
-                    <p>Nome: {tripDetail.name}</p>
-                    <p>Descrição: {tripDetail.description}</p>
-                    <p>Planeta: {tripDetail.planet}</p>
-                    <p>Duração: {tripDetail.durationInDays} dias</p>
-                    <p>Data: {tripDetail.date}</p>
-                    <button onClick={() => goBack(navigate)}>Voltar</button>
-                    <p>Candidatos Pendentes</p>
-                    {outstandingCandidates}
-                    <p>Candidatos Aprovados</p>
-                    <ul>
-                        {successfulCandidates}
-                    </ul>
-
-                </div>
+                <styles.ContainerTripDetails>
+                    <h2>Viagem Planetaria</h2>
+                    <styles.ContainerTripsData>
+                        <p><span>Nome: </span>{tripDetail.name}</p>
+                        <p><span>Descrição: </span>{tripDetail.description}</p>
+                        <p><span>Planeta: </span>{tripDetail.planet}</p>
+                        <p><span>Duração: </span>{tripDetail.durationInDays} dias</p>
+                        <p><span>Data: </span>{tripDetail.date}</p>
+                    </styles.ContainerTripsData>
+                    <h3>Candidatos Pendentes</h3>
+                    <styles.ContainerCandidatosPendentes>
+                        {outstandingCandidates}
+                    </styles.ContainerCandidatosPendentes>
+                    <h3>Candidatos Aprovados</h3>
+                    <styles.ContainerCandidatosAprovados>
+                        <ul>
+                            {successfulCandidates}
+                        </ul>
+                    </styles.ContainerCandidatosAprovados>
+                </styles.ContainerTripDetails>
             )}
-        </>
+        </styles.SuperContainerTripDetails>
     )
 }
 

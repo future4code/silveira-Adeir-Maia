@@ -4,6 +4,7 @@ import { goBack, goToLogin } from "../../Routes/coordenator";
 import { Planets } from "../../Countries/countries";
 import useForm from "../../Hooks/useForm";
 import { createTripRequest } from "../../Services/service";
+import { SuperContainerCreatTrip } from "./styles";
 
 const CreateTrip = () => {
     const navigate = useNavigate()
@@ -23,9 +24,10 @@ const CreateTrip = () => {
     }
 
     return (
-        <>
+        <SuperContainerCreatTrip>
+            <button onClick={() => goBack(navigate)}>voltar</button>
+            <h2>Criar Viagem</h2>
             <form onSubmit={preventDefaultFunction} >
-                <p>Criar Viagem</p>
                 <input name="name" value={form.name} onChange={onChange} placeholder="Nome" required
                     pattern="(?=^.{5,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="O nome deve ter no mínimo 5 caracteres" />
                 <select onChange={onChange} id='planet' name="planet" defaultValue='' required>
@@ -39,9 +41,7 @@ const CreateTrip = () => {
                 <button>Criar</button>
             </form>
 
-
-            <button onClick={() => goBack(navigate)}>voltar</button>
-        </>
+        </SuperContainerCreatTrip>
     )
 }
 
