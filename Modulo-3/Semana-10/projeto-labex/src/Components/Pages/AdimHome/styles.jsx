@@ -51,20 +51,21 @@ export const CardJob = styled.div`
     border: 3px solid black;
     background-color: rgb(244,254,244);
     border-radius: 10px;
-    a{
+    div{
         flex-grow: 1;
-        text-decoration: none;
-        div{
-            padding: 10px;
-            p{
-                text-align: center;
-                font-size: 25px;
-                font-family: 'Maven Pro', sans-serif;
-                font-weight: 400;
-                color: black;
-            }
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        p{
+            text-align: center;
+            font-size: 25px;
+            font-family: 'Maven Pro', sans-serif;
+            font-weight: 400;
+            color: black;    
         }
-    }
+    }    
     button{
         border-radius: 10px;
         font-family: 'Maven Pro', sans-serif;

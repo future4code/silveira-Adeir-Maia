@@ -32,11 +32,12 @@ const AdmimHome = () => {
                     {!loading ? (trips.length > 0 ? trips.map(trip => {
                         return (
                             <style.CardJob key={trip.id}>
-                                <Link to={`/admin/trips/${trip.id}`} >
-                                    <div >
-                                        <p>{trip.name}</p>
-                                    </div>
-                                </Link>
+                                <div >
+                                    <p>{trip.name}</p>
+                                    <Link to={`/admin/trips/${trip.id}`}>
+                                        <ButtonGeral>Detalhes</ButtonGeral>
+                                    </Link>
+                                </div>
                                 <button onClick={() => deleteJob(trip.id, setTrips, setLoading)} >X</button>
                             </style.CardJob>
                         )

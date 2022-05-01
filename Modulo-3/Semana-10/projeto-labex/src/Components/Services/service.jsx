@@ -9,12 +9,13 @@ const headers = {
     }
 }
 
-const setHeader = (headers) => {
+const setHeader = (headers, response) => {
+    !window.localStorage.getItem('token') && window.localStorage.setItem('token', response.data.token)
     headers.headers.auth = window.localStorage.getItem('token')
 }
 
 export const getTrips = (setTrips, setLoading) => {
-    window.localStorage.getItem('token') && setHeader(headers)
+    (window.localStorage.getItem('token') && !headers.headers.auth) && setHeader(headers)
     setLoading && setLoading(true)
     axios.get(`${BaseUrl}${Aluno}trips`).then(response => {
         setTrips(response.data.trips)
@@ -30,9 +31,7 @@ export const applyToTrip = async (tripId, body, cleanFields, cleanInputs) => {
         await axios.post(`${BaseUrl}${Aluno}trips/${tripId}/apply`, body)
         cleanFields()
         cleanInputs()
-        alert('sucess')
     } catch (err) {
-        alert('falha')
         console.log(err.data)
     }
 }
@@ -86,7 +85,6 @@ export const createTripRequest = async (body, clearFields, clearInput) => {
         await axios.post(`${BaseUrl}${Aluno}trips`, body, headers)
         clearFields && clearFields()
         clearInput && clearInput()
-        alert('sucess')
     } catch (err) {
         console.log(err.response.data)
     }
