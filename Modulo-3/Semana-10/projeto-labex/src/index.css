@@ -9,6 +9,12 @@ body {
   padding: 0px;
   box-sizing: border-box;
   text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../src/Components/Img/33989-planetas.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
 }
 
 code {

@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-export const useInput = () => {
-    const [value, setValue] = useState('')
+export const useInput = (initialValue) => {
+    const [value, setValue] = useState(initialValue)
 
     const handleValue = e => {
         setValue(e.target.value)
     }
 
-    return [value, handleValue]
+    const clearInput = () => setValue(initialValue)
+
+    return [value, handleValue, clearInput]
 }
 
 

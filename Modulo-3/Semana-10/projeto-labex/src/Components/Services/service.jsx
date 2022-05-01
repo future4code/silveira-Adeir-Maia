@@ -25,10 +25,11 @@ export const getTrips = (setTrips, setLoading) => {
     })
 }
 
-export const applyToTrip = async (tripId, body, cleanFields) => {
+export const applyToTrip = async (tripId, body, cleanFields, cleanInputs) => {
     try {
         await axios.post(`${BaseUrl}${Aluno}trips/${tripId}/apply`, body)
         cleanFields()
+        cleanInputs()
         alert('sucess')
     } catch (err) {
         alert('falha')
@@ -50,12 +51,15 @@ export const LoginRequest = async (body, navigate, setSucess, setMessageError, c
     }
 }
 
-export const getTripDetail = async (id, setTripDetail) => {
+export const getTripDetail = async (id, setTripDetail, setLoading) => {
+    setLoading && setLoading(true)
     try {
         const response = await axios.get(`${BaseUrl}${Aluno}trip/${id}`, headers)
         setTripDetail(response.data.trip)
+        setLoading(false)
     } catch (err) {
         console.log(err.response.data)
+        setLoading(false)
     }
 }
 
@@ -77,10 +81,11 @@ export const decideCandidate = async (idTrip, idCandidate, body, setTrips) => {
     }
 }
 
-export const createTripRequest = async (body, clearFields) => {
+export const createTripRequest = async (body, clearFields, clearInput) => {
     try {
         await axios.post(`${BaseUrl}${Aluno}trips`, body, headers)
-        clearFields()
+        clearFields && clearFields()
+        clearInput && clearInput()
         alert('sucess')
     } catch (err) {
         console.log(err.response.data)

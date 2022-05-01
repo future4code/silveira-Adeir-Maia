@@ -5,7 +5,7 @@ import { Planets } from "../../Countries/countries";
 import useForm from "../../Hooks/useForm";
 import { createTripRequest } from "../../Services/service";
 import { SuperContainerCreatTrip } from "./styles";
-
+import { ButtonGeral } from "../AdimHome/styles";
 const CreateTrip = () => {
     const navigate = useNavigate()
     useEffect(() => {
@@ -24,13 +24,14 @@ const CreateTrip = () => {
     }
 
     return (
+
         <SuperContainerCreatTrip>
-            <button onClick={() => goBack(navigate)}>voltar</button>
+            <ButtonGeral onClick={() => goBack(navigate)}>voltar</ButtonGeral>
             <h2>Criar Viagem</h2>
             <form onSubmit={preventDefaultFunction} >
                 <input name="name" value={form.name} onChange={onChange} placeholder="Nome" required
                     pattern="(?=^.{5,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="O nome deve ter no mínimo 5 caracteres" />
-                <select onChange={onChange} id='planet' name="planet" defaultValue='' required>
+                <select onChange={onChange} id='planet' name="planet" value={form.planet} required>
                     <option value='' disabled >Escolha um Planeta</option>
                     {planetsOptions}
                 </select>
@@ -38,9 +39,8 @@ const CreateTrip = () => {
                 <input name="description" value={form.description} onChange={onChange} placeholder="Descrição" required
                     pattern="(?=^.{30,}$)^([A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ][\s]?)+$" title="A descrição deve ter no mínimo 30 caracteres" />
                 <input name="durationInDays" type={'number'} value={form.durationInDays} onChange={onChange} placeholder="Duração em Dias" required min={50} />
-                <button>Criar</button>
+                <ButtonGeral>Criar</ButtonGeral>
             </form>
-
         </SuperContainerCreatTrip>
     )
 }

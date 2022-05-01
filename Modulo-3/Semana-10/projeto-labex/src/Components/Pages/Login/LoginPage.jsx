@@ -5,6 +5,7 @@ import { ErroMessage } from "./styles";
 import useForm from "../../Hooks/useForm";
 import { LoginRequest } from "../../Services/service";
 import { SuperContainerLogin, ContainerLogin } from "./styles";
+import { ButtonGeral } from "../AdimHome/styles";
 
 const Login = () => {
     const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
@@ -19,8 +20,11 @@ const Login = () => {
 
     return (
         <SuperContainerLogin>
+            <nav>
+                <ButtonGeral onClick={() => goToHome(navigate)} >Home</ButtonGeral>
+            </nav>
             <ContainerLogin>
-                <p>Login</p>
+                <h2>Login</h2>
                 <form onSubmit={preventDefaultFunction}>
                     <input
                         name="email" type='email' value={form.email} onChange={onChange} required
@@ -28,9 +32,9 @@ const Login = () => {
                     <input name="password" type='password' value={form.password} onChange={onChange} required
                         pattern="^.{6,}" title="A senha deve ter pelo menos 6 caracteres" placeholder="Senha" />
                     <ErroMessage sucess={sucess}>{messageError}</ErroMessage>
-                    <button>Entrar</button>
+                    <ButtonGeral>Entrar</ButtonGeral>
                 </form>
-                <button onClick={() => goToHome(navigate)} >Voltar</button>
+
             </ContainerLogin>
         </SuperContainerLogin>
     )
