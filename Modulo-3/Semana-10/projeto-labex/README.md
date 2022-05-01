@@ -18,11 +18,11 @@ astrodev@gmail.com.br
 
 ### Impletações
 
-**Autenticação por Login e Senha
-Verificação dos campos de input se estão preenchidos e se estão no formato certo
-Limpeza dos inputs após o envio do formulário
-Tela de Loading animada
-Responsibidade**
+**Autenticação por Login e Senha<br>
+Verificação dos campos de input se estão preenchidos e se estão no formato certo<br>
+Limpeza dos inputs após o envio do formulário<br>
+Tela de Loading animada<br>
+Responsibidade**<br>
 
 
 ### LINK 
