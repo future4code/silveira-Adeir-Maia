@@ -11,21 +11,23 @@ astrodev@gmail.com.br
 
 ### Tennologias 
 
-<li>Javascript<li>
-<li>CSS<li>
-<li>HTML<li>
-<li>React<li>
+**Javascript**
+**CSS**
+**HTML**
+**React**
 
 ### Impletações
 
-<li>Autenticação por Login e Senha<li>
-<li>Verificação dos campos de input se estão preenchidos e se estão no formato certo<li>
-<li>Limpeza dos inputs após o envio do formulário<li>
-<li>Tela de Loading animada<li>
-<li>Responsibidade<li>
+**Autenticação por Login e Senha
+Verificação dos campos de input se estão preenchidos e se estão no formato certo
+Limpeza dos inputs após o envio do formulário
+Tela de Loading animada
+Responsibidade**
+
 
 ### LINK 
 [LabeX](https://Projeto-Labex-Adeir-Moreira.surge.sh)
 
 ### Prints
-
+![LabeX](https://user-images.githubusercontent.com/98994187/166160590-39af618a-91ce-4740-8117-655f960a5084.png)
+![LabeX1](https://user-images.githubusercontent.com/98994187/166160593-213e034a-3532-4213-9bbe-a9dc74ad3996.png)
