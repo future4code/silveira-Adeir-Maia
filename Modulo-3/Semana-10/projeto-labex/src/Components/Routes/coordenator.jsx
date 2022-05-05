@@ -1,0 +1,8 @@
+export const goToHome = navigate => navigate('/')
+export const goToListTrips = navigate => navigate('/ListTrips')
+export const goToLogin = navigate => navigate('/Login')
+export const goBack = navigate => navigate(-1)
+export const goToAplicationForm = (navigate) => navigate(`/AplicationForm`)
+export const gotoAdmimHome = navigate => navigate('/admim/trips/list')
+export const goToCreateTrip = navigate => navigate('/admin/trips/create')
+export const goToTripsDetails = navigate => navigate('/admin/trips/:id')
