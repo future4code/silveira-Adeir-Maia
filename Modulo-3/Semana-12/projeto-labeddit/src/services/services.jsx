@@ -77,7 +77,7 @@ export const createComment = async (form, id) => {
     }
 }
 
-export const createVote = async (form, id, PorC) => {
+export const CreateVote = async (form, id, PorC) => {
     try {
         const response = await axios.post(`${BaseUrl}/${PorC}/${id}/votes`, form, headers)
         alert('sucess')

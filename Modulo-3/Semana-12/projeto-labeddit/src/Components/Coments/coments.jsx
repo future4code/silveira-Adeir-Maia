@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import { goBack } from "../../Routes/cordinator";
-import { twoRequests, createComment, DeleteVote } from "../../services/services";
+import { twoRequests, createComment } from "../../services/services";
 import SetaBaixoPreta from '../../Img/seta-para-baixo-preta.png'
 import SetaCimaPreta from '../../Img/seta-para-cima-preta.png'
+import SetaBaixoVermelha from '../../Img/seta-para-baixo-vermelha.png'
+import SetaCimaVerde from '../../Img/seta-para-cima-verde.png'
 import { ContainerVote, ArrowLogo, ButtonArrowLogo } from "./styles";
 import { vote } from "../../Functions/function";
+import { Header } from "../Header/header";
+import { ContainerPost, ContainerInteractions, ContainerComments, } from "../Posts/style";
 
 export const PostPage = () => {
     const navigate = useNavigate()
@@ -32,38 +36,46 @@ export const PostPage = () => {
 
     return (
         <div>
+            <Header />
             <button onClick={() => goBack(navigate)}>Voltar</button>
+
             {(exactPost.length > 0) &&
-                <div>
-                    <p>Autor: {exactPost[0].username}</p>
-                    <h3>{exactPost[0].title}</h3>
-                    <p>{exactPost[0].body}</p>
+                <>
+                    <ContainerPost>
+                        <p>Autor: {exactPost[0].username}</p>
+                        <h3>{exactPost[0].title}</h3>
+                        <p>{exactPost[0].body}</p>
+                    </ContainerPost>
                     <div>
                         <form onSubmit={preventDefaultFunction}>
-                            <input name="body" value={form.body} onChange={onChange}
+                            <textarea name="body" value={form.body} onChange={onChange}
                                 placeholder='Escreva seu cometário' required />
                             <button>Postar</button>
                         </form>
                     </div>
                     {comments.length > 0 && comments.map(comments => {
                         return (
-                            <div key={comments.id}>
-                                <p>{comments.username}:  {comments.body}</p>
+                            <ContainerPost key={comments.id}>
+                                <p>Enviado por: {comments.username}</p>
+                                <p>{comments.body}</p>
                                 <ContainerVote>
                                     <ButtonArrowLogo onClick={() => vote(comments.id, comments.userVote, 1, 'comments')} >
-                                        <ArrowLogo src={SetaCimaPreta} alt="setaParaCima" />
+                                        <ArrowLogo src={comments.userVote && comments.userVote === 1 ? SetaCimaVerde : SetaCimaPreta}
+                                            alt="setaParaCima" />
                                     </ButtonArrowLogo>
                                     <span>{comments.voteSum ? comments.voteSum : 0}</span>
                                     <ButtonArrowLogo onClick={() => vote(comments.id, comments.userVote, -1, 'comments')} >
-                                        <ArrowLogo src={SetaBaixoPreta} alt="setaParaBaixo" />
+                                        <ArrowLogo src={comments.userVote && comments.userVote === -1 ? SetaBaixoVermelha : SetaBaixoPreta}
+                                            alt="setaParaBaixo" />
                                     </ButtonArrowLogo>
-                                    <button onClick={() => DeleteVote(comments.id, 'comments')}>LImpar Voto</button>
                                 </ContainerVote>
-                            </div>
+                            </ContainerPost>
                         )
                     })}
-                </div>
+                </>
             }
+
+
         </div>
     )
 }

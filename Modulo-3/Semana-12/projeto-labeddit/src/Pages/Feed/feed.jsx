@@ -4,6 +4,8 @@ import { logOff } from "../../Functions/function";
 import { getPost, createPost } from "../../services/services";
 import { Posts } from "../../Components/Posts/posts";
 import useForm from "../../Hooks/useForm";
+import { Header } from "../../Components/Header/header";
+import { ContainerForm, ContainerLabel, ContainerInputTitle, ContainerInputContent, ContainerButtonPostar } from "./style";
 
 export const Feed = () => {
     const { form, onChange, cleanFields } = useForm({ title: "", body: "" })
@@ -19,20 +21,19 @@ export const Feed = () => {
 
     return (
         <>
-            <p>Feed</p>
-            <button onClick={() => logOff(navigate)}>LogOff</button>
+            <Header />
             <div>
-                <form onSubmit={preventDefaultFunction}>
-                    <label htmlFor="title"> Titulo da Postagem
-                        <input id="title" name="title" value={form.title} onChange={onChange}
+                <ContainerForm onSubmit={preventDefaultFunction}>
+                    <ContainerLabel htmlFor="title"> Titulo da Postagem
+                        <ContainerInputTitle id="title" name="title" value={form.title} onChange={onChange}
                             required />
-                    </label>
-                    <label htmlFor="body" > Conteúdo
-                        <input id="body" name="body" value={form.body} onChange={onChange}
+                    </ContainerLabel>
+                    <ContainerLabel htmlFor="body" > Conteúdo
+                        <ContainerInputContent id="body" name="body" value={form.body} onChange={onChange}
                             required />
-                    </label>
-                    <button>Postar</button>
-                </form>
+                    </ContainerLabel>
+                    <ContainerButtonPostar>Postar</ContainerButtonPostar>
+                </ContainerForm>
             </div>
             <Posts arrayPost={feed} />
         </>
