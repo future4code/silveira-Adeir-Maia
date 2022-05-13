@@ -9,25 +9,28 @@ const headers = {
     }
 }
 
-const setHeader = (headers) => {
-    headers.headers.Authorization = window.localStorage.getItem('token')
+const setHeader = (response) => {
+    response && (headers.headers.Authorization = response.data.token)
+    !headers.headers.Authorization && (headers.headers.Authorization = window.localStorage.getItem('token'))
 }
 
 export const signUpRequest = async (form, navigate) => {
     try {
         const response = await axios.post(`${BaseUrl}/users/signup`, form)
         window.localStorage.setItem('token', response.data.token)
+        alert('sucess')
         goToFeed(navigate)
     } catch (err) {
-        console.log(err.response.data.message)
+        console.log(err.response)
     }
 }
 
 export const loginRequest = async (form, navigate) => {
     try {
         const response = await axios.post(`${BaseUrl}/users/login`, form)
-        window.localStorage.setItem('token', response.data.token)
         setHeader(response)
+        window.localStorage.setItem('token', response.data.token)
+        alert('sucess')
         goToFeed(navigate)
     } catch (err) {
         console.log(err.response.data.message)
@@ -35,13 +38,13 @@ export const loginRequest = async (form, navigate) => {
 }
 
 export const getPost = (setFeed) => {
-    (window.localStorage.getItem('token') && !headers.headers.Authorization) && setHeader(headers)
+    (window.localStorage.getItem('token') && !headers.headers.Authorization) && setHeader()
     axios.get(
         `${BaseUrl}/posts`, headers
     ).then(res => {
         setFeed(res.data)
     }).catch(err => {
-        console.log(err.response)
+        console.log(err.response.data)
     })
 }
 
@@ -61,7 +64,7 @@ export const twoRequests = (id, setPost, setComments) => {
 export const createPost = async (form, setFeed) => {
     try {
         const response = await axios.post(`${BaseUrl}/posts`, form, headers)
-        alert(response.data)
+        alert('sucss')
         getPost(setFeed)
     } catch (err) {
         console.log(err.response.data)
@@ -71,7 +74,7 @@ export const createPost = async (form, setFeed) => {
 export const createComment = async (form, id) => {
     try {
         const response = await axios.post(`${BaseUrl}/posts/${id}/comments`, form, headers)
-        alert(response.data)
+        alert('sucess')
     } catch (err) {
         console.log(err.response.data)
     }

@@ -21,16 +21,16 @@ export const Feed = () => {
 
     return (
         <>
-            <Header />
+            <Header page={''} />
             <div>
                 <ContainerForm onSubmit={preventDefaultFunction}>
                     <ContainerLabel htmlFor="title"> Titulo da Postagem
                         <ContainerInputTitle id="title" name="title" value={form.title} onChange={onChange}
-                            required />
+                            required placeholder="Título do Post" />
                     </ContainerLabel>
                     <ContainerLabel htmlFor="body" > Conteúdo
                         <ContainerInputContent id="body" name="body" value={form.body} onChange={onChange}
-                            required />
+                            required placeholder="Escreva seu Post" />
                     </ContainerLabel>
                     <ContainerButtonPostar>Postar</ContainerButtonPostar>
                 </ContainerForm>

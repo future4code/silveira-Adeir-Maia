@@ -12,11 +12,11 @@ export const ImgLogoLogin = styled.img`
     height: 100px;
 `
 export const Titleh1 = styled.h1`
-    font-size: 50px;
+    font-size: 40px;
     margin: 0;
 `
 export const Titleh2 = styled.h2`
-    font-size: 25px;
+    font-size: 16px;
     margin: 0;
 `
 export const SuperContainerForm = styled.div`
@@ -33,26 +33,34 @@ export const ContainerForm = styled.form`
     padding: 5px;
 `
 export const ContainerInput = styled.input` 
-    width: 298px;
+    width: 290px;
     height: 30px;
     font-size: 20px;
     padding: 10px;
+    border: 1px solid #EFEFEF;
 `
 export const LineStylized = styled.div`
     margin: 20px;
-    height: 3px;
-    background-color: beige;
+    height: 1px;
+    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
     width: 320px;
 `
 export const ButtonLinearGradient = styled.button`
     width: 320px;
     height: 40px;
     font-size: 20px;
-    border-radius: 20px;
+    font-size: 18px;
+    border: none;
+    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%);
+    border-radius: 27px;
+    color: #FFFFFF;
 `
 export const RegisterButton = styled.button`
     width: 320px;
     height: 40px;
     font-size: 20px;
-    border-radius: 20px;
+    background: white;
+    border: 1px solid #FE7E02;
+    border-radius: 27px;
+    color: #FE7E02;
 `

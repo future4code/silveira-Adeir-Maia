@@ -3,18 +3,27 @@ import styled from "styled-components"
 export const ContainerHeader = styled.div`
     display: flex;
     flex-direction: row;
-    
+    background: #EDEDED;
+    height: 50px;
 `
 export const Logo = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 28px;
+    height: 28px;
     margin: 0 auto;
-    
+    align-self: center;
 `
-export const ButtonLogOff = styled.button`
+export const ButtonLogOff = styled.a`
     width: fit-content;
     height: 30px;
     align-self: center;
     position: absolute;
-    right: 5%;
+    right: 10%;
+    background: none;
+    border: none;
+    color: rgb(86,149,207);
+    font-size: 18px;
+`
+export const ButtonReturn = styled.button`
+    border: none;
+    background: none;
 `

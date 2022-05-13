@@ -11,16 +11,34 @@ export const ContainerLabel = styled.label`
     flex-direction: column;
     text-align: center;
     gap: 10px;
+    font-size: 30px;
+    color: #FE7E02;
 `
 export const ContainerInputTitle = styled.textarea`
+    border: 1px solid black;
     height: 50px;
     resize: none;
+    background: #EDEDED;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 18px;
 `
 export const ContainerInputContent = styled.textarea`
-    height: 100px;
+    border: 1px solid black;
+    height: 130px;
     resize: none;
+    background: #EDEDED;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 18px;
 `
 export const ContainerButtonPostar = styled.button`
-    width: fit-content;
+    width: 359px;
     margin: 0 auto;
+    height: 47px;
+    font-size: 18px;
+    border: none;
+    background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%), #4088CB;
+    border-radius: 12px;
+    color: #FFFFFF;
 `

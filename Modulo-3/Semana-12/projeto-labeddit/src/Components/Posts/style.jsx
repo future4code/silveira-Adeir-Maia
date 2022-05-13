@@ -5,30 +5,53 @@ export const ContainerPost = styled.div`
     flex-direction: column;
     padding: 10px;
     gap: 20px;
-    border: 3px solid black;
+    background: #FBFBFB;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
     margin: 20px 0px 20px 0px;
     h3{
-        font-size: 30px;
+        font-size: 18px;
         margin: 0;
+        
     }
 `
 export const PostTitle = styled.p`
-    font-size: 20px;
-    margin: 0;
+    font-size: 13px;
+    margin: 0px;
+    color: #6F6F6F;
 `
 export const ContainerInteractions = styled.div`
     display: flex;
     flex-direction: row;
     gap: 30px;
+    a{
+        text-decoration: none;
+    }
 `
 export const ContainerComments = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
+    border: 1px solid #EFEFEF;
+    border-radius: 28px;
+    padding: 5px 10px 5px 10px;
+    background: #F9B24E;
+    span{
+        font-size: 18px;
+        color: #5695cf;
+    }
 `
 export const ContainerVote = styled.div`
     display: flex;
     flex-direction: row;
+    border: 1px solid #EFEFEF;
+    border-radius: 28px;
+    padding: 5px;
+    background: #F9B24E;
+    span{
+        font-size: 18px;
+        color: #5695cf;
+    }
 `
 export const ButtonArrowLogo = styled.button`
     width: fit-content;

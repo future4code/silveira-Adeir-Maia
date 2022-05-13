@@ -35,9 +35,7 @@ export const Login = () => {
                         title="Senha deve ter entre 8 e 30 caracteres entre letras e números" />
                     <style.ButtonLinearGradient>Login</style.ButtonLinearGradient>
                 </style.ContainerForm>
-                <style.LineStylized>
-
-                </style.LineStylized>
+                <style.LineStylized />
                 <style.RegisterButton onClick={() => goToSingUp(navigate)}>Cadastrar</style.RegisterButton>
             </style.SuperContainerForm>
         </>
