@@ -45,7 +45,7 @@ export const Feed = () => {
             <ContainerLoadingBar>
                 {loadingBar && <LoadingComponentBar />}
             </ContainerLoadingBar >
-            <Pagination limit={10} total={500} setCurentPage={setCurentPage} />
+            <Pagination limit={10} total={500} setCurentPage={setCurentPage} loading={loading} />
             {loading ?
                 <ContainerLoading>
                     <LoadingComponent />

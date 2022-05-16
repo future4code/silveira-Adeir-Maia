@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerPagination = styled.div`
     display: flex;
     justify-content: center;
+    visibility: ${({ loading }) => loading ? 'hidden' : 'visible'};
 `
 
 export const PaginationBar = styled.ul`

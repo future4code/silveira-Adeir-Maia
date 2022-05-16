@@ -16,7 +16,7 @@ const MaxButtons = 5
 const MaxLeftButtons = (MaxButtons - 1) / 2
 // Haverá no máximo 4 botões na esquerda
 
-export const Pagination = ({ limit, total, setCurentPage }) => {
+export const Pagination = ({ limit, total, setCurentPage, loading }) => {
     const [offset, setOffset] = useState(0)
     const curentPage = offset ? (offset / limit) + 1 : 1
     /*Ex: pag 3 = offset(40) / limit(20) = 2+1 = 3. Se o offset for 0 a pagina é 1 */
@@ -37,7 +37,7 @@ export const Pagination = ({ limit, total, setCurentPage }) => {
     const goToFinalPage = () => setOffset((totalPages) * limit)
 
     return (
-        <ContainerPagination>
+        <ContainerPagination loading={loading}>
             <PaginationBar>
                 <li>
                     <PageButton
