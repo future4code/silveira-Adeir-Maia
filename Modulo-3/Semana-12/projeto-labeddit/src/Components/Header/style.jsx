@@ -5,6 +5,7 @@ export const ContainerHeader = styled.div`
     flex-direction: row;
     background: #EDEDED;
     height: 50px;
+    align-items: center;
 `
 export const Logo = styled.img`
     width: 28px;
@@ -24,6 +25,12 @@ export const ButtonLogOff = styled.a`
     font-size: 18px;
 `
 export const ButtonReturn = styled.button`
+    display: flex;
     border: none;
     background: none;
+    align-self: center;
+    img{
+        width: 28px;
+        height: 28px;
+    }
 `

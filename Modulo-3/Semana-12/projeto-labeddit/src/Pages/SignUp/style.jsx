@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const PageTitle = styled.h2`
     font-size: 33px;
-    padding: 20px;
     text-align: center;
 `
 export const SuperContainerFormResgister = styled.div`
@@ -37,4 +36,19 @@ export const ButtonLinearGradient = styled.button`
 export const ContainerTitleRegister = styled.div`
     
     
+`
+export const ContainerMessageErrorSingUp = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    visibility: ${({ visible }) => visible ? 'visible' : 'hidden'};
+`
+export const ErrorMessageSingUp = styled.p`
+    margin: 0;
+    font-size: 20px;
+    color: black;
+    text-align: center;
 `

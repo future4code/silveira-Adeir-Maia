@@ -30,7 +30,7 @@ export const ArrowLogoComment = styled.img`
     height: 20px;
 `
 export const ButtonLinearGradientComment = styled.button`
-    width: 359px;
+    width: 100%;
     margin: 0 auto;
     height: 47px;
     font-size: 18px;
@@ -60,12 +60,14 @@ export const ContainerComentBorder = styled.div`
 export const ContainerVoteComment = styled.div`
     display: flex;
     flex-direction: row;
-    border: 1px solid #FE7E02;
+    border: 1px solid #EFEFEF;
     border-radius: 28px;
     padding: 5px;
-    width: fit-content;
-    gap: 10px;
     background: #F9B24E;
+    span{
+        font-size: 18px;
+        color: #5695cf;
+    }
 `
 
 export const CommentsLogoStyle = styled.img`
@@ -76,10 +78,14 @@ export const ContainerCommentsComment = styled.div`
     display: flex;
     flex-direction: row;
     gap: 10px;
-    border: 1px solid #FE7E02;
+    border: 1px solid #EFEFEF;
     border-radius: 28px;
     padding: 5px 10px 5px 10px;
     background: #F9B24E;
+    span{
+        font-size: 18px;
+        color: #5695cf;
+    }
 `
 export const ContainerInteractionComment = styled.div`
     display: flex;
@@ -124,4 +130,15 @@ export const CommentAuthor = styled.p`
 export const CommetBody = styled.p`
     font-size: 18px;
 
+`
+export const ContainerLoadingComment = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+`
+export const ContainerLoadingBar = styled.div`
+    visibility: visible;
+    display: flex;
+    justify-content: center;
+    height: 50px;
 `

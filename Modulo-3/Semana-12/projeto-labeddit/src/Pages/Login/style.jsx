@@ -5,7 +5,7 @@ export const ContainerLogoLogin = styled.div`
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    padding: 50px 0px 50px 0px;
+    padding: 50px 0px 0px 0px;
 `
 export const ImgLogoLogin = styled.img`
     width: 100px;
@@ -63,4 +63,19 @@ export const RegisterButton = styled.button`
     border: 1px solid #FE7E02;
     border-radius: 27px;
     color: #FE7E02;
+`
+export const ContainerMessageError = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    visibility: ${({ visible }) => visible ? 'visible' : 'hidden'};
+`
+export const ErrorMessage = styled.p`
+    margin: 0;
+    font-size: 20px;
+    color: black;
+    text-align: center;
 `

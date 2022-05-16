@@ -6,20 +6,20 @@ export const logOff = (navigate) => {
     goToLogin(navigate)
 }
 
-export const vote = (id, userVote, voteValue, PostOrCommentary) => {
+export const vote = (id, userVote, voteValue, requestType, setFeed, setLoading, curentPage, postId, resquestSelector) => {
     if (userVote) {
         if (userVote === voteValue) {
-            DeleteVote(id, PostOrCommentary)
+            DeleteVote(id, requestType, setFeed, setLoading, curentPage, postId, resquestSelector)
         } else {
             const form = {
                 direction: voteValue
             }
-            ChangeVote(form, id, PostOrCommentary)
+            ChangeVote(form, id, requestType, setFeed, setLoading, curentPage, postId, resquestSelector)
         }
     } else {
         const form = {
             direction: voteValue
         }
-        CreateVote(form, id, PostOrCommentary)
+        CreateVote(form, id, requestType, setFeed, setLoading, curentPage, postId, resquestSelector)
     }
 }

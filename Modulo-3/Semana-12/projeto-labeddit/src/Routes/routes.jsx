@@ -10,7 +10,7 @@ export const RoutesComponets = () => (
             <Route index element={<Login />} />
             <Route path="/SingUp" element={<SignUp />} />
             <Route path="/Feed" element={<Feed />} />
-            <Route path="/Post/:id" element={<PostPage />} />
+            <Route path="/Post/:id/page/:page" element={<PostPage />} />
         </Routes>
     </BrowserRouter>
 )

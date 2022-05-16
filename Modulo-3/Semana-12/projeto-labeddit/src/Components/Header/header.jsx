@@ -11,12 +11,14 @@ export const Header = (props) => {
     const navigate = useNavigate()
     return (
         <ContainerHeader>
-            {props.page === 'commets' &&
+            {(props.page === 'commets' || props.page === 'singUp') &&
                 <ButtonReturn onClick={() => goBack(navigate)}>
                     <img src={setaRetorno} alt='setaVoltar' />
                 </ButtonReturn>}
             <Logo src={LogoImg} alt="Logo" />
-            <ButtonLogOff onClick={() => logOff(navigate)}>Logout</ButtonLogOff>
+            {props.page !== 'singUp' &&
+                <ButtonLogOff onClick={() => logOff(navigate)}>Logout</ButtonLogOff>
+            }
         </ContainerHeader>
     )
 }

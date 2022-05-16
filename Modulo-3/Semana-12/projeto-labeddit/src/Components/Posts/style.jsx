@@ -67,3 +67,6 @@ export const Comments = styled.img`
     width: 20px;
     height: 20px;
 `
+export const ContainerLoadingBar = styled.div`
+    visibility: ${({ visible }) => visible ? `visible` : `hidden`};
+`

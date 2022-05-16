@@ -33,7 +33,7 @@ export const ContainerInputContent = styled.textarea`
     font-size: 18px;
 `
 export const ContainerButtonPostar = styled.button`
-    width: 359px;
+    width: 100%;
     margin: 0 auto;
     height: 47px;
     font-size: 18px;
@@ -41,4 +41,14 @@ export const ContainerButtonPostar = styled.button`
     background: linear-gradient(90deg, #FF6489 0%, #F9B24E 100%), #4088CB;
     border-radius: 12px;
     color: #FFFFFF;
+`
+export const ContainerLoading = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+`
+export const ContainerLoadingBar = styled.div`
+    display: flex;
+    justify-content: center;
+    height: 50px;
 `
