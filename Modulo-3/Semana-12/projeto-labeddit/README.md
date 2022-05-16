@@ -2,7 +2,7 @@
 ## A rede social da Labenu
 ### [LabEddit](https://labeddit-adeir-moreira.surge.sh/Feed)
 
-Um protótipo de rede social. Desenvolvido primeiramentge para celulares(mobileFirst), o projeto se consiste de 4 paginas: Login, Cadastro, Feed de Postagens e Comentarios do Post. O App tem integração com a Api da Labenu para fazer login, casdastrar um usuário e publicar posts e comentários nos Posts, além porder curtir e 
+Um protótipo de rede social. Desenvolvido primeiramente para celulares(mobileFirst), o projeto se consiste de 4 páginas: Login, Cadastro, Feed de Postagens e Comentários do Post. O App tem integração com a Api da Labenu para fazer login, casdastrar um usuário, publicar posts e comentários nos posts, além curtir e 
 descurtir um Post ou um Comentario. A Aplicação conta com outras funcionalidades como: carregamento animado, paginação e ajuda caso não se consiga fazer longin ou casdastar um Usuário.
 
 ### Tennologias 
@@ -13,8 +13,8 @@ descurtir um Post ou um Comentario. A Aplicação conta com outras funcionalidad
 
 ### Impletações
 **Mobile first<br>
-Vericação do formato de email e resquisitos de senha com regex<br>
-aviso e ajuda caso se tente fazer longin com uma senha ou usuários incorretos ou se tente cadastrar um email ja cadastrado<br>
+Verificação do formato de email e resquisitos de senha com regex<br>
+aviso e ajuda caso se tente fazer login com uma senha ou usuários incorretos ou se tente cadastrar um email ja cadastrado<br>
 Carregamento animado para requisições get, publicação de Post e Comentários,e curtidas <br>
 Função LogOut<br>
 Paginação monstrando 10 Post por pagina, totalizando 50 páginas que possibilitam a visualização dos 500 primeiros Posts <br>
