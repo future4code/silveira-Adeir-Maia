@@ -42,8 +42,7 @@ export const Login = () => {
                         title="O email deve ter o seguinte formato: exemplo@provedor.com" />
                     <style.ContainerInput type={"password"} name="password" placeholder="Senha"
                         value={form.password} onChange={onChange}
-                        required 
-                        title="Senha deve ter entre 8 e 30 caracteres entre letras e números" />
+                        required />
                     <style.ButtonLinearGradient>Login</style.ButtonLinearGradient>
                 </style.ContainerForm>
                 <style.LineStylized />

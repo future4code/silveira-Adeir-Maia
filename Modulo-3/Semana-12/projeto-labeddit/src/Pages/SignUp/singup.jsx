@@ -35,7 +35,7 @@ export const SignUp = () => {
                         title="O email deve ter o seguinte formato: exemplo@provedor.com" />
                     <style.ContainerInputResgister name="password" placeholder="Senha" value={form.password} onChange={onChange}
                         required pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,30}$" type={"password"}
-                        title="Senha deve ter entre 8 e 30 caracteres entre letras e números" />
+                        title=" A Senha deve ter entre 8 e 30 caracteres com pelo menos 1 letra e 1 número" />
                     <p>Ao continuar, você concorda com nosso <a href="">Contrato de Usuário</a> e nossa
                         <a href=""> Política de Privacidade</a>
                     </p>
