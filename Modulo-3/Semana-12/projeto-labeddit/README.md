@@ -1,6 +1,6 @@
 # LabEddit
 ## A rede social da Labenu
-### [LabEddut](https://labeddit-adeir-moreira.surge.sh/Feed)
+### [LabEddit](https://labeddit-adeir-moreira.surge.sh/Feed)
 
 Um protótipo de rede social. Desenvolvido primeiramentge para celulares(mobileFirst), o projeto se consiste de 4 paginas: Login, Cadastro, Feed de Postagens e Comentarios do Post. O App tem integração com a Api da Labenu para fazer login, casdastrar um usuário e publicar posts e comentários nos Posts, além porder curtir e 
 descurtir um Post ou um Comentario. A Aplicação conta com outras funcionalidades como: carregamento animado, paginação e ajuda caso não se consiga fazer longin ou casdastar um Usuário.
