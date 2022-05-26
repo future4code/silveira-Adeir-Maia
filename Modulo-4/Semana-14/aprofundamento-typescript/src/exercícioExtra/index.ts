@@ -1,0 +1,1 @@
+// O arquivo em criamos com o comando tsc --init tem muitos outras configurações
