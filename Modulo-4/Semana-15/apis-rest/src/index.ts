@@ -1,6 +1,7 @@
 import express,{Express,Request,Response} from 'express'
 import cors from 'cors'
 import { users, Users, TYPE } from './data'
+let usersInThisArquive = users
 
 const app:Express = express()
 app.use(express.json())
@@ -41,7 +42,7 @@ app.get("/users",(req:Request,res:Response) => {
     }
 })
 
-app.post("/createUser",(req:Request,res:Response)=> {
+app.put("/user/create",(req:Request,res:Response)=> {
     let ErrorCode:number = 201
     const {name,email,type,age} = req.body
     const id = users[users.length - 1].id + 1 
@@ -70,9 +71,75 @@ app.post("/createUser",(req:Request,res:Response)=> {
         const usersAtualized = users
         usersAtualized.push(user)
         res.status(201).send(usersAtualized)
+        usersInThisArquive = usersAtualized
     } catch (error:any) {
         res.status(ErrorCode).send({message:error.message})
     }
+})
+
+app.put("/user",(req:Request,res:Response)=> {
+    let ErrorCode = 200
+    const {name} = req.body
+    try {
+        if(!name) {
+            ErrorCode = 412
+            throw new Error('O ID não foi passado')
+        }
+        if(typeof(name) !== 'string') {
+            ErrorCode = 422
+            throw new Error('O ID passado não é do tipo number')
+        }
+        const usersAtualized = usersInThisArquive[usersInThisArquive.length - 1]
+        usersAtualized.name = `${name}-ALTERADO`
+        usersInThisArquive.pop()
+        usersInThisArquive.push(usersAtualized)
+        res.status(ErrorCode).send(`Alteração realizada com sucesso`)
+    } catch (error:any) {
+        res.status(ErrorCode).send({message:error.message})
+    }
+})
+
+app.patch("/user",(req:Request,res:Response)=> {
+    let ErrorCode = 200
+    const {name} = req.body
+    try{
+        if(!name) {
+            ErrorCode = 412
+            throw new Error('O ID não foi passado')
+        }
+        if(typeof(name) !== 'string') {
+            ErrorCode = 422
+            throw new Error('O ID passado não é do tipo number')
+        }
+        const usersAtualized = usersInThisArquive[usersInThisArquive.length - 1]
+        usersAtualized.name = `${name}-REALTERADO`
+        usersInThisArquive.pop()
+        usersInThisArquive.push(usersAtualized)
+        res.status(ErrorCode).send(`Realteração realizada com sucesso`)
+    } catch (error:any) {
+        res.status(ErrorCode).send({message:error.message})
+    }
+})
+
+app.delete("/user",(req:Request,res:Response)=> {
+    let ErrorCode = 200
+    let id = Number(req.query.id)
+    try {
+        if(!id) {
+            ErrorCode = 412
+            throw new Error('O ID não foi passado')
+        }
+        if(isNaN(id)){
+            ErrorCode = 422
+            throw new Error('O ID passado não é do tipo number')
+        }
+        let usersAtualized = usersInThisArquive.filter(user=> user.id !== id)
+        usersInThisArquive = usersAtualized
+        res.status(ErrorCode).send(usersInThisArquive)
+    } catch (error:any) {
+        res.status(ErrorCode).send({message:error.message})
+    }
+    
 })
 
 const server = app.listen(3005, () => console.log('O servidor está rodando na http://localhost:3005'))
