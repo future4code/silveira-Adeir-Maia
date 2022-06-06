@@ -1,7 +1,7 @@
 import express,{Express,Request,Response} from 'express'
 import cors from 'cors'
 import { Client , Extract, clients } from './type'
-import { checkAge, checkIfAccountAlreadyExist, checkCPFFormat, getFullDate, checkData, ckecktransferData } from './functions'
+import { checkAge, checkIfAccountAlreadyExist, checkCPFFormat, getFullDate, checkData, ckecktransferData, escrever } from './functions'
 
 
 const app:Express = express()
@@ -98,6 +98,7 @@ app.post("/Client",(req:Request,res:Response)=> {
         const client:Client = { name: name.toUpperCase(), cpf, birthdate, balance:0, extract:[]}
         clients.push(client)
         res.status(ErrorCode).send({message:'Conta cadastrada com sucesso!'})
+        escrever(JSON.stringify(clients))
     }catch(error:any) {
         res.status(ErrorCode).send({message:error.message})
     }
@@ -128,6 +129,7 @@ app.put("/Client/deposit",(req:Request,res:Response)=> {
             }
             client.extract.push(transaction)
             client.balance += deposityValue
+            escrever(JSON.stringify(clients))
             res.status(ErrorCode).send({message:"Depósito realizado com sucesso"})
         } else {
             ErrorCode = 404
@@ -146,6 +148,7 @@ app.post("/Client/payment",(req:Request,res:Response)=> {
             ErrorCode = 422
             throw new Error (errorMessage as string)
         }
+        escrever(JSON.stringify(clients))
     res.status(ErrorCode).send({message:'Pagamento processado com sucesso!'})
     } catch (error:any) {
         res.status(ErrorCode).send({message:error.message})
@@ -160,6 +163,7 @@ app.post("/Client/transfer",(req:Request,res:Response)=> {
             ErrorCode = 422
             throw new Error (errorMessage as string)
         }
+        escrever(JSON.stringify(clients))
     res.status(ErrorCode).send({message:'Transferencia processada com sucesso!'})
     } catch (error:any) {
         res.status(ErrorCode).send({message:error.message})

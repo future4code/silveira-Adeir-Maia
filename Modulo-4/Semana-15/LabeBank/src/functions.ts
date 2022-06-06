@@ -1,4 +1,5 @@
 import { Client, Extract } from "./type";
+import fs from 'fs'
 
 export const checkData = (body:Extract,clients:Client[]):string | Client => {
     const {name ,value,data,description,cpf} = body
@@ -118,4 +119,23 @@ const processPayment = (value:number,description:string,account:Client) => {
     const transaction:Extract = {value: -value, data: date, description}
     account.extract.push(transaction)
     return account
+}
+
+
+export const lerDados = () => {
+    try {
+        const dado = fs.readFileSync("./clients.JSON",'utf-8')
+        return JSON.parse(dado)
+    } catch (err){
+        console.log(err)
+    }
+}
+
+export const escrever = (conteudo:string) => {
+    fs.writeFile('./clients.JSON',conteudo, err => {
+    if(err) {
+        console.error(err)
+    }
+    console.log('arquivo escrito com sucesso')
+    })
 }

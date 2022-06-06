@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { lerDados } from './functions'
 
 export type Extract = {
     name?:string,
@@ -17,4 +18,4 @@ export type Client = {
     extract: Extract[] 
 }
 
-export const clients:Client[] = []
+export const clients:Client[] = lerDados()
