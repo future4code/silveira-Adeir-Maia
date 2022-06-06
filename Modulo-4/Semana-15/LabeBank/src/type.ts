@@ -1,17 +1,20 @@
 import fs from 'fs'
 
 export type Extract = {
+    name?:string,
+    cpf?:string,
+    data?: string,
     value:number,
-    data: string | number,
     description : string
+    
 }
 
 export type Client = {
     name: string,
     cpf: string,
-    birthdate: string | number,
+    birthdate: string,
     balance:number,
-    extract: Extract[] | []
+    extract: Extract[] 
 }
 
 export const clients:Client[] = []
