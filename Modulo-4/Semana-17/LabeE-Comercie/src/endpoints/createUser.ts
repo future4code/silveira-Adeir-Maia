@@ -1,11 +1,17 @@
 import { Request, Response } from "express";
-import createUser from "../querys/createUser";
+import { dataCheck } from "../dataCheck/dataCheck";
+import queryCreateUser from "../querys/createUser";
 
-export default async function RegisterProductEndPoint(req:Request,res:Response):Promise<void> {
-    const ErrorCode = 200
-    const {id,name,email,password} = req.body
+export default async function createUser(req:Request,res:Response):Promise<void> {
+    let ErrorCode = 200
+    const {name,email,password} = req.body
     try {
-        await createUser(id,name,email,password)
+        const dataChecked = dataCheck(name,email,password)
+        if(typeof(dataChecked) === "string") {
+            ErrorCode = 422
+            throw new Error (dataChecked)
+        }
+        await queryCreateUser(name,email,password)
         res.status(ErrorCode).send({data:{message:"Usuário criado com sucesso"}})
     } catch (error:any) {
         res.status(ErrorCode).send({data:{message:error.message}} || {data:{message:error.sqlMessage}})

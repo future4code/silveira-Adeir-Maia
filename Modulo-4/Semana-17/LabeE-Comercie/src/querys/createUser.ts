@@ -1,5 +1,7 @@
 import { connection } from "../connection";
+import idGenerator from "../idGenerator";
 
-export default async function createUser(id:string, name:string,email:string,password:string):Promise<any> {
-    return await connection.into("labecommerce_users").insert({id,name,email,password})
+export default async function queryCreateUser(name:string,email:string,password:string):Promise<any> {
+    const id = idGenerator()
+    return await connection.into("labecommerce_users").insert({id, name, email, password})
 }
