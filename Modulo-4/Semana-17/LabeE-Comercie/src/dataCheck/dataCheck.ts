@@ -32,6 +32,15 @@ export const  idCheck =  (user_id:string) => {
     }
 }
 
+export const querysCheck = (colum:string,orderBY:string) => {
+    if(colum.toUpperCase() !== "NAME" && colum.toUpperCase() !== "PRICE") {
+        return `Query param 'colum' inválido, por favor escolha 'name' para ordenar por nome ou 'price' par ordenar por preço.`
+    }
+    if((orderBY.toUpperCase() !== "ASC" && orderBY.toUpperCase() !== "DESC") && orderBY !== "") {
+        return `Query param 'orderBy' inválido, por favor escolha 'ASC' para ordem crescente ou 'DESC' para ordem decrescente.`
+    }
+}
+
 const stringVerification = (string:any):boolean => typeof(string) !== "string" || string === ""
 
 const numberVerification = (number:any):boolean => isNaN(number) || number === 0 || number === ''
