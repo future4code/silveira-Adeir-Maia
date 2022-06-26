@@ -1,0 +1,22 @@
+GET http://localhost:3003/User?name=amanda&orderBy=type
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/UserByType?orderBy=type
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/UserOrdernedByType?orderBy=name&orderType=DESC
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/Users?page=5
+Content-Type: application/json
+
+### 
+
+GET http://localhost:3003/Usersall?page=1&orderBy=name&orderType=DESC&name=amanda
+Content-Type: application/json
