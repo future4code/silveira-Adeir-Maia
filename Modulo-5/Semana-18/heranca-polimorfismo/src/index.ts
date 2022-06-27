@@ -243,3 +243,24 @@ class IndustrialClient extends Industry implements Client {
 //6.a filha da instrustry porque ela tem a machineQuantity que é uma especificidade da industrial
 //6.b Client
 //6 porque as outras propiedades são 
+
+
+
+class Employee extends User {
+    constructor (id:string,email:string,name:string,password:string, protected admissionDate: string, protected baseSalary: number) {
+        super(id,email,name,password)
+    }
+    getAdmissionDate = () => {
+        return this.admissionDate
+    }
+    getBaseSalary = () => {
+        return this.baseSalary
+    }
+    calculateSalary = () => {
+        return this.baseSalary + 400
+    }
+}
+
+const colaborador = new Employee(idGenerator(),'colaborador@gmail.com','colabarador','123','21/06/2022',3000)
+
+console.log(colaborador.getAdmissionDate(),colaborador.getBaseSalary(), colaborador.calculateSalary())
