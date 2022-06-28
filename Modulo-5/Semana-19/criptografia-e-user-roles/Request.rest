@@ -1,0 +1,33 @@
+### Criar Usuário
+POST  http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "email":"adeir@dev.com",
+    "password":"3d81r8",
+    "role":"ADMIN"
+}
+
+### Pegar usuario por email
+GET http://localhost:3003/user/search
+Content-Type: application/json
+
+{
+    "email":"adeir.maia@hotmail.com"
+}
+
+### Login
+GET http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"adeir@dev.com",
+    "password":"3d81r8"
+}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjoiZjQ0NmUyMTMtZGIxZS00ZWNjLTg3YWEtNzcwOTk1OGFhNGRiIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY1NjQ0MzU2OSwiZXhwIjoxNjU2NDYxNTY5fQ.0ekjhWaSph0Xrm9T9YqkWPJJA7VAOmKg4zIpWJYmYcg
+
+
+GET http://localhost:3003/user
+Authorization: {{token}}
