@@ -1,4 +1,5 @@
 import UserDataBase from "../../Data/UserDataBase"
+import Recipe from "../../Model/Entities/Recipes"
 import { User, USER_ROLE } from "../../Model/Entities/User"
 import { Checking } from "../../Model/Types"
 
@@ -65,7 +66,24 @@ export default class DataChecking {
         if(!title || !description) {
             const response = {
                 statusCode : 422,
-                message: 'O Email ou a senha não foram passados'
+                message: 'O Título ou a descrição da receita não forma passados'
+            }
+            return response
+        }
+        if(!token || token.length <= 216 || token.length > 217){
+            const response = {
+                statusCode : 422,
+                message: 'Token inválido'
+            }
+            return response
+        }
+    }
+
+    getById = (token:string,id:string):Checking | undefined => {
+        if(!id) {
+            const response = {
+                statusCode : 422,
+                message: 'Um id de receita não foi passado'
             }
             return response
         }
@@ -76,6 +94,23 @@ export default class DataChecking {
             }
             return response
         }
+    }
+
+    follow = (token:string, follow_Id:string ):Checking | undefined => {
+        if(!token || !follow_Id){
+            const response = {
+                statusCode : 422,
+                message: 'Token inválido'
+            }
+            return response
+        }
+        
+    }
+    
+    DateReverted  = (result:Recipe):Recipe => {
+        const dateReverted = new Date(result.getCriationDate()).toISOString().slice(0, 10).split("-").reverse().join("/");
+        result.setCriationDate(dateReverted)
+        return result
     }
     
 }
@@ -89,3 +124,4 @@ const alreadtExistCheck =  async (email:string):Promise< User | undefined> => {
     const userDB = new UserDataBase()
     return await userDB.getByEmail(email)
 }
+

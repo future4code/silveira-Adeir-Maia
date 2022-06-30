@@ -6,7 +6,7 @@ export default class UserDataBase  extends BaseDataBase{
         try {
             await BaseDataBase.connection('Coockenu_User').insert({
                 id: user.getId(),
-                nome: user.getName(),
+                name: user.getName(),
                 email: user.getEmail(),
                 password: user.getPassword(),
                 role : user.getRole()
@@ -32,7 +32,7 @@ export default class UserDataBase  extends BaseDataBase{
     getById = async (id:string):Promise<User> => {
         try {
             const result = await BaseDataBase.connection('Coockenu_User')
-            .select('*')
+            .select('id','name','email','role')
             .where({id})
             return result[0] && User.toUserModel(result[0])
         } catch (error:any) {

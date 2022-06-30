@@ -9,4 +9,3 @@ export type Checking = {
     statusCode: number,
     message: string
 }
-

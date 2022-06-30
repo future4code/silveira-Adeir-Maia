@@ -91,6 +91,41 @@ export default class UserEntitie {
             }
             res.status(statusCode).send({id:user.getId(),nome: user.getName(),email:user.getEmail()})
         } catch (error:any) {
+            if(error.message.includes('jwt')) {
+                statusCode = 401
+                error.message = 'Token expirado'
+            }
+            res.status(statusCode).send(error.message)
+        }
+    }
+
+    getById = async (req:Request,res:Response) => {
+        let statusCode = 200
+        const token = req.headers.authorization as string
+        const id = req.params.id
+        try {
+            const dataChecking = new DataChecking()
+            const checking = dataChecking.getById(token,id)
+            if(checking) {
+                statusCode = checking.statusCode
+                throw new Error(checking.message)
+            }
+
+            const authentication = new Authentication()
+            const tokenData = authentication.getTokenData(token)
+
+            const userDB = await new UserDataBase().getById(id)
+            if(!userDB) {
+                statusCode = 404
+                throw new Error('Usuário não encontrado!')
+            }
+
+            res.status(statusCode).send({user:userDB})
+        } catch (error:any) {
+            if(error.message.includes('jwt')) {
+                statusCode = 401
+                error.message = 'Token expirado'
+            }
             res.status(statusCode).send(error.message)
         }
     }

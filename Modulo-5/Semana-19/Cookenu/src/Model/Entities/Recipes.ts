@@ -9,7 +9,11 @@ export default class Recipe {
     getCriationDate = () => this.criationDate
     getUserId = () => this.userId
 
+    setCriationDate= (criation_Date:string) => {
+        this.criationDate = criation_Date
+    }
+
     static toUserModel(data:any): Recipe {
-        return new Recipe( data.id, data.title, data.description, data.criationDate, data.user_id)
+        return new Recipe( data.id, data.title, data.description, data.criation_date, data.user_id)
     }
 }

@@ -4,25 +4,61 @@ POST http://localhost:3003/user
 Content-Type: application/json
 
 {
-    "nome":"Adeir Moreira Maia",
-    "email":"adeir.maia@hotmail.com",
-    "password":"3d81r8",
+    "nome":"Ariane Tier",
+    "email":"aririterere@dev.com",
+    "password":"BrisaBarbosa",
     "role":"ADMIN"
 }
 
-### Login
+###
+# @name login
 POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email":"adeir.maia@hotmail.com",
-    "password":"3d81r8"
+    "email":"aririterere@dev.com",
+    "password":"BrisaBarbosa"
 }
 
-### Pegar usuário pelo token
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6ImE5YmJiZDRiLTQwYmYtNGI4MC1iZTljLWMyMGMzY2MxNjEwNCIsInJvbGUiOiJBRE1JTiJ9LCJpYXQiOjE2NTY1Mjc3MjQsImV4cCI6MTY1NjU0NTcyNH0.iNuR0wNP6BjhRPN9y6pTnd11N3uTkjCSRSMHIg0ncp4
 
+###
+@token = {{login.response.body.token}}
+### Pegar usuário pelo token
 GET http://localhost:3003/user
 Authorization: {{token}}
 
-###
+### Pega usuário pelo ID
+GET http://localhost:3003/user/d4c1d1fb-a512-4c40-bec1-0324f7fd619f
+Authorization: {{token}}
+
+### criar uma receita
+POST http://localhost:3003/recipe
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "title":"Cuscuz",
+    "description":"Nordestino, paulista e até marroquino, o cuscuz é um clássico da culinária brasileira. Versátil, serve de base da alimentação especialmente no Nordeste, onde é muito popular no café da manhã, mas pode ser consumido em qualquer refeição com os mais diferentes tipos de acompanhamentos, doces ou salgados."
+}
+
+### Pegar Receita pelo 
+GET http://localhost:3003/recipe/4caae556-a0c3-4735-a4d5-62baea975075
+Authorization: {{token}}
+
+### seguir um usuário
+POST http://localhost:3003/user/follow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "follow_Id":"7701523b-3b9b-4685-8073-3a497762a4cf"
+}
+
+### Deixar de seguir um usuário
+DELETE  http://localhost:3003/user/unfollow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "follow_Id":"7701523b-3b9b-4685-8073-3a497762a4cf"
+}

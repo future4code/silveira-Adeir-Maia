@@ -33,6 +33,41 @@ export default class RecipeEntitie {
             res.status(statusCode).send()
 
         } catch (error:any) {
+            if(error.message.includes('jwt')) {
+                statusCode = 401
+                error.message = 'Token expirado'
+            }
+            res.status(statusCode).send(error.message)
+        }
+    }
+    getById = async (req:Request,res:Response) => {
+        let statusCode = 200
+        const token = req.headers.authorization as string
+        const id = req.params.id
+        try {
+            const dataChecking = new DataChecking()
+            const checking = dataChecking.getById(token,id)
+            if(checking) {
+                statusCode = checking.statusCode
+                throw new Error(checking.message)
+            }
+
+            const authentication = new Authentication()
+            const tokenData = authentication.getTokenData(token)
+
+            const recipeDB = new DataChecking().DateReverted(await new RecipeBaseDataBase().getById(id)) 
+            
+            if(!recipeDB) {
+                statusCode = 404
+                throw new Error('Receita não encontrada!')
+            }
+
+            res.status(statusCode).send({recipe:recipeDB})
+        } catch (error:any) {
+            if(error.message.includes('jwt')) {
+                statusCode = 401
+                error.message = 'Token expirado'
+            }
             res.status(statusCode).send(error.message)
         }
     }

@@ -9,7 +9,7 @@ export default class Authentication {
         },
         process.env.JWT_KEY as string,
         {
-            expiresIn: '5h'
+            expiresIn: process.env.EXPIRES_IN as string
         }
         );
         return token;

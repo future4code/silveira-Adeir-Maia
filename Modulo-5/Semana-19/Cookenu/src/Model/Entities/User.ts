@@ -11,6 +11,6 @@ export class User {
     getPassword = () => this.password
     getRole = () => this.role
     static toUserModel(data:any): User {
-    return new User(data.id,data.nome,data.email,data.password,data.role)
+    return new User(data.id,data.name,data.email,data.password,data.role)
 }
 }
