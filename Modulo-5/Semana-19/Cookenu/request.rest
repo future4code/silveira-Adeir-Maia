@@ -1,0 +1,28 @@
+### Cria usuário
+
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "nome":"Adeir Moreira Maia",
+    "email":"adeir.maia@hotmail.com",
+    "password":"3d81r8",
+    "role":"ADMIN"
+}
+
+### Login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"adeir.maia@hotmail.com",
+    "password":"3d81r8"
+}
+
+### Pegar usuário pelo token
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6ImE5YmJiZDRiLTQwYmYtNGI4MC1iZTljLWMyMGMzY2MxNjEwNCIsInJvbGUiOiJBRE1JTiJ9LCJpYXQiOjE2NTY1Mjc3MjQsImV4cCI6MTY1NjU0NTcyNH0.iNuR0wNP6BjhRPN9y6pTnd11N3uTkjCSRSMHIg0ncp4
+
+GET http://localhost:3003/user
+Authorization: {{token}}
+
+###
