@@ -4,10 +4,10 @@ POST http://localhost:3003/user
 Content-Type: application/json
 
 {
-    "nome":"mamco",
-    "email":"macaco@gmail.com",
-    "password":"123456",
-    "role":"NORMAL"
+    "nome":"",
+    "email":"",
+    "password":"",
+    "role":""
 }
 
 ###
@@ -16,8 +16,8 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email":"macaco@gmail.com",
-    "password":"123456"
+    "email":"",
+    "password":""
 }
 
 
@@ -37,8 +37,8 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "title":"TESTE",
-    "description":"ASDJKALSDKJASLÇDKASDKNCASDKVASDLVMASDMVASDLVMASDÇLVMASDDVMASDM"
+    "title":"",
+    "description":""
 }
 
 ### Pegar Receita pelo 
@@ -51,7 +51,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "follow_Id":"caf9d7a3-3db6-4944-96f7-d8de6fd3a58a"
+    "follow_Id":""
 }
 
 ### Deixar de seguir um usuário
@@ -60,7 +60,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "follow_Id":"7701523b-3b9b-4685-8073-3a497762a4cf"
+    "follow_Id":""
 }
 
 ### Pegar o feed de receitas
@@ -73,8 +73,8 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id":"402edcf0-f6ed-4d72-975b-55240914ea8e",
-    "title":"Pudin de Leite",
+    "id":"",
+    "title":"",
     "description":""
 }
 
@@ -84,7 +84,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id":"cf3bfea8-4f20-4d0c-b863-89270fe4a9b1"
+    "id":""
 }
 
 ### deletar um usuario
@@ -93,5 +93,5 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-    "id":"2cf39ca6-fdbe-4233-bc13-fc63c46d8d6b"
+    "id":""
 }
