@@ -40,4 +40,23 @@ export default class UserDataBase  extends BaseDataBase{
             throw new Error('Erro no banco de dados')
         }
     }
+
+    delete = async (id:string):Promise<void> => {
+        try {
+                await  BaseDataBase.connection('Coockenu_Recipe')
+                .delete()
+                .where('user_id',id)
+
+                await BaseDataBase.connection('Coockenu_Follows')
+                .delete()
+                .where('Coockenu_Follows.user_id',id)
+
+                await BaseDataBase.connection('Coockenu_User')
+                .delete()
+                .where({id})
+        } catch (error:any) {
+            console.log({data:{message:error.sqlMessage}})
+            throw new Error('Erro no banco de dados')
+        }
+    }
 }

@@ -12,7 +12,7 @@ export default class DataChecking {
             }
             return response
         }
-        if(!checkEmailFormat(email)) {
+        if(!this.checkEmailFormat(email)) {
             const response = {
                 statusCode : 422,
                 message: 'O email informado é inválido.'
@@ -33,7 +33,7 @@ export default class DataChecking {
             }
             return response
         }
-        if(await alreadtExistCheck(email)){
+        if(await this.alreadtExistCheck(email)){
             const response = {
                 statusCode : 409,
                 message: 'Já existe um usuário cadastrado com esse email."'
@@ -70,7 +70,7 @@ export default class DataChecking {
             }
             return response
         }
-        if(!token || token.length <= 216 || token.length > 217){
+        if(!token || token.length < 216 || token.length > 217){
             const response = {
                 statusCode : 422,
                 message: 'Token inválido'
@@ -104,24 +104,86 @@ export default class DataChecking {
             }
             return response
         }
+        if(!follow_Id){
+            const response = {
+                statusCode : 422,
+                message: 'Forneça o id do usuário que você deseja seguir'
+            }
+            return response
+        }
         
     }
-    
+
+    feed = (token:string):Checking | undefined => {
+        if(!token){
+            const response = {
+                statusCode : 422,
+                message: 'Token inválido'
+            }
+            return response
+        }
+    }
+
+    edit = (token:string, id:string, title:string, description:string):Checking | undefined => {
+        if(!id){
+            const response = {
+                statusCode : 422,
+                message: 'Não foi passado um id de uma receita para edição'
+            }
+            return response
+        }
+        if(!title && !description) {
+            const response = {
+                statusCode : 422,
+                message: 'Não foi passado nenhum dado para edição'
+            }
+            return response
+        }
+        if(!token || token.length < 216 || token.length > 217){
+            const response = {
+                statusCode : 422,
+                message: 'Token inválido'
+            }
+            return response
+        }
+    }
+
+    delete = (token:string,id:string):Checking | undefined => {
+        if(!id){
+            const response = {
+                statusCode : 422,
+                message: 'O id não foi passado.'
+            }
+            return response
+        }
+        if(!token || token.length < 216 || token.length > 217){
+            const response = {
+                statusCode : 422,
+                message: 'Token inválido'
+            }
+            return response
+        }
+    }
+
+
     DateReverted  = (result:Recipe):Recipe => {
         const dateReverted = new Date(result.getCriationDate()).toISOString().slice(0, 10).split("-").reverse().join("/");
         result.setCriationDate(dateReverted)
         return result
     }
     
+    checkEmailFormat = (email:string):boolean => {
+        const emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; 
+        return emailValid.test(email)
+    }
+    
+    alreadtExistCheck =  async (email:string):Promise< User | undefined> => {
+        const userDB = new UserDataBase()
+        return await userDB.getByEmail(email)
+    }
 }
 
-const checkEmailFormat = (email:string):boolean => {
-    const emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; 
-    return emailValid.test(email)
-}
 
-const alreadtExistCheck =  async (email:string):Promise< User | undefined> => {
-    const userDB = new UserDataBase()
-    return await userDB.getByEmail(email)
-}
+
+
 

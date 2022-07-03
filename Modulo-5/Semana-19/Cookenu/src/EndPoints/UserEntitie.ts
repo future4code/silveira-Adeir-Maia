@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserDataBase from "../Data/UserDataBase";
-import {User} from "../Model/Entities/User";
+import {User, USER_ROLE} from "../Model/Entities/User";
 import { AuthenticationData } from "../Model/Types";
 import Authentication from "../Services/Authentication";
 import { HashManager } from "../Services/HashManager";
@@ -121,6 +121,41 @@ export default class UserEntitie {
             }
 
             res.status(statusCode).send({user:userDB})
+        } catch (error:any) {
+            if(error.message.includes('jwt')) {
+                statusCode = 401
+                error.message = 'Token expirado'
+            }
+            res.status(statusCode).send(error.message)
+        }
+    }
+
+    delete = async (req:Request,res:Response) => {
+        let statusCode = 200
+        const token = req.headers.authorization as string
+        const {id} = req.body
+        try {
+            const dataChecking = new DataChecking()
+            const checking = dataChecking.delete(token, id)
+            if(checking) {
+                statusCode = checking.statusCode
+                throw new Error(checking.message)
+            }
+
+            const tokenData = new Authentication().getTokenData(token)
+
+            const userDB = await new UserDataBase().getById(id)
+
+            if(!userDB) {
+                statusCode = 404
+                throw new Error('Usuário não encontrada!')
+            }
+            if(tokenData.role === USER_ROLE.NORMAL && userDB.getId() !== tokenData.id){
+                statusCode = 401
+                throw new Error('Apenas Usuários com privilégios de ADMINISTRADOR podem deletar contas que não são suas.')
+            }
+            
+            res.status(statusCode).send(await new UserDataBase().delete(id))
         } catch (error:any) {
             if(error.message.includes('jwt')) {
                 statusCode = 401
