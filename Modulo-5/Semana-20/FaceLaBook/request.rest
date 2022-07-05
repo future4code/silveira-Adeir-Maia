@@ -1,0 +1,18 @@
+### criar usuário
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name":"Capitão America",
+    "email":"capitao@vingador.com",
+    "password":"1ab2c3"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"capitao@vingador.com",
+    "password":"1ab2c3"
+}
