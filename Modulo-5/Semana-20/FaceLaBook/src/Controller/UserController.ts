@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { loginInputDTO, UserInputDTO } from "../Model/Types"
+import { LoginInputDTO, UserInputDTO } from "../Model/Types"
 import UserBusiness from "../Business/UserBusiness"
 
 export default class UserController {
@@ -21,7 +21,7 @@ export default class UserController {
     login = async (req:Request,res:Response) => {
         const {email,password} = req.body
         try {
-            const input:loginInputDTO = {email,password}
+            const input:LoginInputDTO = {email,password}
 
             const token = await this.userBusiness.login(input)
 
@@ -30,4 +30,6 @@ export default class UserController {
             res.status(error.statusCode).send({error:error.message})
         }
     }
+
+    
 }

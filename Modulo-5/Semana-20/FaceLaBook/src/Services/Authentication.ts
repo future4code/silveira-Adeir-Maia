@@ -15,7 +15,7 @@ export default class Authentication {
         return token;
     }
 
-    getTokenData = (token:string):string => {
+    getTokenData = (token:string):AuthenticationData => {
         const data = jwt.verify(token, process.env.JWT_KEY as string) as any
         return data.id
     }

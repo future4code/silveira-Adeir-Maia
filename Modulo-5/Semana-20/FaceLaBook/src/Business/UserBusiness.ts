@@ -1,6 +1,6 @@
 import UserData from "../Data/UserData"
 import CustomError from "../Model/CustonError"
-import { loginInputDTO, UserInputDTO } from "../Model/Types"
+import { LoginInputDTO, UserInputDTO } from "../Model/Types"
 import { User } from "../Model/User"
 import Authentication from "../Services/Authentication"
 import { HashManager } from "../Services/HashManager"
@@ -33,7 +33,7 @@ export default class UserBusiness {
         }
     }
 
-    login = async (inputs:loginInputDTO) => {
+    login = async (inputs:LoginInputDTO) => {
         const {email,password} = inputs
         try {
             this.validation.login(inputs)
@@ -51,8 +51,5 @@ export default class UserBusiness {
         } catch (error:any) {
             throw new CustomError(error.statusCode,error.message)
         }
-    }
-    post = () => {
-        
     }
 }

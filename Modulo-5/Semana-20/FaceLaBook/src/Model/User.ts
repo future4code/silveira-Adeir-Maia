@@ -5,8 +5,4 @@ export class User {
         private email:string,
         private password:string
     ){}
-
-    static toUserModel(data:any): User {
-        return new User ( data.id, data.name, data.email, data.password)
-    }
 }
