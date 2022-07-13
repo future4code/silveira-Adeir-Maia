@@ -1,0 +1,31 @@
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Ariane",
+    "email": "ariane@hotmail.com",
+    "password": "123456",
+    "role": "NORMAL"
+}
+
+###
+###
+# @name login
+
+
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "ayrton@gmail.com",
+    "password": "seninha"
+}
+
+###
+@token = {{login.response.body.accessToken}}
+
+GET http://localhost:3003/users/873ddf88-9e98-47c6-a48c-c4a796e35de8
+Authorization: {{token}}
+
+
+
