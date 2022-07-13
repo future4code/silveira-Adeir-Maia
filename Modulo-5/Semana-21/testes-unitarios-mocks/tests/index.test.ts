@@ -112,8 +112,8 @@ describe("Testar ataque", () => {
 
         expect(defender.life).toEqual(350)
         expect(validatorMocktrue).toHaveBeenCalled();
-        expect(validatorMocktrue).toHaveBeenCalledTimes(1);
-        expect(validatorMocktrue).toHaveReturnedTimes(1);
+        expect(validatorMocktrue).toHaveBeenCalledTimes(2);
+        expect(validatorMocktrue).toHaveReturnedTimes(2);
     })
 
     test("ataque", ()=> {

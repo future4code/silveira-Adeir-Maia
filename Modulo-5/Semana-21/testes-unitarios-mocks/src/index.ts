@@ -11,7 +11,7 @@ export const validateCharacter = (input:Character) => {
 }
 
 export const performAtack = (atacker:Character,defender:Character,validator:(input:Character) => boolean) => {
-    if(!validator(atacker) || ! validateCharacter(defender)) {
+    if(!validator(atacker) || ! validator(defender)) {
         throw new Error('Atacante ou defensor invalido')
     }
     if(atacker.strength > defender.defense) {
