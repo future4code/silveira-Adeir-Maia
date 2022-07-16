@@ -3,9 +3,9 @@ import { User } from "../model/User";
 
 export class UserDatabase extends BaseDataBase {
 
-   protected tableName: string = "User_Arq"
+   public tableName: string = "User_Arq"
 
-   private toModel(dbModel?: any): User | undefined {
+   public toModel(dbModel?: any): User | undefined {
       return ( dbModel && new User(
             dbModel.id,
             dbModel.name,

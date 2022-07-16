@@ -69,13 +69,20 @@ describe("Testando o signup", () => {
     })
 })
 
+interface pessoa {
+    nome:string,
+    idade:number
+}
+
+const retornaObjeto = ():pessoa => {
+    return {nome:'erick',idade:22}
+}
 
 describe("testes no login", () => {
     test("Deve retornar erro quando o email fornecido não existe", async () => {
         try {
             await userBusinessMock.login("batata@email.com", "123456")
         } catch(error: any) {
-            // console.log(error)
             expect(error.message).toEqual("Invalid credentials")
             expect(error.statusCode).toBe(401)
         } finally {
@@ -126,22 +133,18 @@ describe("getUserById", () => {
     })
     test("Should return respective user when id is registered", async () => {
         const id = "id_user_1"
-        try {
             const getUserById = jest.fn(
                 (id: string) => userBusinessMock.getUserById(id)
             )
             const result = await getUserById(id)
             expect(getUserById).toHaveBeenCalledWith(id)
             expect(result).toEqual({
-                id: "id_user_1",
-                name: "user1",
+                id: "id_user_2",
+                name: "user2",
                 email: "user1@gmail.com",
                 role: "NORMAL",
             })
-        } catch (error: any) {
-            console.log(error.message)
-        } finally {
             expect.assertions(2)
-        }
     })
 })
+
