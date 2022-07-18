@@ -1,0 +1,32 @@
+### Cria usuário
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name":"",
+    "email":"",
+    "password":"",
+    "role":""
+}
+
+### Login
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"",
+    "password":""
+}
+
+###
+@token = {{login.response.body.token}}
+
+### pegar todos
+GET http://localhost:3003/user/all
+Authorization: {{token}}
+
+### deletar um usuário
+DELETE  http://localhost:3003/user/2866093c-4485-4d00-bd64-1345303a7137
+Authorization: {{token}}
+
