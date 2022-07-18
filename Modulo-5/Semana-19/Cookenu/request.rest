@@ -1,0 +1,97 @@
+### Cria usuário
+
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "nome":"",
+    "email":"",
+    "password":"",
+    "role":""
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"",
+    "password":""
+}
+
+
+###
+@token = {{login.response.body.token}}
+### Pegar usuário pelo token
+GET http://localhost:3003/user
+Authorization: {{token}}
+
+### Pega usuário pelo ID
+GET http://localhost:3003/user/d4c1d1fb-a512-4c40-bec1-0324f7fd619f
+Authorization: {{token}}
+
+### criar uma receita
+POST http://localhost:3003/recipe
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "title":"",
+    "description":""
+}
+
+### Pegar Receita pelo 
+GET http://localhost:3003/recipe/4caae556-a0c3-4735-a4d5-62baea975075
+Authorization: {{token}}
+
+### seguir um usuário
+POST http://localhost:3003/user/follow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "follow_Id":""
+}
+
+### Deixar de seguir um usuário
+DELETE  http://localhost:3003/user/unfollow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "follow_Id":""
+}
+
+### Pegar o feed de receitas
+GET http://localhost:3003/recipe/feed
+Authorization: {{token}}
+
+### editar receita
+PUT http://localhost:3003/recipe/edit
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id":"",
+    "title":"",
+    "description":""
+}
+
+### deletar uma receita
+DELETE  http://localhost:3003/recipe/delete
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id":""
+}
+
+### deletar um usuario
+DELETE  http://localhost:3003/user/delete
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id":""
+}
