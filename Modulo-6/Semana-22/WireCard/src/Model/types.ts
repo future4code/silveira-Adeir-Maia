@@ -15,7 +15,7 @@ export interface RegisterPaymentDTO {
 }
 
 export enum PAYMENTTYPES {
-    TICKET = 'TICKET',
+    BOLETO = 'BOLETO',
     CREDCARD = 'CREDCARD'
 }
 

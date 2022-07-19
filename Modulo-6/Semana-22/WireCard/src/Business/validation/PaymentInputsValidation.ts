@@ -9,7 +9,7 @@ export class PaymentInputsValidation {
         this.buyer_CPF(inputs.buyer_CPF)
         this.payment_type(inputs.type.toUpperCase())
         this.CredCard(
-            inputs.type,inputs.card_name,inputs.card_number,inputs.card_expiration,inputs.card_CVV
+            inputs.type.toUpperCase(), inputs.card_name, inputs.card_number, inputs.card_expiration, inputs.card_CVV
         )
     }
 
@@ -25,7 +25,7 @@ export class PaymentInputsValidation {
     
     private buyer_name = (buyer_name: string,) => {
         if(!buyer_name) {
-            throw new CustomError(422, 'Missing buyer bame')
+            throw new CustomError(422, 'Missing buyer name')
         }
     }
 
@@ -33,7 +33,13 @@ export class PaymentInputsValidation {
         if(!buyer_email) {
             throw new CustomError(422, 'Missing buyer email')
         }
+
+        if(!this.checkEmailFormat(buyer_email)) {
+            throw new CustomError(422, 'Inválid email')
+        }
     }
+
+
 
     private buyer_CPF = (buyer_CPF:string) => {
         if(!buyer_CPF) {
@@ -60,18 +66,25 @@ export class PaymentInputsValidation {
             if(!card_number) {
                 throw new CustomError(422, 'Missing credcard number')
             }
-            if(typeof(card_number) !== 'number' || card_name.length !== 16) {
+            if(typeof(card_number) !== 'number' || card_number.toString().length !== 16) {
                 throw new CustomError(422, 'Credcard number inválid')
             }
             if(!card_expiration) {
                 throw new CustomError(422, 'Missing credcard expiration')
             }
+
             if(!card_CVV) {
                 throw new CustomError(422, 'Missing card CVV')
             }
-            if(card_CVV.toString().length !== 3 ) {
+            if(typeof(card_number) !== 'number' || card_CVV.toString().length !== 3) {
                 throw new CustomError(422, 'Inválid card CVV')
             }
         }
     }
+
+    private checkEmailFormat = (email:string):boolean => {
+        const emailValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/; 
+        return emailValid.test(email)
+    }
+
 }
