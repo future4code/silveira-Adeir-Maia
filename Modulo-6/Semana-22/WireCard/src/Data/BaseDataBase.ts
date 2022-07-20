@@ -14,7 +14,7 @@ protected static connection = knex({
         database: process.env.DB_NAME
         }
     });
-public static async destroyConnection(): Promise<void> {
+protected static async destroyConnection(): Promise<void> {
     await BaseDataBase.connection.destroy();
 }
 }

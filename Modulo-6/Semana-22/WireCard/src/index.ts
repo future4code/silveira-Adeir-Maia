@@ -1,7 +1,6 @@
 import { app } from "./app";
-import express from "express";
-import cors from "cors";
+import { paymentRouter } from "./Router/paymentRouter";
 
-app.use(express.json)
-app.use(cors())
+
+app.use('/payment', paymentRouter)
 
