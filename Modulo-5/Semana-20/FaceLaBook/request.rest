@@ -1,0 +1,61 @@
+### criar usuário
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name":"Thor, o Deus do Trovão",
+    "email":"thor@asgard.com",
+    "password":"jane foster"
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email":"stark@vingador.com",
+    "password":"iron man"
+}
+
+
+###
+@token = {{login.response.body.token}}
+
+
+### Criar Post
+POST http://localhost:3003/post
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "photo":"https://qph.cf2.quoracdn.net/main-qimg-6f27cc4a6c280d5e6309298b7092b89b-lq",
+    "description":"Após perder o Mjolnir, Thor consegue um machado gigante Stormbreaker",
+    "type":"NORMAL"
+}
+
+### Pegar post 
+GET  http://localhost:3003/post/277072bc-f68a-4a52-bd9b-92417e78bb50
+Authorization: {{token}}
+
+### Seguir um usuário
+POST http://localhost:3003/friendship/follow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id":"3d149ee0-cd5a-4fa8-8ef3-98ade9b08b89"
+}
+
+### deixar de seguir um usuario
+POST http://localhost:3003/friendship/unFollow
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "id":"b721f0e7-77ae-4d50-b606-49d8f218295c"
+}
+
+### Feed
+GET http://localhost:3003/post/feed
+Authorization: {{token}}
