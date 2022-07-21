@@ -3,7 +3,7 @@ import { PAYMENTTYPES, RegisterPaymentDTO } from "../../Model/types"
 
 export class PaymentInputsValidation {
     Register = (inputs:RegisterPaymentDTO) => {
-        this.client_id(inputs.client_id)
+        this.clientId(inputs.clientId)
         this.buyer_name(inputs.buyer_name)
         this.buyer_email(inputs.buyer_email)
         this.buyer_CPF(inputs.buyer_CPF)
@@ -14,12 +14,12 @@ export class PaymentInputsValidation {
         )
     }
 
-    Status = () => {
-
+    Status = (payment_id:string) => {
+        this.payment_id(payment_id)
     }
 
-    private client_id = (client_id:string) => {
-        if(!client_id || typeof(client_id) !== 'string') {
+    private clientId = (clientId:string) => {
+        if(!clientId || typeof(clientId) !== 'string') {
             throw new CustomError(422, 'Inválid client Id')
         }
     }
@@ -67,7 +67,7 @@ export class PaymentInputsValidation {
         card_number:number | undefined, 
         card_expiration:string | undefined, 
         card_CVV:number | undefined) => {
-        if(payment_type === PAYMENTTYPES.CREDCARD) {
+        if(payment_type === PAYMENTTYPES.CREDITCARD) {
             if(typeof(card_name) !== 'string' || !card_name) {
                 throw new CustomError(422, 'Missing credcard name')
             }
@@ -91,6 +91,12 @@ export class PaymentInputsValidation {
             if(typeof(card_number) !== 'number' || card_CVV.toString().length !== 3) {
                 throw new CustomError(422, 'Inválid card CVV')
             }
+        }
+    }
+
+    private payment_id = (payment_id:string) => {
+        if(!payment_id || typeof(payment_id) !== 'string'){
+            throw new CustomError(422, 'Inválid payment ID')
         }
     }
 

@@ -2,13 +2,10 @@ POST http://localhost:3003/payment/register
 Content-Type: application/json
 
 {
-    "client_id": "Jr3PybPdvçIZXHQ5hG3yfKdZcyEwkM",
-    "buyer_name": "Will",
-    "buyer_email": "Will@bayer.com",
-    "buyer_CPF": "839.672.910-73",
-    "type" :"credcard",
-    "card_name":"Will Bayers", 
-    "card_number":5489702075716423, 
-    "card_expiration":"19/04/2023", 
-    "card_CVV":935
+    "clientId": "1XT3ywI5kMwJOlkOAgsZTVxbfBOvPHy",
+    "buyer_name": "Onze",
+    "buyer_email": "onze@stranger.com",
+    "buyer_CPF": "427.542.490-52",
+    "amount":220,
+    "type" :"boleto"
 }

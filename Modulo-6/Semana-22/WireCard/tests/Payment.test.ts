@@ -8,15 +8,15 @@ const inputsMock = {
     buyer_email: 'Will@bayer.com' as any,
     buyer_CPF: '839.672.910-73' as any,
     amount: 250 as any,
-    type :'credcard' as any,
-    card_name:'Will Bayers' as any, 
-    card_number:5489702075716423 as any as any, 
-    card_expiration:'19/04/2023' as any, 
-    card_CVV:935 as any
+    type : 'credidcard' as any,
+    card_name: 'Will Bayers' as any, 
+    card_number: 5489702075716423 as any, 
+    card_expiration: '19/04/2023' as any, 
+    card_CVV: 935 as any
 }
 
 describe('test class PaymentInputsValidation', () => {
-    describe('test register inputs',()=> {
+    describe('test register',()=> {
         test('test missing client_id',()=> {
             const inputs = inputsMock
             inputs.client_id = ''
@@ -95,7 +95,7 @@ describe('test class PaymentInputsValidation', () => {
                 expect.assertions(2)
             }
         })
-        test('test missing buyer CPF',()=> {
+        test('test missing buyer CPF',() => {
             const inputs = inputsMock
             inputs.buyer_CPF = ''
             try {
@@ -108,7 +108,7 @@ describe('test class PaymentInputsValidation', () => {
                 expect.assertions(2)
             }
         })
-        test('test invalid buyer CPF',()=> {
+        test('test invalid buyer CPF', () => {
             const inputs = inputsMock
             inputs.buyer_CPF = '839_672:910+73'
             try {
@@ -166,7 +166,7 @@ describe('test class PaymentInputsValidation', () => {
             try {
                 PaymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
-                inputs.type = 'credcard'
+                inputs.type = 'creditcard'
                 expect(error.message).toEqual('Inválid payment type')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
@@ -305,6 +305,19 @@ describe('test class PaymentInputsValidation', () => {
                 console.log(error.statusCode,error.message)
             } finally {
                 expect.assertions(4)
+            }
+        })
+    })
+    describe('test status', () => {
+        test('', () => {
+            const payment_id = ''
+            try {
+                PaymentInputsValidationMock.Status(payment_id)
+            } catch (error:any) {
+                expect(error.message).toEqual('Inválid payment ID')
+                expect(error.statusCode).toStrictEqual(422)
+            } finally {
+                expect.assertions(2)
             }
         })
     })

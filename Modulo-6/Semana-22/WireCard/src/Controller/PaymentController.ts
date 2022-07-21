@@ -7,12 +7,13 @@ export class PaymentController  {
     public register = async (req:Request,res:Response):Promise<void> => {
 
         const {
-            client_id, buyer_name, buyer_email, buyer_CPF,amount, type, 
-            card_name, card_number, card_expiration, card_CVV} = req.body
+            clientId, buyer_name, buyer_email, buyer_CPF,amount, type, 
+            card_name, card_number, card_expiration, card_CVV
+        } = req.body
 
         try {
             const inputs:RegisterPaymentDTO = {
-                client_id,
+                clientId,
                 buyer_name,
                 buyer_email,
                 buyer_CPF,
@@ -24,11 +25,11 @@ export class PaymentController  {
                 card_CVV
             }
 
-            const result = await paymentBusiness.register(inputs)
+            await paymentBusiness.register(inputs)
 
             res.statusMessage = 'Payment successfully registered'
 
-            res.status(201).send(result)
+            res.status(201).send()
         } catch (error:any) {
             const { statusCode, message } = error
             res.status(statusCode || 400).send({ message })
@@ -37,11 +38,12 @@ export class PaymentController  {
 
 
     public status = async (req:Request,res:Response):Promise<void> => {
-        const {transaction_id} = req.body
+        const {payment_id} = req.body
         try {
 
+            const result = await paymentBusiness.status(payment_id)
 
-            res.status(200).send()
+            res.status(200).send(result)
         } catch (error:any) {
         const { statusCode, message } = error
             res.status(statusCode || 400).send({ message })
