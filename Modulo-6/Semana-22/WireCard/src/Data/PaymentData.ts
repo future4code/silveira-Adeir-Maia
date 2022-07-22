@@ -95,8 +95,8 @@ export class PaymentData extends BaseDataBase {
                 'Wirecard_client_id.id as ClientID','Wirecard_client_id.name as Client name',
                 'Wirecard_Buyer.id as Buyer ID', 'Wirecard_Buyer.buyer_name as Buyer name ', 
                 'Wirecard_Buyer.buyer_email as Buyer email', 'Wirecard_Buyer.buyer_CPF as Buyer CPF',
-                'Wirecard_Payment_Boleto.id as Payment ID', 'Wirecard_Payment_Boleto.amount as Amount',
-                'Wirecard_Payment_Boleto.status as Status'
+                'Wirecard_Payment_Boleto.id as Payment ID', 'Wirecard_Payment_Boleto.number as Boleto number',
+                'Wirecard_Payment_Boleto.amount as Amount','Wirecard_Payment_Boleto.status as Status'
             )
             .join('Wirecard_client_id','Wirecard_client_id.id','=','Wirecard_Payment_Boleto.clientId')
             .join('Wirecard_Buyer','Wirecard_Buyer.id','=','Wirecard_Payment_Boleto.buyerId')

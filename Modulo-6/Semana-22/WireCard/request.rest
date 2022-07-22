@@ -2,10 +2,10 @@ POST http://localhost:3003/payment/register
 Content-Type: application/json
 
 {
-    "clientId": "1XT3ywI5kMwJOlkOAgsZTVxbfBOvPHy",
-    "buyer_name": "Onze",
-    "buyer_email": "onze@stranger.com",
-    "buyer_CPF": "427.542.490-52",
-    "amount":220,
+    "clientId": "pnVLNKXOcuoltzNzKKbk3Qe8nwIkHt5",
+    "buyer_name": "Manuela D'Vila",
+    "buyer_email": "manuela@pt.com",
+    "buyer_CPF": "347.768.986-08",
+    "amount":2000,
     "type" :"boleto"
 }

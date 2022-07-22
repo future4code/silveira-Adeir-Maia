@@ -2,7 +2,7 @@ import { PaymentData } from "../Data/PaymentData";
 import { CustomError } from "../Model/CustonError";
 import { 
     buyerDataDTO, buyerDB, creditCardDataDTO, ClientDB, 
-    PAYMENTTYPES, RegisterPaymentDTO, creditCardDB, paymentCreditCard, paymentBoleto 
+    PAYMENTTYPES, RegisterPaymentDTO, creditCardDB, paymentCreditCard, paymentBoleto, statusDTO, boletoDTO, creditCardStatusDTO 
 } from "../Model/types";
 import IdGenerator from "../Services/IDGenerator";
 import { PaymentInputsValidation } from "./validation/PaymentInputsValidation";
@@ -40,9 +40,11 @@ export class PaymentBusiness {
                 buyer.buyer_CPF = buyer_CPF
             }
             
-            type.toLocaleUpperCase() === PAYMENTTYPES.CREDITCARD && this.paymentCreditCard(inputs,buyer.id)
-            
-            type.toLocaleUpperCase() === PAYMENTTYPES.BOLETO && this.paymentBoleto(inputs,buyer.id)
+            if(type.toLocaleUpperCase() === PAYMENTTYPES.CREDITCARD) {
+                return this.paymentCreditCard(inputs,buyer.id)
+            } else {
+                return this.paymentBoleto(inputs,buyer.id)
+            }
             
         } catch (error:any) {
             console.log(error)
@@ -50,7 +52,7 @@ export class PaymentBusiness {
         }
     }
 
-    private paymentBoleto = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<void> => {
+    private paymentBoleto = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<boletoDTO> => {
         const {
             clientId, buyer_name, buyer_email, buyer_CPF, amount, type, 
             card_name, card_number, card_expiration, card_CVV} = inputs
@@ -58,18 +60,23 @@ export class PaymentBusiness {
             id: this.idGenerator.ID(),
             amount,
             type: type.toUpperCase(),
+            status: this.boletostatusDraw(),
+            number: this.boletoNumberGenerator(),
             clientId,
             buyerId
         }
         try {
             await this.paymentDataBase.registerPaymentBoleto(newPayment)
+
+            const boleto:boletoDTO = {payment_id:newPayment.id, number_Boleto: newPayment.number}
+            return boleto
         } catch (error:any) {
             throw new CustomError(error.statusCode || 500, error.message)
         }
         
     }
     
-    private paymentCreditCard = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<void> => {
+    private paymentCreditCard = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<creditCardStatusDTO> => {
         const {
             clientId, buyer_name, buyer_email, buyer_CPF, amount, type, 
             card_name, card_number, card_expiration, card_CVV} = inputs
@@ -90,27 +97,58 @@ export class PaymentBusiness {
             id:this.idGenerator.ID(),
             amount,
             type:type.toUpperCase(),
+            status: this.creditCardStatusDraw(),
             buyerId,
             clientId,
-            creditCard:creditcard.id
+            creditCard:creditcard.id,
         }
         try {
             await this.paymentDataBase.registerPaymentCreditCard(newPayment)
+
+            const creditCardStatus:creditCardStatusDTO = {payment_id:newPayment.id ,payment_Status: newPayment.status}
+            return creditCardStatus
         } catch (error:any) {
             throw new CustomError(error.statusCode || 500, error.message)
         }
         
     }
     
-    status = async (payment_id:string) => {
-        
+    status = async (inputs:statusDTO) => {
         try {
-            this.paymenetInputsValidation.Status(payment_id)
-            // return this.paymentDataBase.statusPaymentCreditCard(payment_id)
-            return this.paymentDataBase.statusPaymentCreditCard(payment_id)
+            this.paymenetInputsValidation.Status(inputs)
+            
+            if(inputs.payment_Type.toUpperCase() === PAYMENTTYPES.BOLETO){
+                return this.paymentDataBase.statusPaymentBoleto(inputs.payment_id)
+            } else {
+                return this.paymentDataBase.statusPaymentCreditCard(inputs.payment_id)
+            }      
         } catch (error:any) {
             throw new CustomError(error.statusCode || 500, error.message)
         }
+    }
+
+    private boletoNumberGenerator = () => {
+        const CHARACTERS = "0123456789"
+            let number = ""
+            for(let i = 0; i <= 47; i++) {
+                const index = Math.floor(this.numberDraw(CHARACTERS.length - 1))
+                number += CHARACTERS[index]
+            }
+            return number
+    }
+
+    private boletostatusDraw = () => {
+        const status = ['CONCLUED','PENDENT','EXPIRED']
+        return status[this.numberDraw(3)]
+    }
+
+    private creditCardStatusDraw = () => {
+        const status = ['CONCLUED','PENDENT','REFUSED','REVERSED']
+        return status[this.numberDraw(4)]
+    }
+
+    private numberDraw = (length:number) => {
+        return Math.floor(Math.random() * length)
     }
 
 }

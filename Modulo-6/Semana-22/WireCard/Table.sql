@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Wirecard_Payment_Boleto (
     amount INT NOT NULL,
     type Enum ('BOLETO') NOT NULL,
     status ENUM('CONCLUED','PENDENT','EXPIRED') DEFAULT ('PENDENT'),
+    number VARCHAR(255) NOT NULL,
     clientId VARCHAR(255) NOT NULL,
     buyerId VARCHAR(255) NOT NULL,
     FOREIGN KEY(clientId) REFERENCES Wirecard_client_id(id),

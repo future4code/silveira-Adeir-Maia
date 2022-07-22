@@ -1,6 +1,3 @@
-export type AuthenticationData = {
-    id: string
-}
 
 export interface RegisterPaymentDTO {
     clientId: string, 
@@ -33,19 +30,36 @@ export type creditCardDataDTO = {
     card_CVV?:number
 }
 
+export type statusDTO = {
+    payment_id: string, 
+    payment_Type: string
+}
+
 export type creditCardDB = creditCardDataDTO & {id:string}
 
 export type buyerDB = buyerDataDTO & {id:string}
 
-export type paymentBoleto = {
-    id:string,
-    amount:number,
-    type:string,
-    clientId:string
-    buyerId:string,
+export type boletoDTO = {
+    payment_id: string,
+    number_Boleto:string
 }
 
-export type paymentCreditCard =  paymentBoleto & {creditCard:string}
+export type creditCardStatusDTO = {
+    payment_id:string
+    payment_Status:string
+}
+
+export interface paymentBoleto  {
+    id:string
+    amount:number
+    type:string
+    number:string,
+    status:string
+    clientId:string
+    buyerId:string
+}
+
+export interface paymentCreditCard extends Omit<paymentBoleto,'number'> {creditCard:string}
 
 export enum PAYMENTTYPES {
     BOLETO = 'BOLETO',

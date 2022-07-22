@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RegisterPaymentDTO } from "../Model/types";
+import { RegisterPaymentDTO, statusDTO } from "../Model/types";
 import paymentBusiness from "../Business/PaymentBusiness";
 
 
@@ -25,11 +25,11 @@ export class PaymentController  {
                 card_CVV
             }
 
-            await paymentBusiness.register(inputs)
+            const result = await paymentBusiness.register(inputs)
 
             res.statusMessage = 'Payment successfully registered'
 
-            res.status(201).send()
+            res.status(201).send(result)
         } catch (error:any) {
             const { statusCode, message } = error
             res.status(statusCode || 400).send({ message })
@@ -38,10 +38,10 @@ export class PaymentController  {
 
 
     public status = async (req:Request,res:Response):Promise<void> => {
-        const {payment_id} = req.body
+        const {payment_id, payment_Type} = req.body
         try {
-
-            const result = await paymentBusiness.status(payment_id)
+            const inputs:statusDTO = {payment_id,payment_Type} 
+            const result = await paymentBusiness.status(inputs)
 
             res.status(200).send(result)
         } catch (error:any) {

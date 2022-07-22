@@ -1,5 +1,5 @@
 import { CustomError } from "../../Model/CustonError"
-import { PAYMENTTYPES, RegisterPaymentDTO } from "../../Model/types"
+import { PAYMENTTYPES, RegisterPaymentDTO, statusDTO } from "../../Model/types"
 
 export class PaymentInputsValidation {
     Register = (inputs:RegisterPaymentDTO) => {
@@ -14,8 +14,9 @@ export class PaymentInputsValidation {
         )
     }
 
-    Status = (payment_id:string) => {
-        this.payment_id(payment_id)
+    Status = (inputs:statusDTO) => {
+        this.payment_id(inputs.payment_id)
+        this.payment_type(inputs.payment_Type.toUpperCase())
     }
 
     private clientId = (clientId:string) => {
