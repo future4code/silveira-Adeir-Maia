@@ -11,6 +11,10 @@
 
 O projeto **WIRECARD** simula o registro de pagamentos de uma prestadora de serviços financeiros e foi baseado no case [Wirecard Backend Challenge](https://github.com/wirecardBrasil/challenge/tree/master/backend). **WIRECARD** é uma API para registro de pagamentos com Cartão de Credito e Boleto, possui dois Endpoints: um para resgistro do pagamento e outro para verificar os dados do pagamento assim como seu status. A API foi desenvolvida utilizado as tecnologias **TYPESCRIPT, NODE.JS, EXPRESS.JS, MYSQL** como banco de dados e **JEST** para testes unitários.  Além disso, o projeto foi estruturado utilizando **PROGRAMAÇÃO ORIENTADA A OBJETOS(POO)** e princípios **S.O.L.I.D.** 
 
+<h2 id="link">🔗 Link base da API</h2>
+
+#### https://wirecard-case-adeir-moreira.herokuapp.com/
+
 <h2 id="documentação">📃 Documentação do Postman</h2>
 
 - [Postman](https://documenter.getpostman.com/view/20351643/UzXKXKLD)
@@ -143,7 +147,7 @@ Endpoint para consulta do status e informações sobre pagamento. Espera receber
 }
 ```
 
- <h2 id="tecnologia">🛠 Tecnologia</h2>
+ <h2 id="tecnologia">🛠 Tecnologias</h2>
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [NodeJS](https://nodejs.org/en/docs/)
