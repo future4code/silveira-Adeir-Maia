@@ -28,6 +28,7 @@ export class PaymentController  {
             const result = await paymentBusiness.register(inputs)
 
             res.statusMessage = 'Payment successfully registered'
+            console.log(result)
 
             res.status(201).send(result)
         } catch (error:any) {
