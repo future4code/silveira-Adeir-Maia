@@ -58,7 +58,7 @@ export class PaymentInputsValidation {
 
     private payment_type = (payment_type:string) => {
         if(!(payment_type in PAYMENTTYPES)) {
-            throw new CustomError(422, 'Inválid payment type')
+            throw new CustomError(422, 'Invalid payment type, acceptable CREDITCARD, BOLETO')
         }
     }
 
@@ -123,5 +123,4 @@ export class PaymentInputsValidation {
         }
         return false
     }
-
 }

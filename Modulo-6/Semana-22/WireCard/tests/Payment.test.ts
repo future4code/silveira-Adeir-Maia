@@ -1,9 +1,13 @@
 import { PaymentInputsValidation } from "../src/Business/validation/PaymentInputsValidation";
+import { PaymentBusiness } from "../src/Business/PaymentBusiness"
+import { IdGeneratorMock } from "./Mock/idGeneratorMock"
+import { PaymentDataMock } from "./Mock/PaymentDataMock"
+import { PaymentInputsValidationMock } from "./Mock/PaymentInputsValidationMock"
 
-const PaymentInputsValidationMock = new PaymentInputsValidation()
+const paymentInputsValidationMock = new PaymentInputsValidation()
 
 const inputsMock = {
-    client_id: 'client' as any,
+    clientId: 'client' as any,
     buyer_name: 'Will' as any,
     buyer_email: 'Will@bayer.com' as any,
     buyer_CPF: '839.672.910-73' as any,
@@ -16,14 +20,14 @@ const inputsMock = {
 }
 
 describe('test class PaymentInputsValidation', () => {
-    describe('test register',()=> {
+    describe('test register method',()=> {
         test('test missing client_id',()=> {
             const inputs = inputsMock
-            inputs.client_id = ''
+            inputs.clientId = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
-                inputs.client_id = 'client'
+                inputs.clientId = 'client'
                 expect(error.message).toEqual('Inválid client Id')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
@@ -32,11 +36,11 @@ describe('test class PaymentInputsValidation', () => {
         })
         test('test inválid client_id',()=> {
             const inputs = inputsMock
-            inputs.client_id = 5236
+            inputs.clientId = 5236
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
-                inputs.client_id = 'client'
+                inputs.clientId = 'client'
                 expect(error.message).toEqual('Inválid client Id')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
@@ -47,7 +51,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_name = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_name = 'Will'
                 expect(error.message).toEqual('Inválid buyer name')
@@ -60,7 +64,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_name = false
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_name = 'Will'
                 expect(error.message).toEqual('Inválid buyer name')
@@ -73,7 +77,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_email = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_email = 'Will@bayer.com'
                 expect(error.message).toEqual('Missing buyer email')
@@ -86,7 +90,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_email = 'Willbayer.com'
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_email = 'Will@bayer.com'
                 expect(error.message).toEqual('Inválid email')
@@ -99,7 +103,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_CPF = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_CPF = '839.672.910-73'
                 expect(error.message).toEqual('Missing buyer CPF')
@@ -112,7 +116,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_CPF = '839_672:910+73'
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_CPF = '839.672.910-73'
                 expect(error.message).toEqual('Inválid buyer CPF')
@@ -125,7 +129,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.buyer_CPF = {id:'asd'}
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.buyer_CPF = '839.672.910-73'
                 expect(error.message).toEqual('Inválid buyer CPF')
@@ -138,7 +142,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.amount = undefined
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.amount = 250
                 expect(error.message).toEqual('Inválid amount')
@@ -151,10 +155,10 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.type = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
-                inputs.type = 'credcard'
-                expect(error.message).toEqual('Inválid payment type')
+                inputs.type = 'creditcard'
+                expect(error.message).toEqual('Invalid payment type, acceptable CREDITCARD, BOLETO')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
                 expect.assertions(2)
@@ -164,10 +168,10 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.type = 'PayPal'
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.type = 'creditcard'
-                expect(error.message).toEqual('Inválid payment type')
+                expect(error.message).toEqual('Invalid payment type, acceptable CREDITCARD, BOLETO')
                 expect(error.statusCode).toStrictEqual(422)
             } finally {
                 expect.assertions(2)
@@ -177,7 +181,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_name = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_name = 'Will Bayers'
                 expect(error.message).toEqual('Missing credcard name')
@@ -190,7 +194,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_name = []
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_name = 'Will Bayers'
                 expect(error.message).toEqual('Missing credcard name')
@@ -203,7 +207,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_number = []
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_number = 5489702075716423
                 expect(error.message).toEqual('Credcard number inválid')
@@ -216,7 +220,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_number = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_number = 5489702075716423
                 expect(error.message).toEqual('Missing credcard number')
@@ -229,7 +233,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_number = 123
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_number = 5489702075716423
                 expect(error.message).toEqual('Credcard number inválid')
@@ -242,7 +246,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_expiration = ''
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_expiration = '04/2023'
                 expect(error.message).toEqual('Missing credcard expiration')
@@ -255,7 +259,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_expiration = '12/2020'
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_expiration = '04/2023'
                 expect(error.message).toEqual('Inválid credcard expiration')
@@ -268,7 +272,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_CVV = undefined
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_CVV = 935
                 expect(error.message).toEqual('Missing card CVV')
@@ -281,7 +285,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             inputs.card_CVV = 2
             try {
-                PaymentInputsValidationMock.Register(inputs)
+                paymentInputsValidationMock.Register(inputs)
             } catch (error:any) {
                 inputs.card_CVV = 935
                 expect(error.message).toEqual('Inválid card CVV')
@@ -294,7 +298,7 @@ describe('test class PaymentInputsValidation', () => {
             const inputs = inputsMock
             try {
                 const insert =  jest.fn(
-                    (inputs) => PaymentInputsValidationMock.Register(inputs)
+                    (inputs) => paymentInputsValidationMock.Register(inputs)
                 )
                 const result = insert(inputs)
                 expect(insert).toBeCalled()
@@ -308,11 +312,11 @@ describe('test class PaymentInputsValidation', () => {
             }
         })
     })
-    describe('test status', () => {
-        test('', () => {
-            const payment_id = ''
+    describe('test status method', () => {
+        test('test missing payment_id', () => {
+            const input = {payment_id: '', payment_Type: 'boleto'}
             try {
-                PaymentInputsValidationMock.Status(payment_id)
+                paymentInputsValidationMock.Status(input)
             } catch (error:any) {
                 expect(error.message).toEqual('Inválid payment ID')
                 expect(error.statusCode).toStrictEqual(422)
@@ -322,3 +326,25 @@ describe('test class PaymentInputsValidation', () => {
         })
     })
 })
+
+const PaymentBusinessMock = new PaymentBusiness(
+    new PaymentInputsValidationMock() as unknown as PaymentInputsValidation,
+    new PaymentDataMock(),
+    new IdGeneratorMock()
+)
+describe('test class PaymentBusiness', () => {
+    describe('test register method', () => {
+        test('test client not found', async () => {
+            const inputs = inputsMock
+            try {
+                await PaymentBusinessMock.register(inputs)
+            } catch (error:any) {
+                expect(error.message).toEqual('Client not Found')
+                expect(error.statusCode).toStrictEqual(404)
+            } finally {
+                expect.assertions(2)
+            }
+        })
+    })
+})
+

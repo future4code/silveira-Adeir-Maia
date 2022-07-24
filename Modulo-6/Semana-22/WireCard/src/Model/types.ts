@@ -12,6 +12,27 @@ export interface RegisterPaymentDTO {
     card_CVV?:number
 }
 
+export interface PaymentCreditCardDB {
+    ClientId: string,
+    Client_name: string,
+    Buyer_Id: string,
+    Buyer_name: string,
+    Buyer_email: string,
+    Buyer_CPF: string,
+    CreditCard_id: string,
+    CreditCard_name: string,
+    Creditcard_number: number,
+    creditCard_expiration: string,
+    Creditcard_CVV: number,
+    PaymentId: string,
+    Amount: number,
+    Status: string
+}
+
+export interface PaymentBoletoDB extends Omit<PaymentCreditCardDB, 
+'CreditCard_id' | 'CreditCard_name' | 'Creditcard_number' | 'creditCard_expiration' | 'Creditcard_CVV'> 
+{Boleto_number: string}
+
 export interface ClientDB {
     id:string,
     name:string
