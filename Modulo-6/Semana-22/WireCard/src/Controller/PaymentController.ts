@@ -42,7 +42,7 @@ export class PaymentController  {
         try {
             const inputs:statusDTO = {payment_id,payment_Type} 
             const result = await paymentBusiness.status(inputs)
-
+            console.log(result)
             res.status(200).send(result)
         } catch (error:any) {
         const { statusCode, message } = error

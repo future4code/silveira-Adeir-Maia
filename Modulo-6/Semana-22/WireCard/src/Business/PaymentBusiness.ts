@@ -2,7 +2,8 @@ import { PaymentData } from "../Data/PaymentData";
 import { CustomError } from "../Model/CustonError";
 import { 
     buyerDataDTO, buyerDB, creditCardDataDTO, ClientDB, 
-    PAYMENTTYPES, RegisterPaymentDTO, creditCardDB, paymentCreditCard, paymentBoleto, statusDTO, boletoDTO, creditCardStatusDTO 
+    PAYMENTTYPES, RegisterPaymentDTO, creditCardDB, paymentCreditCard, 
+    paymentBoleto, statusDTO, boletoDTO, creditCardStatusDTO 
 } from "../Model/types";
 import IdGenerator from "../Services/IDGenerator";
 import { PaymentInputsValidation } from "./validation/PaymentInputsValidation";
@@ -16,9 +17,7 @@ export class PaymentBusiness {
         ) {}
         
     register = async (inputs:RegisterPaymentDTO) => {
-        const {
-            clientId, buyer_name, buyer_email, buyer_CPF, amount, type, 
-            card_name, card_number, card_expiration, card_CVV} = inputs
+        const { buyer_name, buyer_email, buyer_CPF,  type} = inputs
 
         try {
             this.paymenetInputsValidation.Register(inputs)
@@ -53,9 +52,7 @@ export class PaymentBusiness {
     }
 
     private paymentBoleto = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<boletoDTO> => {
-        const {
-            clientId, buyer_name, buyer_email, buyer_CPF, amount, type, 
-            card_name, card_number, card_expiration, card_CVV} = inputs
+        const {clientId,  amount, type, } = inputs
         const newPayment:paymentBoleto = {
             id: this.idGenerator.ID(),
             amount,
@@ -75,11 +72,9 @@ export class PaymentBusiness {
         }
         
     }
-    
+
     private paymentCreditCard = async (inputs:RegisterPaymentDTO,buyerId:string):Promise<creditCardStatusDTO> => {
-        const {
-            clientId, buyer_name, buyer_email, buyer_CPF, amount, type, 
-            card_name, card_number, card_expiration, card_CVV} = inputs
+        const {clientId,  amount, type, card_name, card_number, card_expiration, card_CVV} = inputs
 
         const creditCardData:creditCardDataDTO = {card_name, card_number,card_expiration,card_CVV}
         const creditcard = await this.paymentDataBase.getCreditCard(creditCardData) as creditCardDB
@@ -158,3 +153,4 @@ export default new PaymentBusiness(
     new PaymentData(),
     new IdGenerator()
 )
+
