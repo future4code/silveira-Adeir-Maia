@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RegisterInputsDTO } from "../Model/types";
+import { RegisterInputsDTO, SearchInputsDTO } from "../Model/types";
 import productBusiness from "../Business/ProductBusiness";
 
 
@@ -14,6 +14,19 @@ export class ProductController {
             res.statusMessage = 'Produto Registrado com sucesso!'
             
             res.status(201).send()
+        } catch (error:any) {
+            res.status(error.statusCode || 400).send({message: error.message })
+        }
+    }
+
+    search = async (req:Request,res:Response) => {
+        const id = req.query.id as string
+        const name = req.query.name as string
+        const tags = req.body.tags
+        try {
+            const inputs:SearchInputsDTO = {id,name,tags}
+            const result = await productBusiness.search(inputs)
+            res.status(200).send(result)
         } catch (error:any) {
             res.status(error.statusCode || 400).send({message: error.message })
         }

@@ -7,6 +7,10 @@ export interface RegisterInputsDTO {
     tags: string[]
 }
 
+export interface SearchInputsDTO extends RegisterInputsDTO {
+    id:string
+} 
+
 export interface ProductDB {
     // [index:string]:string
     id:string,

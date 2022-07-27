@@ -1,5 +1,5 @@
 import { CustonError } from "../../Model/CustonError/CustonError";
-import { RegisterInputsDTO } from "../../Model/types";
+import { RegisterInputsDTO, SearchInputsDTO } from "../../Model/types";
 
 
 export class InputsValidation {
@@ -8,9 +8,23 @@ export class InputsValidation {
         this.tag(inputs.tags)
     }
 
+    search = (inputs:SearchInputsDTO) => {
+        this.searchTerm(inputs)
+        inputs.id && this.id(inputs.id)
+        inputs.name &&  this.name(inputs.name)
+        inputs.tags && this.tag(inputs.tags)
+    }
+
+    
+    private id = (id:string):void => {
+        if(!id || typeof(id) !== 'string') {
+            throw new CustonError(422,'Id inválido')
+        }
+    }
+
     private name = (name:string):void => {
         if(!name || typeof(name) !== 'string') {
-        throw new CustonError(422,'O nome do produto é inválido!')
+            throw new CustonError(422,'O nome do produto é inválido!')
         }
     }
     
@@ -24,5 +38,11 @@ export class InputsValidation {
                 throw new CustonError(422,`A tag ${tag} é inválida`)
             }
         })
+    }
+
+    private searchTerm = (inputs:SearchInputsDTO):void => {
+        if(!inputs.id && !inputs.name && !inputs.tags){
+            throw new CustonError(422,'Não foi passado um termo para busca')
+        }
     }
 }

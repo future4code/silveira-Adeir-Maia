@@ -1,6 +1,6 @@
 import { ProductData } from "../Data/ProductDataBase"
 import { CustonError } from "../Model/CustonError/CustonError"
-import { LinkDB, ProductDB, RegisterInputsDTO, TagDB } from "../Model/types"
+import { LinkDB, ProductDB, RegisterInputsDTO, SearchInputsDTO, TagDB } from "../Model/types"
 import IdGenerator from "../Services/IDGenerator"
 import { InputsValidation } from "./DataValidation/InputsValidation"
 
@@ -16,7 +16,7 @@ export class ProductBusiness {
         try {
             this.inputsValidation.register(inputs)
 
-            const productDB = await this.productDataBase.getProductByName(inputs.name) as ProductDB
+            const productDB = await this.productDataBase.getProductBySpecificName(inputs.name) as ProductDB
             if(productDB.id || productDB.name){
                 throw new CustonError(409,'Produto já registrado!')
             }
@@ -25,7 +25,7 @@ export class ProductBusiness {
             await this.productDataBase.insertProduct({id: productId, name:inputs.name,})
 
             const tagsArray = inputs.tags.map(async tag => {
-                const tagDB = await this.productDataBase.getByTagName(tag) as TagDB
+                const tagDB = await this.productDataBase.getTagByName(tag) as TagDB
                 if(!tagDB.id || !tagDB.name){
                     const tagId = this.idGenerator.generate()
                     await this.productDataBase.insertTags({id:tagId,name:tag})
@@ -45,6 +45,23 @@ export class ProductBusiness {
                 await this.productDataBase.insertProductTagLink(Link)
             })
             
+        } catch (error:any) {
+            throw new CustonError(error.statusCode, error.message)
+        }
+    }
+
+    search = async (inputs: SearchInputsDTO) => {
+        try {
+            this.inputsValidation.search(inputs)
+
+            if(inputs.id) {
+                return this.productDataBase.getProductById(inputs.id)
+            } else if (inputs.name) {
+                return this.productDataBase.getProductByName(inputs.name)
+            } else {
+                return this.productDataBase.getProductByTags(inputs.tags)
+            }
+
         } catch (error:any) {
             throw new CustonError(error.statusCode, error.message)
         }
