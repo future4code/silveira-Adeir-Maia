@@ -20,12 +20,12 @@ Amaro é uma API que simula uma pequena parte do sistema de uma loja virtual, po
 
 <h2 id="link">🔗 Link base da API</h2>
 
-### - https://wirecard-case-adeir-moreira.herokuapp.com/
+### - https://amaro-adeir-moreira.herokuapp.com/
 
 <h2 id="documentação">📃 Documentação do Postman</h2>
 Na documentação você encontra as instruções de como usar e o que cada endPoint espera receber. Você também pode clicar em "Run in Postman" para rodar os endpoint no seu postman.
 
-### - [Postman](https://documenter.getpostman.com/view/20351643/UzXKXKLD)
+### - [Postman](https://documenter.getpostman.com/view/20351643/UzXNVHpT)
 
 <h2 id="features">✔️ Features</h2>
 
@@ -38,25 +38,24 @@ EndPoint para cadastrar um produto. O dados devem ser enviados em formato JSON. 
 
 ~~~JSON
 {
-    "name":"Iphone 13",
-    "tags":["celunar","iphone","apple"]
+    "name":"Camisa Preta",
+    "tags":["camisa","casual","verão"]
 }
 ~~~
 
 ## 🔎 Procura por Produtos
-O Endpoint para busca de produtos. Se a busca for por id ou por name, os termos devem ser enviados por query, se for por tags, devem ser enviardas em um array de strings no corpo da requisição. Os dados são verificados para determinar se são válidos e um erro espeficifico e retornado em cada caso. Um array vazio é retornado caso a busca não encontre resultados.
+O Endpoint para busca de produtos. Se a busca for por id ou por name, os termos devem ser enviados por query, se for por tags, devem ser enviardas em um array de strings no corpo da requisição. Os dados são verificados para determinar se são válidos,caso não sejam, um erro espeficifico é retornado em cada caso. Um array vazio é retornado caso a busca não encontre resultados.
 
 ## Exemplos:
 
-### BUSCA POR ID - Caminho: <a href="#link">Link da API</a>/product/?id=4764b238-57b3-40fc-ac26-01842f954c22
-### BUSCA POR NAME - Caminho: <a href="#link">Link da API</a>/product/?name=xbox
-### BUSCA POR TAGS - Caminho: <a href="#link">Link da API</a>/product
+##### BUSCA POR ID - Caminho: <a href="#link">Link da API</a>/product/?id=cb966f31-aab5-4f69-9067-5a552332c720
+##### BUSCA POR NAME - Caminho: <a href="#link">Link da API</a>/product/?name=calça
+##### BUSCA POR TAGS - Caminho: <a href="#link">Link da API</a>/product
 ~~~JSON
 {
-    "tags":["controle","game","microsoft"]
+    "tags":["casual"]
 }
 ~~~
-
 
 <h2 id="desenvolvedores">👨‍💻 Desenvolvedor</h2>
 <table>         
