@@ -1,9 +1,8 @@
-import { participationDTO } from "../Model/types";
+import { deleteDTO, participationDTO, updateDTO } from "../Model/types";
 import BaseDataBase from "./BaseDataBase";
 
 export class ParticipationData extends BaseDataBase {
     insert = async (inputs:participationDTO):Promise<void> => {
-        console.log(inputs)
         try {
             await BaseDataBase.connection('cubo_itau_participation').insert(inputs)
         } catch (error:any) {
@@ -19,19 +18,21 @@ export class ParticipationData extends BaseDataBase {
         }
     }
 
-    update = async (inputs:participationDTO):Promise<void> => {
+    update = async (inputs:updateDTO):Promise<void> => {
         try {
             await BaseDataBase.connection('cubo_itau_participation')
             .update({participation: inputs.participation})
-            .where({name:inputs.name})
+            .where({fristName: inputs.fristName, lastName: inputs.lastName})
         } catch (error:any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
 
-    delete = async (name:string):Promise<void> => {
+    delete = async (inputs:deleteDTO):Promise<void> => {
         try {
-            await BaseDataBase.connection('cubo_itau_participation').where({name}).delete()
+            await BaseDataBase.connection('cubo_itau_participation')
+            .where({fristName: inputs.fristName, lastName: inputs.lastName})
+            .delete()
         } catch (error:any) {
             throw new Error(error.sqlMessage || error.message)
         } 

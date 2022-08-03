@@ -1,10 +1,13 @@
 
 import './App.css';
+import { GlobalState } from './GlobalState/globalState';
 import Home from './Pages/home';
 
 function App() {
   return (
-    <Home/>
+    <GlobalState>
+      <Home/>
+    </GlobalState>
   );
 }
 

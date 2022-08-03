@@ -1,13 +1,14 @@
 import { Request, Response } from "express"
-import { participationDTO } from "../Model/types"
+import { deleteDTO, participationDTO, updateDTO } from "../Model/types"
 import participationBusiness from "../Business/ParticipationBusiness"
 
 export class ParticipationController {
 
     insert = async (req:Request,res:Response):Promise<void> => {
-        const {name, participation} = req.body
+        const {fristName, lastName, participation} = req.body
+        console.log(req.body)
         try {
-            const inputs:participationDTO = {name,participation}
+            const inputs:participationDTO = {fristName, lastName, participation}
             await participationBusiness.insert(inputs)
             res.statusMessage = 'Registro efetudado com sucesso'
             res.status(201).send()
@@ -29,9 +30,9 @@ export class ParticipationController {
     }
 
     update = async (req:Request,res:Response):Promise<void> => {
-        const {name, participation} = req.body
+        const {fristName, lastName, participation} = req.body
         try {
-            const inputs:participationDTO = {name,participation}
+            const inputs:updateDTO = {fristName,lastName, participation}
             await participationBusiness.update(inputs)
             res.statusMessage = 'Alteracao efetudada com sucesso'
             res.status(200).send()
@@ -42,9 +43,10 @@ export class ParticipationController {
     }
 
     delete = async (req:Request,res:Response):Promise<void> => {
-        const name = req.body.name as string
+        const {fristName, lastName} = req.body
         try {
-            await participationBusiness.delete(name)
+            const inputs:deleteDTO = {fristName, lastName} 
+            await participationBusiness.delete(inputs)
             res.statusMessage = 'Exclusao efetudada com sucesso'
             res.status(200).send()
         } catch (error:any) {

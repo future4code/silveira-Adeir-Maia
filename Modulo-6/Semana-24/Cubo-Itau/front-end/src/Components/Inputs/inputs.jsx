@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import useForm from "../../customHoocks/useForm";
+import { ParticipationContext } from "../../GlobalState/context";
 
 const Inputs = () => {
+    const globalState = useContext(ParticipationContext)
     const {form, onChange, clearFields} = useForm({fristName: '', lastName: '', participation: ''})
 
     const preventDefaultFunction = (event) => {
         event.preventDefault()
-        console.log(form)
+        globalState.add(form)
+        clearFields()
     }
 
     return (
         <div>
-            <form 
-            onSubmit={preventDefaultFunction}
-            >
+            <form onSubmit={preventDefaultFunction}>
+
             <input
             name="fristName"
             value={form.fristName}
@@ -35,9 +38,9 @@ const Inputs = () => {
             type={'number'}
             required/>
             <button>cadastrar</button>
+
             </form>
         </div>
-        
     )
 }
 

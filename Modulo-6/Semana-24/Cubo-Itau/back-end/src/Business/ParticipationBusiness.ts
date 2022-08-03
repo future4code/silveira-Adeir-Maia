@@ -1,12 +1,12 @@
 import { ParticipationData } from "../Data/ParticipationData";
-import { participationDTO } from "../Model/types";
+import { deleteDTO, participationDTO, updateDTO } from "../Model/types";
 
 
 export class ParticipationBusiness {
     constructor(private participationData: ParticipationData){}
 
     insert = async (inputs:participationDTO):Promise<void> => {
-        if(!inputs.name) throw new Error('Não foi passado um nome e sobrenome')
+        if(!inputs.fristName || !inputs.lastName) throw new Error('Não foi passado um nome ou sobrenome')
         if(!inputs.participation) throw new Error('Não foi passada uma participação')
 
         await this.participationData.insert(inputs)
@@ -17,12 +17,12 @@ export class ParticipationBusiness {
         return this.participationData.select()
     }
     
-    update = async (inputs:participationDTO):Promise<void> => {
+    update = async (inputs:updateDTO):Promise<void> => {
         await this.participationData.update(inputs)
     }
 
-    delete = async (name:string):Promise<void> => {
-        await this.participationData.delete(name)
+    delete = async (inputs:deleteDTO):Promise<void> => {
+        await this.participationData.delete(inputs)
     }
 }
 

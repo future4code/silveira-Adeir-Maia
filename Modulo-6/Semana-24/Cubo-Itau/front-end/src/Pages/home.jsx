@@ -1,4 +1,6 @@
+import { EditInputs } from "../Components/EditInputs/EditInputs";
 import Inputs from "../Components/Inputs/inputs";
+import { PieChart } from "../Components/PieChart/PieChart";
 import Table from "../Components/Table/table";
 
 export default function Home () {
@@ -9,6 +11,12 @@ export default function Home () {
             </div>
             <div>
                 <Table/>
+            </div>
+            <div>
+                <EditInputs/>
+            </div>
+            <div>
+                <PieChart/>
             </div>
         </>
     )
