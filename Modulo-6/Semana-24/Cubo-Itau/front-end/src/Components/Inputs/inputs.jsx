@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import useForm from "../../customHoocks/useForm";
 import { ParticipationContext } from "../../GlobalState/context";
+import * as s from "./style";
 
 const Inputs = () => {
     const globalState = useContext(ParticipationContext)
@@ -13,34 +14,32 @@ const Inputs = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={preventDefaultFunction}>
+        
+            <s.Form onSubmit={preventDefaultFunction}>
 
-            <input
+            <s.Inputs
             name="fristName"
             value={form.fristName}
             onChange={onChange}
             placeholder="Frist Name"
             required/>
 
-            <input
+            <s.Inputs
             name="lastName"
             value={form.lastName}
             onChange={onChange}
             placeholder="Last Name"
             required/>
 
-            <input
+            <s.Inputs
             name="participation"
             value={form.participation}
             onChange={onChange}
             placeholder="Paticipation"
             type={'number'}
             required/>
-            <button>cadastrar</button>
-
-            </form>
-        </div>
+            <s.ButtonSend>SEND</s.ButtonSend>
+            </s.Form>
     )
 }
 

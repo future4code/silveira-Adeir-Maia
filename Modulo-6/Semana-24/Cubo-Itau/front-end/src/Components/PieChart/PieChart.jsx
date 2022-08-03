@@ -1,6 +1,8 @@
 import Chart from "react-google-charts"
 import { useContext } from "react"
 import { ParticipationContext } from "../../GlobalState/context"
+import { Data } from "../Data/Data"
+import { Container } from "./style"
 
 export const PieChart = () => {
     const peopleParticipation = useContext(ParticipationContext)
@@ -12,14 +14,14 @@ export const PieChart = () => {
     const data = [["Pessoa", "Participação"],['Outros',100],...arrayData];
     
     const checkFullChart = () => {
-        const sumPeopleParticipation = arrayData.reduce((acc,curr) => {
+        const totalParticipation = arrayData.reduce((acc,curr) => {
             acc += curr[1]
             return acc
         },0)
-        if(sumPeopleParticipation < 100) {
-            data[1][1] = 100 - sumPeopleParticipation
+        if(totalParticipation < 100) {
+            data[1][1] = 100 - totalParticipation
         }
-        if(sumPeopleParticipation >= 100) {
+        if(totalParticipation === 0 || totalParticipation >= 100) {
             data.splice(1,1)
         }
     }
@@ -30,12 +32,15 @@ export const PieChart = () => {
         title: "Participação de cada pessoa",
     };
     return (
-        <Chart
-        chartType="PieChart"
-        data={data}
-        options={options}
-        width={'100%'}
-        height={'400px'}
-        />
+        <Container>
+            <Data/>
+            <Chart
+            chartType="PieChart"
+            data={data}
+            options={options}
+            width={'600px'}
+            height={'400px'}
+            />
+        </Container> 
     )
 }

@@ -1,17 +1,19 @@
 import { useContext } from "react"
 import { ParticipationContext } from "../../GlobalState/context"
-import { Aligned,  Celula, CelulaTd,  Id, Participation, Table1 } from "./style"
+import { Aligned,  Celula, CelulaTd,  Container,  Id, Participation, Table1 } from "./style"
+import { Message } from "../Message/Message"
 
 const Table = () => {
-    const listpeople = useContext(ParticipationContext)
+    const globalState = useContext(ParticipationContext)
 
     const twoFunctionsCall = (fristName, lastName) => {
-        listpeople.editTableDataFn(fristName,lastName)
-        listpeople.showEditFn()
+        globalState.editTableDataFn(fristName,lastName)
+        globalState.showEditFn()
     }
 
     return (
-        <>
+        <Container>
+            <Message/>
             <Table1>
                 <thead>
                     <tr>
@@ -22,7 +24,7 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {listpeople.list && listpeople.list.map(people => {
+                    {globalState.list && globalState.list.map(people => {
                         return(
                             <tr key={people.id} onDoubleClick={() => twoFunctionsCall(people.fristName,people.lastName)}>
                                 <Celula>{people.id}</Celula>
@@ -34,7 +36,7 @@ const Table = () => {
                     })}
                 </tbody>
             </Table1>
-        </>
+        </Container>
     )
 }
 

@@ -6,7 +6,6 @@ export class ParticipationController {
 
     insert = async (req:Request,res:Response):Promise<void> => {
         const {fristName, lastName, participation} = req.body
-        console.log(req.body)
         try {
             const inputs:participationDTO = {fristName, lastName, participation}
             await participationBusiness.insert(inputs)

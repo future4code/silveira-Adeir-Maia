@@ -6,65 +6,85 @@ import { ParticipationContext } from "./context"
 export const GlobalState = (props) => {
     const [list, setList] = useState([])
     const [edit, setEdit] = useState(false)
-    const [editData, setEditData] = useState()
+    const [selectedPersonData, setSelectedPersonData] = useState()
+    const [message, setMessage] = useState(false)
 
     useEffect(()=> { requestSelect(getAll) },[])
 
     const getAll = (data) => {
-        let updatedList = data.map((element,index) => {
-            element.id = index + 1
-            return element
-        })
+        let updatedList = updatedIndexFn(data)
         setList(updatedList)
     }
 
     const add = (data) => {
-        let updatedList = [...list,data]
-        updatedList = updatedList.map((element,index) => {
-            element.id = index + 1
-            element.participation = +element.participation
-            return element
-        })
-        setList(updatedList)
-        requestInsert(data)
+        message && showMessage()
+        if(checkTotalParticipation(list,data.participation) <= 100) {
+            let updatedList = [...list,data]
+            updatedList = updatedIndexFn(updatedList)
+            setList(updatedList)
+            requestInsert(data)
+        }else {
+            showMessage()
+        }
     }
 
     const del = () => {
+        message && showMessage()
         let updatedList = list.filter(a => 
-            (a.fristName !== editData.fristName && a.lastName !== editData.lastName)
+            (a.fristName !== selectedPersonData.fristName && a.lastName !== selectedPersonData.lastName)
             )
-        updatedList = updatedList.map((element,index) => {
-            element.id = index + 1
-            return element
-        })
+        updatedList = updatedIndexFn(updatedList)
         setList(updatedList)
-        requestDelete(editData)
+        requestDelete(selectedPersonData)
     }
 
     const showEditFn = () => {
         setEdit(edit === false ? true : false)
     }
 
+    const showMessage = () => {
+        setMessage(message === false ? true : false)
+
+    }
+
     const editTableDataFn = (fristName,lastName,participation) => {
-        setEditData({fristName,lastName,participation})
+        setSelectedPersonData({fristName,lastName,participation})
     }
 
     const editParticipation = (participation) => {
-        let updatedEditData = editData
-        updatedEditData.participation = +participation
-        const updatedlst = list.map(people => 
-            (people.fristName ===  updatedEditData.fristName && 
-            people.lastName === updatedEditData.lastName) ?
-            {
-                id:people.id, 
-                fristName:people.fristName,
-                lastName:people.lastName, 
-                participation: updatedEditData.participation
-            } :
-            people
-        )
-        setList(updatedlst)
-        requestPut(updatedEditData)
+            message && showMessage()
+            let updatedEditData = selectedPersonData
+            updatedEditData.participation = +participation
+            const updatedlst = list.map(people => 
+                (people.fristName ===  updatedEditData.fristName && 
+                people.lastName === updatedEditData.lastName) ?
+                {
+                    id:people.id, 
+                    fristName:people.fristName,
+                    lastName:people.lastName, 
+                    participation: updatedEditData.participation
+                } :
+                people
+            )
+        const totalParticipation = checkTotalParticipation(updatedlst,0)
+        totalParticipation <= 100  && setList(updatedlst) && requestPut(updatedEditData)
+        totalParticipation > 100 && showMessage()
+    }
+
+    const updatedIndexFn = (list) => {
+        return list.map((element,index) => {
+            element.id = index + 1
+            element.participation = +element.participation
+            return element
+        })
+    }
+    
+    const checkTotalParticipation = (list,newParticipation) => {
+        const totalParticipation = list.reduce((acc,curr) => {
+            acc += curr.participation
+            return acc
+        },0)
+        return Number(newParticipation) + totalParticipation
     }
 
     const params = {
@@ -72,10 +92,11 @@ export const GlobalState = (props) => {
         add,
         del,
         edit,
-        editData,
         showEditFn,
         editTableDataFn,
-        editParticipation
+        editParticipation,
+        message, 
+        setMessage
     }
 
     return (

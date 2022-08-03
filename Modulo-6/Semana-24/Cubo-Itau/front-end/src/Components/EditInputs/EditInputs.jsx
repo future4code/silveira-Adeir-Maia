@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { useInput } from "../../customHoocks/useInputs;"
 import { ParticipationContext } from "../../GlobalState/context"
+import { ButtonDelete, ButtonUpdate, Container, Form, Inputs } from "./styles"
 
 
 export const EditInputs = () => {
@@ -20,23 +21,23 @@ export const EditInputs = () => {
     }
 
     return (
-        <>
+        <Container>
         {
             globalState.edit && 
             <>
-                <form onSubmit={preventDefaultFunction}>
-                    <input
+                <Form onSubmit={preventDefaultFunction}>
+                    <Inputs
                         name="participation"
                         value={value}
                         onChange={handleValue}
                         placeholder="participation"
                         required
                     />
-                    <button>Update</button>
-                </form>
-                <button onClick={() => callTwoFunctions()}>Deletar</button>
+                    <ButtonUpdate>Update</ButtonUpdate>
+                </Form>
+                <ButtonDelete onClick={() => callTwoFunctions()}>Delete</ButtonDelete>
             </>
         }
-        </>
+        </Container>
     )
 }

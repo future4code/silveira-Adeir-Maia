@@ -2,22 +2,21 @@ import { EditInputs } from "../Components/EditInputs/EditInputs";
 import Inputs from "../Components/Inputs/inputs";
 import { PieChart } from "../Components/PieChart/PieChart";
 import Table from "../Components/Table/table";
+import * as  s  from "./style";
 
 export default function Home () {
     return(
         <>
-            <div>
+            <s.BlueBox>
                 <Inputs/>
-            </div>
-            <div>
+            </s.BlueBox>
+            <s.Container>
                 <Table/>
-            </div>
-            <div>
-                <EditInputs/>
-            </div>
-            <div>
                 <PieChart/>
-            </div>
+            </s.Container>
+            <s.ContainerEdit>
+                <EditInputs/>
+            </s.ContainerEdit>
         </>
     )
 } 
