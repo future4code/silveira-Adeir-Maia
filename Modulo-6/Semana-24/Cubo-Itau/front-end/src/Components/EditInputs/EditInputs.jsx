@@ -33,9 +33,9 @@ export const EditInputs = () => {
                         placeholder="participation"
                         required
                     />
-                    <ButtonUpdate>Update</ButtonUpdate>
+                    <ButtonUpdate>ATUALIZAR</ButtonUpdate>
                 </Form>
-                <ButtonDelete onClick={() => callTwoFunctions()}>Delete</ButtonDelete>
+                <ButtonDelete onClick={() => callTwoFunctions()}>DELETAR</ButtonDelete>
             </>
         }
         </Container>

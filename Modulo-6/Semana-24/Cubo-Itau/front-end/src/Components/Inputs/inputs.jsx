@@ -21,24 +21,24 @@ const Inputs = () => {
             name="fristName"
             value={form.fristName}
             onChange={onChange}
-            placeholder="Frist Name"
+            placeholder="Nome"
             required/>
 
             <s.Inputs
             name="lastName"
             value={form.lastName}
             onChange={onChange}
-            placeholder="Last Name"
+            placeholder="Sobrenome"
             required/>
 
             <s.Inputs
             name="participation"
             value={form.participation}
             onChange={onChange}
-            placeholder="Paticipation"
+            placeholder="Participação"
             type={'number'}
             required/>
-            <s.ButtonSend>SEND</s.ButtonSend>
+            <s.ButtonSend>ENVIAR</s.ButtonSend>
             </s.Form>
     )
 }
