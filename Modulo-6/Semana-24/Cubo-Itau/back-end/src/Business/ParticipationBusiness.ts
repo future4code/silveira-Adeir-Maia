@@ -18,10 +18,13 @@ export class ParticipationBusiness {
     }
     
     update = async (inputs:updateDTO):Promise<void> => {
+        if(!inputs.fristName || !inputs.lastName) throw new Error('Não foi passado um nome ou sobrenome')
+        if(!inputs.participation) throw new Error('Não foi passada uma participação')
         await this.participationData.update(inputs)
     }
 
     delete = async (inputs:deleteDTO):Promise<void> => {
+        if(!inputs.fristName || !inputs.lastName) throw new Error('Não foi passado um nome ou sobrenome')
         await this.participationData.delete(inputs)
     }
 }

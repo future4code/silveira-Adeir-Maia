@@ -67,7 +67,8 @@ export const GlobalState = (props) => {
                 people
             )
         const totalParticipation = checkTotalParticipation(updatedlst,0)
-        totalParticipation <= 100  && setList(updatedlst) && requestPut(updatedEditData)
+        totalParticipation <= 100 && setList(updatedlst) 
+        totalParticipation <= 100 && requestPut(updatedEditData)
         totalParticipation > 100 && showMessage()
     }
 
