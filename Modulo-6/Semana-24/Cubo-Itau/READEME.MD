@@ -39,7 +39,7 @@ Gráfico de participação e um projeto full-Stack desenvolvido durante o bootca
 Voçê pode testar a API com Postman.
 - O Postman é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTP e HTTPs simples e complexas, bem como ler suas respostas.
 - [Download do Postamam](https://www.postman.com/downloads/)
-- [Download do arquivo JSON](https://github.com/AdeirMoreira/Projeto-Music-Awards/blob/master/Labenu-Music-Awards-IDP.postman_collection.json) para rodar as requições no seu Postmam.
+- [Download do arquivo JSON](https://github.com/future4code/silveira-Adeir-Maia/blob/rodada-cases-semana-(3)/Modulo-6/Semana-24/Cubo-Itau/Cubo-itau.postman_collection.json) para rodar as requições no seu Postmam.
 
 
 <h2 id="features">✔️ Features</h2>
