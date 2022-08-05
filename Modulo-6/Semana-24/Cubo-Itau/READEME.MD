@@ -1,10 +1,11 @@
 <p>
 <a href="#sobre">Sobre</a> |
 <a href="#tecnologia">Tecnologia</a> |
-<a href="#link">Link da API</a> |
+<a href="#link">Links</a> |
 <a href="#documentação">Documentação</a> |
 <a href="#postmam">Postmam</a> |
 <a href="#features">Features</a> |
+<a href="#front">Rodando o Front-end</a> |
 <a href="#back">Rodando o back-end</a> |
 <a href="#desenvolvedores">Desenvolvedores</a>
 </p>
@@ -21,14 +22,16 @@ Gráfico de participação e um projeto full-Stack desenvolvido durante o bootca
 - [Jest](https://jestjs.io/pt-BR/docs/api)
 - [MySql](https://dev.mysql.com/doc/)
 
-<h2 id="link">🔗 Link base da API</h2>
+<h2 id="link">🔗 Links</h2>
 
-#### https://labenu-music-awards-idp.herokuapp.com
+- ### Link base da API https://adeir-cubo-itau-participation.herokuapp.com/
+- ### Link da Página front-end https://cubo-itau-adeir.surge.sh/
+
 
 <h2 id="documentação">📃 Documentação</h2>
 
 - Na documentação você encontra todas informações sobre como usar cada endpoint da API. Você pode clicar em "Run in Postman" para testar os endpoints na versão web do postman.
-- [Documentação](https://documenter.getpostman.com/view/20351643/UzQvtk4N)
+- [Documentação](https://documenter.getpostman.com/view/20351643/VUjLK6oJ)
 
 
 <h2 id="postmam"> <img src="https://user-images.githubusercontent.com/98994187/182048033-f81fac19-1c26-45c0-96da-a5ffbc0defec.svg" height="20" width="20" alt="javascript logo"  /> Postmam</h2>
@@ -41,16 +44,38 @@ Voçê pode testar a API com Postman.
 
 <h2 id="features">✔️ Features</h2>
 
-#### 💻🖥 Front-End
+### 💻🖥 Front-End
 
 - 📋 Cadastro de participação de uma pessoa .
 - ✒ Edição da cota de participação de uma pessoa.
 - 🗑 Delear a cota de participação de uma pessa.
 - 📈 Um gráfico demonstrando a particioação de cada pessoa.
 
-#### 📓 Back-End
+### 🗃 Back-End
 
 - CRUD dados enviados pelo front podem ser REGISTRADOS, CONSULTADOS, ALTERADOS, e DELETADOS do banco de dados, 
+
+<h2 id="front"> 🎲  Rodando o Front-End</h2>
+
+### Pre-Requisitos
+
+- Um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+### Como instalar e Rodar
+* Para baixar o projeto
+```
+1. git clone https://github.com/AdeirMoreira/Projeto-Music-Awards.git
+2. cd Projeto-Music-Awards
+```
+* Para instalar e rodar o projeto
+```
+3. npm install
+4. npm start
+    ou
+3. yarn install
+4. yarn start
+```
+O Projeto abrirá no seu navegador padrão na porta 3000
 
 <h2 id="back"> 🎲 Rodando o Back End (servidor)</h2>
 

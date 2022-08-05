@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BaseUrl = 'http://localhost:3003/'
+const BaseUrl = 'https://adeir-cubo-itau-participation.herokuapp.com/'
 
 export const requestInsert = async (from) => {
     try {

@@ -30,6 +30,8 @@ export const PieChart = () => {
 
     const options = {
         title: "Participação de cada pessoa",
+        pieHole: 0.4,
+        is3D: false,
     };
     return (
         <Container>

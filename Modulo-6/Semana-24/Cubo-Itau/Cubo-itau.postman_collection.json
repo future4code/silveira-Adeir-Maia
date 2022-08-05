@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "fb08bc0b-1130-4048-acbb-0cf474e2cd24",
+		"name": "Cubo-itau",
+		"description": "Uma API que realiza um CRUD das informações Nome, Sobrenome e Participação.\n\nLink Base da API https://adeir-cubo-itau-participation.herokuapp.com/\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20351643"
+	},
+	"item": [
+		{
+			"name": "insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fristName\":\"adeir\",\r\n    \"lastName\":\"moreira\",\r\n    \"participation\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/insert",
+					"protocol": "https",
+					"host": [
+						"adeir-cubo-itau-participation",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"participation",
+						"insert"
+					]
+				},
+				"description": "Insere Nome, Sobrenome e Participação de uma pessoa no banco de Dados."
+			},
+			"response": [
+				{
+					"name": "insert",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fristName\":\"Adeir\",\r\n    \"lastName\":\"Moreira\",\r\n    \"participation\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/insert",
+							"protocol": "https",
+							"host": [
+								"adeir-cubo-itau-participation",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"participation",
+								"insert"
+							]
+						}
+					},
+					"status": "Registro efetudado com sucesso",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Aug 2022 23:08:26 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "select",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/select",
+					"protocol": "https",
+					"host": [
+						"adeir-cubo-itau-participation",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"participation",
+						"select"
+					]
+				},
+				"description": "Retorna todas as informações do banco de dados"
+			},
+			"response": [
+				{
+					"name": "select",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/select",
+							"protocol": "https",
+							"host": [
+								"adeir-cubo-itau-participation",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"participation",
+								"select"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "307"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"133-o8d+73V3nELhzxSGEt/dqu2NIiE\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Aug 2022 23:08:40 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"fristName\": \"Mariana\",\n        \"lastName\": \"Tronix\",\n        \"participation\": 20\n    },\n    {\n        \"fristName\": \"Eduardo\",\n        \"lastName\": \"Osiro\",\n        \"participation\": 10\n    },\n    {\n        \"fristName\": \"Ariane\",\n        \"lastName\": \"Tier\",\n        \"participation\": 10\n    },\n    {\n        \"fristName\": \"Eric\",\n        \"lastName\": \"Silva\",\n        \"participation\": 12\n    },\n    {\n        \"fristName\": \"Adeir\",\n        \"lastName\": \"Moreira\",\n        \"participation\": 20\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"fristName\": \"adeir\",\r\n        \"lastName\":\"moreira\",\r\n        \"participation\": 40\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/update",
+					"protocol": "https",
+					"host": [
+						"adeir-cubo-itau-participation",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"participation",
+						"update"
+					]
+				},
+				"description": "Altera uma cota de participação de uma pessoa se passados nome e sobrenome."
+			},
+			"response": [
+				{
+					"name": "update",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    {\r\n        \"fristName\": \"adeir\",\r\n        \"lastName\":\"moreira\",\r\n        \"participation\": 40\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/update",
+							"protocol": "https",
+							"host": [
+								"adeir-cubo-itau-participation",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"participation",
+								"update"
+							]
+						}
+					},
+					"status": "Alteracao efetudada com sucesso",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Aug 2022 23:05:55 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"adeir\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/delete",
+					"protocol": "https",
+					"host": [
+						"adeir-cubo-itau-participation",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"participation",
+						"delete"
+					]
+				},
+				"description": "Exclui todas as informações sobre uma pessoa se passado nome e sobrenome"
+			},
+			"response": [
+				{
+					"name": "delete",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fristName\": \"adeir\",\r\n    \"lastName\": \"moreira\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://adeir-cubo-itau-participation.herokuapp.com/participation/delete",
+							"protocol": "https",
+							"host": [
+								"adeir-cubo-itau-participation",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"participation",
+								"delete"
+							]
+						}
+					},
+					"status": "Exclusao efetudada com sucesso",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 04 Aug 2022 23:08:15 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
