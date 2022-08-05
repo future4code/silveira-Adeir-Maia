@@ -36,6 +36,7 @@ const Table = () => {
                     })}
                 </tbody>
             </Table1>
+            <p>Para editar ou deletar uma cota de participação, dê 2 clicks no nome da pessoa</p>
         </Container>
     )
 }

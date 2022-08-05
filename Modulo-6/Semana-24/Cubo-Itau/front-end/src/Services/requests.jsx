@@ -10,9 +10,11 @@ export const requestInsert = async (from) => {
     }
 }
 
-export const requestSelect = async (getall) => {
+export const requestSelect = async (getall,setloader) => {
+    setloader(true)
     try {
         const result =  await axios.get(`${BaseUrl}participation/select`)
+        setloader(false)
         getall(result.data)
     } catch (error) {
         console.log(error.response.data)

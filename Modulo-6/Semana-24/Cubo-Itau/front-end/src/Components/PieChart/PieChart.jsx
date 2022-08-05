@@ -2,12 +2,14 @@ import Chart from "react-google-charts"
 import { useContext } from "react"
 import { ParticipationContext } from "../../GlobalState/context"
 import { Data } from "../Data/Data"
-import { Container } from "./style"
+import { Container, ContainerLoader } from "./style"
+import { Loader } from "../Loader/Loader"
 
 export const PieChart = () => {
-    const peopleParticipation = useContext(ParticipationContext)
+    const globalState = useContext(ParticipationContext)
+    console.log(globalState.loader)
 
-    const arrayData = peopleParticipation.list.map(people => {
+    const arrayData = globalState.list.map(people => {
         return [`${people.fristName}`,people.participation]
     })
 
@@ -36,13 +38,19 @@ export const PieChart = () => {
     return (
         <Container>
             <Data/>
+            {globalState.loader ? 
+            <ContainerLoader>
+                <Loader/> 
+            </ContainerLoader>
+            :
             <Chart
-            chartType="PieChart"
-            data={data}
-            options={options}
-            width={'600px'}
-            height={'400px'}
+                chartType="PieChart"
+                data={data}
+                options={options}
+                width={'600px'}
+                height={'400px'}
             />
+            }
         </Container> 
     )
 }

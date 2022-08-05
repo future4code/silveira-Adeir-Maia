@@ -8,8 +8,9 @@ export const GlobalState = (props) => {
     const [edit, setEdit] = useState(false)
     const [selectedPersonData, setSelectedPersonData] = useState()
     const [message, setMessage] = useState(false)
+    const [loader, setloader] = useState(true)
 
-    useEffect(()=> { requestSelect(getAll) },[])
+    useEffect(()=> { requestSelect(getAll,setloader) },[])
 
     const getAll = (data) => {
         let updatedList = updatedIndexFn(data)
@@ -97,7 +98,8 @@ export const GlobalState = (props) => {
         editTableDataFn,
         editParticipation,
         message, 
-        setMessage
+        setMessage,
+        loader
     }
 
     return (
