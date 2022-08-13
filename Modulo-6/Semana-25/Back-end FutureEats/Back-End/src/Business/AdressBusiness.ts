@@ -1,9 +1,11 @@
 import adressDataBase, { AdressDataBase } from "../Data/AdressDataBase";
+import userDataBase from "../Data/UserDataBase";
 import { CustonError } from "../Model/CustonError/CustonError";
-import { AdressDB, AdressDTO } from "../Model/types";
+import { AdressDB, AdressDTO, checkAdressDB, UserDB } from "../Model/types";
 import authentication,{ Authentication} from "../Services/Authentication";
 import idGenerator,{ IdGenerator } from "../Services/IDGenerator";
 import inputsValidation,{ InputsValidation } from "./InputsValidation/InputsValidation";
+
 
 
 export class AdressBusiness {
@@ -11,44 +13,68 @@ export class AdressBusiness {
         private inputsValidation: InputsValidation,
         private idGenerator: IdGenerator,
         private authentication: Authentication,
-        private adressData : AdressDataBase
+        private adressData: AdressDataBase,
+        private profile : (id: string) => Promise<UserDB[]>
     ){}
 
     Adress = async (inputs:AdressDTO) => {
         const {CEP, street, number, neighbourhood, city, state, complement, token} = inputs
         try {
-            this.inputsValidation.Adress(inputs)
+            this.inputsValidation.Address(inputs)
 
             const userId = this.authentication.getTokenData(token as string)
             const [userAdress] =  await this.adressData.getAndress(userId)
+            if(!userAdress) {
+                throw new CustonError(422,'Usuário encontrado')
+            }
             
             const id = this.idGenerator.ID()
             const adress:AdressDB = {id, userId ,CEP, street, number, neighbourhood, city, state, complement}
+            !userAdress && this.adressData.insert(adress)
+            userAdress && this.adressData.change(adress)
 
-            !userAdress && this.insertAdress(adress)
-            userAdress && this.changeAdress(adress)
+            const [user] = await this.profile(userId)
+            delete user.hashPassword
 
-            return this.authentication.generateToken({id:userId})
+            const {hasAddress, address} = await this.checkAdress(user.id)
+            user.hasAddress = hasAddress
+            user.address = address
+
+            const newToken =  this.authentication.generateToken({id:userId})
+            
+            return { user, token: newToken}
         } catch (error:any) {
             this.tokenError(error.message)
             throw new CustonError(error.statusCode, error.message)
         }
     }
 
-    fullAndress = (token:string) => {
+    fullAndress = async (token:string) => {
         try {
-            this.inputsValidation.FullAdress(token)
-
+            this.inputsValidation.Token(token)
             const userId = this.authentication.getTokenData(token as string)
-            return this.adressData.getAndress(userId)
+
+            const  [hasAddress]  = await this.adressData.getAndress(userId)
+            if(!hasAddress) {
+                throw new CustonError(401,'Usuário não possui endereço cadastrado')
+            }
+
+            delete hasAddress.CEP, 
+            delete hasAddress.id, 
+            delete hasAddress.userId
+
+            return  { address : hasAddress }
         } catch (error:any) {
             throw new CustonError(error.statusCode, error.message)
         }
     }
 
-    private  insertAdress = (adress:AdressDB) => this.adressData.insert(adress)
-
-    private  changeAdress = (adress:AdressDB) => this.adressData.change(adress)
+    checkAdress = async (userId:string):Promise<checkAdressDB> => {
+        const [result] =  await this.adressData.getAndress(userId)
+        const address = `${result?.street},${result?.number},${result?.neighbourhood},${result?.complement}`
+        if(result) { return { hasAddress: true, address}}
+        else { return { hasAddress: false, address : undefined}}
+    }
 
     private tokenError = (errorMessage:string):void => {
         if(errorMessage.includes('jwt expired')) {
@@ -64,5 +90,6 @@ export default new AdressBusiness(
     inputsValidation,
     idGenerator,
     authentication,
-    adressDataBase
+    adressDataBase,
+    userDataBase.Profile
 )

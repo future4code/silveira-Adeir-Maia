@@ -41,7 +41,7 @@ export class UserController {
 
             res.status(200).send(profile)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 
@@ -51,11 +51,11 @@ export class UserController {
         try {
             const inputs:UpdateInputDTO = {name, email, cpf, token}
 
-            await this.userBusiness.Update(inputs)
+            const result = await this.userBusiness.Update(inputs)
             res.statusMessage = 'Ateracao realizada com sucesso!'
-            res.status(200).send()
+            res.status(200).send(result)
         } catch (error:any) {
-            res.status(error.statusCode || 400).send({error:error.message})
+            res.status(error.statusCode || 400).send({message:error.message})
         }
     }
 }
