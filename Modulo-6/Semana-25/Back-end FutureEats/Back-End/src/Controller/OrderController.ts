@@ -45,5 +45,4 @@ export class OrderController {
 
 export default new OrderController( 
     orderBusiness
-
 )
