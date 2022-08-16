@@ -1,0 +1,91 @@
+### SIGNUP
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "teste",
+	"email": "teste@email",
+	"cpf": "000.000.000-00",
+	"password": "abc123"
+}
+
+### LOGIN
+
+# @name login
+
+POST http://localhost:3003/user/login 
+Content-Type: application/json
+
+{
+    "email": "teste@email", 
+    "password": "abc123"
+}
+
+###
+
+@token = {{login.response.body.token}}
+
+### Profile
+GET http://localhost:3003/user/profile
+Authorization: {{token}}
+
+### UPDATE PROFILE
+PUT http://localhost:3003/user/update
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "email": "teste@email",
+    "cpf": "000.000.000-00"
+}
+
+### ADD AND CHANGE ADRESS
+PUT http://localhost:3003/address
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "street": "Rua",
+    "number": "0",
+    "neighbourhood": "Bairro",
+    "city": "Cidade",
+    "state": "Sâo Paulo",
+    "complement": "casa"
+}
+
+### Full adress
+GET http://localhost:3003/adress/full
+Authorization: {{token}}
+
+### Get Restaurants
+GET http://localhost:3003/restaurant/all
+Authorization: {{token}}
+
+### GET RESTAURANTS PRODUCTS
+GET http://localhost:3003/restaurant/detail/6
+Authorization: {{token}}
+
+### PLACE ORDER
+POST  http://localhost:3003/order/place/6
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "products": [{
+		"id": "GpPdX7xtveRWYPkbE1tD",
+		"quantity": 3
+	}, {
+		"quantity": 2,
+		"id": "ylAIpiItf3yXvQtvM5VG"
+	}],
+	"paymentMethod": "money"
+}
+
+### GET ACTIVE ORDER
+GET http://localhost:3003/order/active
+Authorization: {{token}}
+
+### GET ORDER HISTORY 
+GET http://localhost:3003/order/history
+Authorization: {{token}}
